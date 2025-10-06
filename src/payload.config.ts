@@ -1,6 +1,6 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
-
+import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -19,6 +19,8 @@ import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+const r2Endpoint = process.env.R2_ENDPOINT
 
 export default buildConfig({
   admin: {
@@ -68,6 +70,28 @@ export default buildConfig({
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
+    s3Storage({
+      bucket: process.env.R2_BUCKET!,
+      config: {
+        endpoint: r2Endpoint,
+        region: 'auto',
+        forcePathStyle: true,
+        credentials: {
+          accessKeyId: process.env.R2_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.R2_SECRET_ACCESS_KEY!,
+        },
+      },
+      collections: {
+        media: {
+          prefix: 'media',
+          disableLocalStorage: true,
+          // optional generateFileURL if you serve via custom domain:
+          // generateFileURL: ({ filename, prefix }) => `https://media.example.com/${prefix}/${filename}`,
+        },
+      },
+      // Use clientUploads to get presigned URLs (see warnings below)
+      clientUploads: true,
+    }),
     ...plugins,
     // storage-adapter-placeholder
   ],
