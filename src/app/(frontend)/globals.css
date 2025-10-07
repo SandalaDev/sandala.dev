@@ -11,85 +11,226 @@
   h6 {
     font-size: unset;
     font-weight: unset;
+
+    @apply font-sans;
   }
 
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 240 5% 96%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 240 6% 80%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
+    --background: var(--coral-whisper);
+    --foreground: var(--purple-void);
+    --card: var(--coral-pink);
+    --card-foreground: var(--purple-void);
+    --popover: var(--coral-whisper);
+    --popover-foreground: var(--purple-void);
+    --primary: var(--purple-base);
+    --primary-foreground: var(--coral-whisper);
+    --secondary: var(--coral-pink);
+    --secondary-foreground: var(--purple-shadow);
+    --muted: var(--coral-mist);
+    --muted-foreground: var(--coral-blush);
+    --accent: var(--coral-pink);
+    --accent-foreground: var(--purple-shadow);
+    --destructive: 341 78% 59%;
+    --destructive-foreground: var(--coral-whisper);
+    --border: var(--coral-mist);
+    --input: var(--coral-mist);
+    --ring: var(--purple-void);
     --radius: 0.2rem;
-
-    --success: 196 52% 74%;
-    --warning: 34 89% 85%;
-    --error: 10 100% 86%;
+    --shadow-card: 0 20px 40px hsl(var(--purple-void) / 0.25);
+    --success: 127 75% 67%;
+    --warning: 37 84% 63%;
+    --error: 352 85% 35%;
+    /* Coral Palette */
+    --coral-whisper: 348 50% 94%;
+    --coral-mist: 349 54% 87%;
+    --coral-blush: 350 74% 73%;
+    --coral-pink: 348 80% 80%;
+    --coral-bright: 350 80% 68%;
+    --coral-deep: 350 87% 62%;
+    /* Purple Palette */
+    --purple-void: 300 97% 10%;
+    --purple-shadow: 300 99% 12%;
+    --purple-dusk: 300 77% 24%;
+    --purple-twilight: 300 76% 30%;
+    --purple-bloom: 300 74% 38%;
+    --purple-base: 300 83% 16%;
   }
 
   [data-theme='dark'] {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
-
-    --card: 0 0% 4%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 0, 0%, 15%, 0.8;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-
-    --success: 196 100% 14%;
-    --warning: 34 51% 25%;
-    --error: 10 39% 43%;
+    --background: var(--purple-void);
+    --foreground: var(--coral-mist);
+    --card: var(--purple-shadow);
+    --card-foreground: var(--coral-whisper);
+    --popover: var(--purple-shadow);
+    --popover-foreground: var(--coral-whisper);
+    --primary: var(--coral-pink);
+    --primary-foreground: var(--purple-void);
+    --secondary: var(--purple-dusk);
+    --secondary-foreground: var(--coral-whisper);
+    --muted: var(--purple-shadow);
+    --muted-foreground: var(--purple-twilight);
+    --accent: var(--coral-pink);
+    --accent-foreground: var(--purple-void);
+    --destructive: 352 85% 55%;
+    --destructive-foreground: var(--coral-whisper);
+    --border: var(--purple-dusk);
+    --input: var(--purple-dusk);
+    --ring: var(--coral-bright);
+    --success: 127 76% 45%;
+    --warning: 37 86% 47%;
+    --error: 352 85% 55%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    a {
+      @apply font-sans;
+    }
   }
   body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    @apply font-serif text-foreground min-h-[100vh] flex flex-col;
+    position: relative;
+    margin: 0;
+  }
+}
+
+/* Section-scoped mesh backgrounds */
+.section-mesh {
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 80%, hsl(var(--coral-whisper)) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, hsl(var(--coral-mist)) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 70%, hsl(var(--purple-twilight)) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, hsl(var(--coral-pink)) 0%, transparent 40%),
+    linear-gradient(
+      135deg,
+      hsl(var(--coral-whisper)) 0%,
+      hsl(var(--coral-bright)) 50%,
+      hsl(var(--coral-pink)) 100%
+    );
+  background-size:
+    1050px 1050px,
+    950px 950px,
+    950px 950px,
+    500px 500px,
+    100% 100%;
+  animation: lightMeshFloat 180s linear infinite alternate;
+  will-change: background-position;
+  contain: strict;
+  opacity: 0.7;
+}
+
+/*dark-mesh */
+[data-theme='dark'] body::before {
+  background:
+    radial-gradient(circle at 25% 25%, hsl(var(--purple-void)) 0%, transparent 45%),
+    radial-gradient(ellipse at 75% 75%, hsl(var(--purple-shadow)) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, hsl(var(--purple-base)) 0%, transparent 45%),
+    radial-gradient(ellipse at 20% 80%, hsl(var(--coral-bright)) 0%, transparent 40%),
+    linear-gradient(
+      225deg,
+      hsl(var(--purple-void)) 0%,
+      hsl(var(--purple-shadow)) 20%,
+      hsl(var(--coral-blush)) 50%,
+      hsl(var(--purple-shadow)) 100%
+    );
+  background-size:
+    1050px 1050px,
+    950px 950px,
+    950px 950px,
+    500px 500px,
+    100% 100%;
+  animation: darkMeshFloat 180s linear infinite alternate;
+  will-change: background-position;
+  contain: strict;
+  opacity: 0.8;
+}
+
+/*Background animation*/
+@keyframes lightMeshFloat {
+  0% {
+    background-position:
+      0% 0%,
+      100% 100%,
+      50% 50%,
+      0% 0%;
+  }
+  25% {
+    background-position:
+      25% 25%,
+      75% 75%,
+      55% 45%,
+      0% 0%;
+  }
+  50% {
+    background-position:
+      50% 50%,
+      50% 50%,
+      60% 40%,
+      0% 0%;
+  }
+  75% {
+    background-position:
+      75% 75%,
+      25% 25%,
+      55% 45%,
+      0% 0%;
+  }
+  100% {
+    background-position:
+      100% 100%,
+      0% 0%,
+      50% 50%,
+      0% 0%;
+  }
+}
+
+@keyframes darkMeshFloat {
+  0% {
+    background-position:
+      0% 0%,
+      100% 100%,
+      50% 50%,
+      0% 0%;
+  }
+  25% {
+    background-position:
+      25% 25%,
+      75% 75%,
+      55% 45%,
+      0% 0%;
+  }
+  50% {
+    background-position:
+      50% 50%,
+      50% 50%,
+      60% 40%,
+      0% 0%;
+  }
+  75% {
+    background-position:
+      75% 75%,
+      25% 25%,
+      55% 45%,
+      0% 0%;
+  }
+  100% {
+    background-position:
+      100% 100%,
+      0% 0%,
+      50% 50%,
+      0% 0%;
   }
 }
 
