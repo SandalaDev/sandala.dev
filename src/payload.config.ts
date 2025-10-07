@@ -38,12 +38,14 @@ export default buildConfig({
     defaultFromName: process.env.EMAIL_FROM_NAME || 'Abe',
     transportOptions: {
       host: 'smtp-relay.brevo.com',
-      port: 587,
-      secure: false, // true for port 465, false for other ports
+      port: 465,
+      secure: true, // true for port 465, false for other ports
       auth: {
         user: process.env.BREVO_SMTP_LOGIN,
         pass: process.env.BREVO_SMTP_KEY,
       },
+      logger: true,
+      debug: true,
     },
   }),
   admin: {
