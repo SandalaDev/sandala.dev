@@ -16,13 +16,36 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const r2Endpoint = process.env.R2_ENDPOINT
+// Email environment variables validation
+if (!process.env.BREVO_SMTP_LOGIN) {
+  throw new Error('BREVO_SMTP_LOGIN is required')
+}
+if (!process.env.BREVO_SMTP_KEY) {
+  throw new Error('BREVO_SMTP_KEY is required')
+}
+if (!process.env.EMAIL_FROM) {
+  throw new Error('EMAIL_FROM is required')
+}
 
 export default buildConfig({
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.EMAIL_FROM,
+    defaultFromName: process.env.EMAIL_FROM_NAME || 'Abe',
+    transportOptions: {
+      host: 'smtp-relay.brevo.com',
+      port: 587,
+      secure: false, // true for port 465, false for other ports
+      auth: {
+        user: process.env.BREVO_SMTP_LOGIN,
+        pass: process.env.BREVO_SMTP_KEY,
+      },
+    },
+  }),
   admin: {
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
