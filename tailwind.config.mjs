@@ -30,19 +30,14 @@ const config = {
     container: {
       center: true,
       padding: {
-        '2xl': '2rem',
         DEFAULT: '1rem',
         lg: '2rem',
-        md: '2rem',
-        sm: '1rem',
-        xl: '2rem',
       },
       screens: {
-        '2xl': '86rem',
-        lg: '64rem',
-        md: '48rem',
-        sm: '40rem',
-        xl: '80rem',
+        sm: '100%',
+        md: '90%',
+        lg: '80%',
+        xl: '1440px',
       },
     },
     extend: {
@@ -94,8 +89,8 @@ const config = {
         warning: 'hsl(var(--warning))',
       },
       fontFamily: {
-        mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        serif: ['var(--font-lora)'],
+        sans: ['var(--font-archivo)'],
       },
       keyframes: {
         'accordion-down': {
@@ -106,42 +101,142 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        ring: 'hsl(var(--ring))',
+        success: 'hsl(var(--success))',
+        error: 'hsl(var(--error))',
+        warning: 'hsl(var(--warning))',
+        'coral-whisper': 'hsl(var(--coral-whisper))',
+        'coral-mist': 'hsl(var(--coral-mist))',
+        'coral-blush': 'hsl(var(--coral-blush))',
+        'coral-pink': 'hsl(var(--coral-pink))',
+        'coral-bright': 'hsl(var(--coral-bright))',
+        'coral-deep': 'hsl(var(--coral-deep))',
+        'purple-void': 'hsl(var(--purple-void))',
+        'purple-shadow': 'hsl(var(--purple-shadow))',
+        'purple-dusk': 'hsl(var(--purple-dusk))',
+        'purple-twilight': 'hsl(var(--purple-twilight))',
+        'purple-bloom': 'hsl(var(--purple-bloom))',
+        'purple-base': 'hsl(var(--purple-base))',
       },
-      typography: () => ({
+      typography: (theme) => ({
         DEFAULT: {
           css: [
             {
-              '--tw-prose-body': 'var(--text)',
-              '--tw-prose-headings': 'var(--text)',
+              // Base colors from your design tokens
+              '--tw-prose-body': theme('colors.foreground'),
+              '--tw-prose-headings': theme('colors.foreground'),
+              '--tw-prose-links': theme('colors.primary.DEFAULT'),
+              '--tw-prose-bold': theme('colors.foreground'),
+              '--tw-prose-quotes': theme('colors.muted.foreground'),
+            },
+            {
+              // Headings use Archivo (sans)
               h1: {
-                fontWeight: 'normal',
+                fontFamily: theme('fontFamily.sans').join(', '),
+                fontWeight: '800',
+                marginBottom: '0.25em',
+              },
+              h2: {
+                fontFamily: theme('fontFamily.sans').join(', '),
+                fontWeight: '700',
+                marginTop: '1.5em',
+                marginBottom: '0.75em',
+              },
+              h3: {
+                fontFamily: theme('fontFamily.sans').join(', '),
+                fontWeight: '600',
+                marginTop: '1.25em',
+                marginBottom: '0.5em',
+              },
+              h4: {
+                fontFamily: theme('fontFamily.sans').join(', '),
+                fontWeight: '600',
+              },
+              h5: {
+                fontFamily: theme('fontFamily.sans').join(', '),
+                fontWeight: '500',
+              },
+              h6: {
+                fontFamily: theme('fontFamily.sans').join(', '),
+                fontWeight: '500',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+              },
+
+              // Body text uses Lora (serif)
+              p: {
+                fontFamily: theme('fontFamily.serif').join(', '),
+                fontWeight: '500',
+                marginTop: '1em',
+                marginBottom: '1em',
+              },
+
+              strong: {
+                fontWeight: '600',
+              },
+              em: {
+                fontStyle: 'italic',
+              },
+
+              a: {
+                fontWeight: '500',
+                color: theme('colors.primary.DEFAULT'),
+                textDecoration: 'none',
+                fontWeight: '600',
+              },
+
+              blockquote: {
+                fontStyle: 'italic',
+                color: theme('colors.muted.foreground'),
+                borderLeft: `4px solid ${theme('colors.primary.DEFAULT')}`,
+                paddingLeft: '1em',
+              },
+
+              code: {
+                fontFamily: 'monospace',
+                fontWeight: '500',
+                backgroundColor: theme('colors.muted.DEFAULT'),
+                padding: '0.2em 0.4em',
+                borderRadius: '0.25rem',
+              },
+
+              'ul, ol': {
+                paddingLeft: '1.25em',
+              },
+              li: {
+                marginTop: '0.25em',
                 marginBottom: '0.25em',
               },
             },
           ],
         },
-        base: {
+
+        invert: {
           css: [
             {
-              h1: {
-                fontSize: '2.5rem',
-              },
-              h2: {
-                fontSize: '1.25rem',
-                fontWeight: 600,
-              },
+              '--tw-prose-body': theme('colors.foreground'),
+              '--tw-prose-headings': theme('colors.foreground'),
+              '--tw-prose-links': theme('colors.primary.DEFAULT'),
+              '--tw-prose-bold': theme('colors.foreground'),
+              '--tw-prose-quotes': theme('colors.muted.foreground'),
             },
           ],
         },
+
+        base: {
+          css: [
+            {
+              h1: { fontSize: '2.5rem' },
+              h2: { fontSize: '1.25rem' },
+            },
+          ],
+        },
+
         md: {
           css: [
             {
-              h1: {
-                fontSize: '3.5rem',
-              },
-              h2: {
-                fontSize: '1.5rem',
-              },
+              h1: { fontSize: '3.5rem' },
+              h2: { fontSize: '1.5rem' },
             },
           ],
         },
