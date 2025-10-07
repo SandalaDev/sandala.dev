@@ -35,7 +35,7 @@ if (!process.env.EMAIL_FROM) {
 export default buildConfig({
   email: nodemailerAdapter({
     defaultFromAddress: process.env.EMAIL_FROM,
-    defaultFromName: process.env.EMAIL_FROM_NAME || 'Abe Sandala',
+    defaultFromName: process.env.EMAIL_FROM_NAME || 'Abe',
     transportOptions: {
       host: 'smtp-relay.brevo.com',
       port: 465,
