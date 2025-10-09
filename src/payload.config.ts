@@ -44,8 +44,8 @@ export default buildConfig({
         user: process.env.BREVO_SMTP_LOGIN,
         pass: process.env.BREVO_SMTP_KEY,
       },
-      logger: true,
-      debug: true,
+      logger: false,
+      debug: false,
     },
   }),
   admin: {
