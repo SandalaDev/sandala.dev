@@ -17,17 +17,16 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
 
   return (
     <div className="relative container min-h-[85vh] py-12 overflow-hidden ">
-      {/* Magazine-style grid layout */}
-      <div className="relative grid grid-cols-12 grid-rows-5 gap-4 h-full">
-        {/* Profile image - Positioned like a magazine feature photo */}
-        <div className="col-span-12 sm:col-span-6 md:col-span-4 md:col-start-9 row-span-3 row-start-1 relative rounded-3xl border border-yellow-500">
-          <div className="relative h-full min-h-[200px] sm:min-h-[250px] md:min-h-[400px] rounded-3xl">
+      <div className="relative grid grid-cols-12 gap-x-4 gap-y-8 h-full">
+        {/* Profile image - 40% on sm, 1:1 aspect ratio */}
+        <div className="col-span-12 sm:col-span-5 sm:col-start-8 md:col-span-4 md:col-start-9 row-start-1 rounded-3xl">
+          <div className="relative h-full rounded-3xl aspect-square">
             {/* Decorative frame elements */}
             <div className="absolute -inset-2 bg-gradient-to-br from-primary/20 to-secondary/15 rounded-3xl rotate-1"></div>
             <div className="absolute -inset-1 bg-gradient-to-tl from-secondary/10 to-primary/20 rounded-3xl -rotate-1"></div>
 
             {/* Main image container */}
-            <div className="relative h-full min-h-[200px] sm:min-h-[250px] md:min-h-[400px] rounded-3xl">
+            <div className="relative h-full rounded-3xl">
               <div className="relative h-full glass shadow-card rounded-3xl overflow-hidden">
                 {media && (
                   <Media
@@ -45,10 +44,10 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
           </div>
         </div>
 
-        {/* Rich text content - Magazine article style */}
+        {/* Headline - 60% on sm */}
         {headline && (
-          <div className="col-span-12 sm:col-span-6 sm:col-start-1 md:col-span-7 md:col-start-1 row-span-2 row-start-1 flex flex-col justify-end border border-blue-600">
-            <div className="lowercase [&_h1]:text-3xl sm:[&_h1]:text-4xl md:[&_h1]:text-6xl lg:[&_h1]:text-7xl xl:[&_h1]:text-8xl [&_h1]:leading-tight [&_h1]:mb-2 md:[&_h1]:mb-4">
+          <div className="col-span-12 sm:col-span-7 md:col-span-7 row-start-1 flex flex-col justify-end">
+            <div className="lowercase [&_h1]:text-3xl sm:[&_h1]:text-6xl md:[&_h1]:text-6xl lg:[&_h1]:text-7xl xl:[&_h1]:text-8xl [&_h1]:leading-tight [&_h1]:mb-2 md:[&_h1]:mb-4">
               <div>
                 <RichText data={headline} enableGutter={false} />
               </div>
@@ -56,30 +55,25 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
           </div>
         )}
 
+        {/* Subhead - Full width below headline/image */}
         {subhead && (
-          <div className="col-span-12 sm:col-span-6 sm:col-start-1 md:col-span-7 md:col-start-1 row-span-1 row-start-3 flex flex-col justify-start border border-red-400">
+          <div className="col-span-12 row-start-2 flex flex-col justify-start">
             <RichText
               data={subhead}
               enableGutter={false}
-              enableProse={false} // <-- important: stop the prose plugin from styling children
-              className="font-medium text-xl sm:text-3xl md:text-2xl lg:text-2xl leading-relaxed"
+              enableProse={false}
+              className="font-medium text-xl sm:text-2xl md:text-2xl lg:text-2xl leading-relaxed"
             />
           </div>
         )}
 
-        {/* Decorative quote or accent element */}
-        <div className="w-px h-24 bg-gradient-to-b from-transparent via-primary/40 to-transparent "></div>
-        <div className="hidden md:block col-span-1 row-span-1 row-start-4 col-start-8 relative ">
-          <div className="absolute inset-0 flex items-center justify-center align-bottom "></div>
-        </div>
-
-        {/* Action links - Magazine call-to-action style */}
-        <div className="col-span-12 sm:col-span-6 sm:col-start-1 md:col-span-6 row-span-1 row-start-4  flex  items-start">
+        {/* Action links - Below subhead */}
+        <div className="col-span-12 sm:col-span-7 row-start-3 flex items-start">
           {Array.isArray(links) && links.length > 0 && (
             <div className="w-full">
               <ul className="flex flex-wrap gap-4 list-none">
                 {links.map(({ link }, i) => (
-                  <li key={i} className="transform hover:scale-105 transition-transform">
+                  <li key={i} className="transform hover:scale-105 transition-transform text-lg">
                     <CMSLink {...link} />
                   </li>
                 ))}
@@ -88,7 +82,10 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
           )}
         </div>
 
-        {/* Decorative elements - Magazine design accents */}
+        {/* Decorative elements - hidden on sm */}
+        <div className="hidden md:block col-span-1 row-span-1 row-start-4 col-start-8 relative ">
+          <div className="absolute inset-0 flex items-center justify-center align-bottom "></div>
+        </div>
         <div className="hidden lg:block col-span-2 row-span-1 row-start-4 col-start-7 relative">
           <div className="absolute inset-0 flex items-center justify-end">
             <div className="flex space-x-2">
@@ -99,8 +96,8 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
           </div>
         </div>
 
-        {/* Bottom accent - Magazine footer style */}
-        <div className="col-span-12 sm:col-span-6 sm:col-start-1 row-span-1 row-start-5 flex items-end">
+        {/* Bottom accent - adjusted row position */}
+        <div className="col-span-12 sm:col-span-6 row-start-4 flex items-end">
           <div className="w-full">
             <div className="h-px bg-gradient-to-r from-primary/40 via-secondary/20 to-transparent"></div>
             <div className="mt-2 flex justify-between items-center text-sm text-muted-foreground">
