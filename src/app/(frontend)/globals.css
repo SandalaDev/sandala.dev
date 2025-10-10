@@ -239,6 +239,26 @@ body::before {
   }
 }
 
+/* Floating animation for buttons */
+@keyframes buttonFloat {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    transform: translateY(-3px);
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Apply floating animation on button hover */
+.button-hover-animate:hover {
+  animation: buttonFloat 1.5s ease-in-out infinite;
+}
+
 html {
   opacity: 0;
 }
