@@ -20,13 +20,17 @@ const buttonVariants = cva(
       },
       variant: {
         default:
-          'bg-gradient-to-r from-[hsl(var(--purple-void))] to-[hsl(var(--coral-bright))] via-[hsl(var(--purple-base))] text-secondary hover:from-[hsl(var(--purple-void))] hover:to-[hsl(var(--coral-bright))] hover:via-[hsl(var(--purple-dusk))]',
+          'bg-gradient-to-r from-[hsl(var(--purple-void))] to-[hsl(var(--coral-bright))] via-[hsl(var(--purple-base))] text-secondary hover:from-[hsl(var(--purple-void))] hover:to-[hsl(var(--coral-bright))] hover:via-[hsl(var(--purple-dusk))] dark:text-primary',
         destructive: 'bg-destructive text-secondary hover:bg-destructive/90',
         ghost: 'text-secondary hover:bg-card hover:text-accent-foreground',
         link: 'text-secondary items-start justify-start underline-offset-4 hover:underline',
         outline:
-          'border border-[hsl(var(--coral-bright))] bg-transparent text-primary rounded-2xl hover:border-0 hover:bg-primary hover:text-secondary',
-        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+          'border-2 rounded-2xl bg-transparent text-primary border-[hsl(var(--coral-pink))] ' +
+          'hover:text-[hsl(var(--purple-dusk))] hover:border-[hsl(var(--coral-pink))] hover:bg-transparent ' +
+          'dark:text-[hsl(var(--coral-pink))] dark:border-[hsl(var(--coral-bright))] dark:hover:border-[hsl(var(--coral-blush))] dark:hover:bg-transparent',
+
+        secondary:
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80 dark:border border-[hsl(var(--coral-blush))  ]',
       },
     },
   },
