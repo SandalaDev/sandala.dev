@@ -27,6 +27,7 @@
     --secondary: var(--coral-pink);
     --secondary-foreground: var(--purple-shadow);
     --muted: var(--coral-mist);
+    --glass-border: var(--coral-mist);
     --muted-foreground: var(--coral-blush);
     --accent: var(--coral-pink);
     --accent-foreground: var(--purple-shadow);
@@ -68,6 +69,7 @@
     --secondary: var(--purple-dusk);
     --secondary-foreground: var(--coral-whisper);
     --muted: var(--purple-shadow);
+    --glass-border: var(--purple-shadow);
     --muted-foreground: var(--purple-twilight);
     --accent: var(--coral-pink);
     --accent-foreground: var(--purple-void);
@@ -254,9 +256,22 @@ body::before {
   }
 }
 
-/* Apply floating animation on button hover */
+/*custom classes*/
+
 .button-hover-animate:hover {
   animation: buttonFloat 1.5s ease-in-out infinite;
+}
+.glass {
+  position: relative;
+  background: hsl(var(--secondary) / 0.04);
+  border-radius: 2rem;
+  border: 1px solid hsl(var(--glass-border) / 0.03);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow:
+    0 10px 15px hsl(var(--purple-shadow) / 0.2),
+    0 4px 6px hsl(var(--purple-shadow) / 0.1);
 }
 
 html {
