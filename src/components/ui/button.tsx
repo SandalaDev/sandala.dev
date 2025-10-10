@@ -25,7 +25,7 @@ const buttonVariants = cva(
         ghost: 'text-secondary hover:bg-card hover:text-accent-foreground',
         link: 'text-secondary items-start justify-start underline-offset-4 hover:underline',
         outline:
-          'border border-border bg-background text-secondary hover:bg-card hover:text-accent-foreground',
+          'border border-[hsl(var(--coral-bright))] bg-transparent text-primary rounded-2xl hover:border-0 hover:bg-primary hover:text-secondary',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       },
     },
