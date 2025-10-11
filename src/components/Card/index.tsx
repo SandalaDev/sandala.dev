@@ -30,54 +30,33 @@ export const Card: React.FC<{
   const href = `/${relationTo}/${slug}`
 
   return (
-    <article
-      className={cn(
-        'border border-border rounded-lg overflow-hidden bg-card hover:cursor-pointer',
-        className,
+    <article className="relative rounded-2xl overflow-hidden hover:cursor-pointer h-64">
+      {/* Full Background Image */}
+      {metaImage && typeof metaImage !== 'string' && (
+        <Media
+          className="absolute inset-0 w-full h-full object-cover"
+          imgClassName="w-full h-full object-cover"
+          resource={metaImage}
+        />
       )}
-      ref={card.ref}
-    >
-      <div className="relative w-full ">
-        {!metaImage && <div className="">No image</div>}
-        {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
-      </div>
-      <div className="p-4">
-        {showCategories && hasCategories && (
-          <div className="uppercase text-sm mb-4">
-            {showCategories && hasCategories && (
-              <div>
-                {categories?.map((category, index) => {
-                  if (typeof category === 'object') {
-                    const { title: titleFromCategory } = category
+      {!metaImage && <div className="absolute inset-0 bg-card" />}
 
-                    const categoryTitle = titleFromCategory || 'Untitled category'
-
-                    const isLast = index === categories.length - 1
-
-                    return (
-                      <Fragment key={index}>
-                        {categoryTitle}
-                        {!isLast && <Fragment>, &nbsp;</Fragment>}
-                      </Fragment>
-                    )
-                  }
-
-                  return null
-                })}
-              </div>
-            )}
-          </div>
-        )}
+      {/* Content - Bottom Half Only */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/2  p-4 flex flex-col justify-end bg-coral-whisper/10 backdrop-blur-md border border-coral-mist/20  shadow-xl">
         {titleToUse && (
           <div className="prose">
-            <h3>
+            <h3 className="text-coral-pink">
               <Link className="not-prose" href={href} ref={link.ref}>
                 {titleToUse}
               </Link>
             </h3>
           </div>
         )}
-        {description && <div className="mt-2">{description && <p>{sanitizedDescription}</p>}</div>}
+        {description && (
+          <div className="mt-2">
+            {description && <p className="text-coral-mist">{sanitizedDescription}</p>}
+          </div>
+        )}
       </div>
     </article>
   )
