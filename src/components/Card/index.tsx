@@ -30,7 +30,7 @@ export const Card: React.FC<{
   const href = `/${relationTo}/${slug}`
 
   return (
-    <article className="relative rounded-2xl overflow-hidden hover:cursor-pointer h-64">
+    <article className="relative rounded-2xl overflow-hidden hover:cursor-pointer h-64 w-full">
       {/* Full Background Image */}
       {metaImage && typeof metaImage !== 'string' && (
         <Media
@@ -42,7 +42,7 @@ export const Card: React.FC<{
       {!metaImage && <div className="absolute inset-0 bg-card" />}
 
       {/* Content - Bottom Half Only */}
-      <div className="absolute bottom-0 left-0 right-0 h-1/2  p-4 flex flex-col justify-end bg-coral-whisper/10 backdrop-blur-md border border-coral-mist/20  shadow-xl">
+      <div className="absolute bottom-0 left-0 right-0 h-1/2  p-4 flex flex-col justify-end bg-coral-whisper/10 backdrop-blur-md border border-coral-mist/20 shadow-xl">
         {titleToUse && (
           <div className="prose">
             <h3 className="text-coral-pink">
