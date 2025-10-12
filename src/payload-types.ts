@@ -245,6 +245,7 @@ export interface Post {
     };
     [k: string]: unknown;
   };
+  technologies?: ('nextjs-icon.svg' | 'react-icon.svg' | 'payload-icon.svg')[] | null;
   relatedPosts?: (number | Post)[] | null;
   categories?: (number | Category)[] | null;
   meta?: {
@@ -1149,6 +1150,7 @@ export interface PostsSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
   content?: T;
+  technologies?: T;
   relatedPosts?: T;
   categories?: T;
   meta?:

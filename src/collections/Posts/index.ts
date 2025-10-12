@@ -102,6 +102,28 @@ export const Posts: CollectionConfig<'posts'> = {
               label: false,
               required: true,
             },
+            {
+              name: 'technologies',
+              type: 'select',
+              hasMany: true,
+              options: [
+                {
+                  label: 'Next.js',
+                  value: 'nextjs-icon.svg',
+                },
+                {
+                  label: 'React',
+                  value: 'react-icon.svg',
+                },
+                {
+                  label: 'Payload CMS',
+                  value: 'payload-icon.svg',
+                },
+              ],
+              admin: {
+                placeholder: 'Select Technologies Used In Project',
+              },
+            },
           ],
           label: 'Content',
         },
