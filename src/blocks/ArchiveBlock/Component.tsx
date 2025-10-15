@@ -27,7 +27,7 @@ export const ArchiveBlock: React.FC<
     })
 
     const fetchedPosts = await payload.find({
-      collection: 'posts',
+      collection: 'projects',
       depth: 1,
       limit,
       ...(flattenedCategories && flattenedCategories.length > 0

@@ -15,7 +15,6 @@ import { Banner } from '../../blocks/Banner/config'
 import { Code } from '../../blocks/Code/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { populateAuthors } from './hooks/populateAuthors'
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
 
 import {
@@ -26,9 +25,8 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
-
-export const Posts: CollectionConfig<'posts'> = {
-  slug: 'posts',
+export const Projects: CollectionConfig<'projects'> = {
+  slug: 'projects',
   access: {
     create: authenticated,
     delete: authenticated,
@@ -48,12 +46,12 @@ export const Posts: CollectionConfig<'posts'> = {
     },
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'slug'],
     livePreview: {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'posts',
+          collection: 'projects',
           req,
         })
 
@@ -63,7 +61,7 @@ export const Posts: CollectionConfig<'posts'> = {
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
-        collection: 'posts',
+        collection: 'projects',
         req,
       }),
     useAsTitle: 'title',
@@ -130,22 +128,6 @@ export const Posts: CollectionConfig<'posts'> = {
         {
           fields: [
             {
-              name: 'relatedPosts',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              filterOptions: ({ id }) => {
-                return {
-                  id: {
-                    not_in: [id],
-                  },
-                }
-              },
-              hasMany: true,
-              relationTo: 'posts',
-            },
-            {
               name: 'categories',
               type: 'relationship',
               admin: {
@@ -187,55 +169,43 @@ export const Posts: CollectionConfig<'posts'> = {
       ],
     },
     {
-      name: 'publishedAt',
-      type: 'date',
-      admin: {
-        date: {
-          pickerAppearance: 'dayAndTime',
-        },
-        position: 'sidebar',
-      },
-      hooks: {
-        beforeChange: [
-          ({ siblingData, value }) => {
-            if (siblingData._status === 'published' && !value) {
-              return new Date()
-            }
-            return value
-          },
-        ],
-      },
-    },
-    {
-      name: 'authors',
-      type: 'relationship',
+      name: 'projectDate',
+      type: 'group',
+
+      label: 'Project Date',
       admin: {
         position: 'sidebar',
-      },
-      hasMany: true,
-      relationTo: 'users',
-    },
-    // This field is only used to populate the user data via the `populateAuthors` hook
-    // This is because the `user` collection has access control locked to protect user privacy
-    // GraphQL will also not return mutated user data that differs from the underlying schema
-    {
-      name: 'populatedAuthors',
-      type: 'array',
-      access: {
-        update: () => false,
-      },
-      admin: {
-        disabled: true,
-        readOnly: true,
+
+        description: 'Select the month and year the project was completed.',
       },
       fields: [
         {
-          name: 'id',
-          type: 'text',
+          name: 'year',
+          type: 'number',
+          label: 'Year', // Label for the year input
+          required: true,
+          min: 2000,
+          max: 2100,
         },
         {
-          name: 'name',
-          type: 'text',
+          name: 'month',
+          type: 'select',
+          label: 'Month', // Label for the month dropdown
+          required: true,
+          options: [
+            { label: 'January', value: '01' },
+            { label: 'February', value: '02' },
+            { label: 'March', value: '03' },
+            { label: 'April', value: '04' },
+            { label: 'May', value: '05' },
+            { label: 'June', value: '06' },
+            { label: 'July', value: '07' },
+            { label: 'August', value: '08' },
+            { label: 'September', value: '09' },
+            { label: 'October', value: '10' },
+            { label: 'November', value: '11' },
+            { label: 'December', value: '12' },
+          ],
         },
       ],
     },
@@ -243,7 +213,6 @@ export const Posts: CollectionConfig<'posts'> = {
   ],
   hooks: {
     afterChange: [revalidatePost],
-    afterRead: [populateAuthors],
     afterDelete: [revalidateDelete],
   },
   versions: {

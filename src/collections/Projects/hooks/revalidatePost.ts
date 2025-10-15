@@ -11,22 +11,22 @@ export const revalidatePost: CollectionAfterChangeHook<Post> = ({
 }) => {
   if (!context.disableRevalidate) {
     if (doc._status === 'published') {
-      const path = `/posts/${doc.slug}`
+      const path = `/projects/${doc.slug}`
 
-      payload.logger.info(`Revalidating post at path: ${path}`)
+      payload.logger.info(`Revalidating project at path: ${path}`)
 
       revalidatePath(path)
-      revalidateTag('posts-sitemap')
+      revalidateTag('projects-sitemap')
     }
 
-    // If the post was previously published, we need to revalidate the old path
+    // If the project was previously published, we need to revalidate the old path
     if (previousDoc._status === 'published' && doc._status !== 'published') {
-      const oldPath = `/posts/${previousDoc.slug}`
+      const oldPath = `/projects/${previousDoc.slug}`
 
-      payload.logger.info(`Revalidating old post at path: ${oldPath}`)
+      payload.logger.info(`Revalidating old project at path: ${oldPath}`)
 
       revalidatePath(oldPath)
-      revalidateTag('posts-sitemap')
+      revalidateTag('projects-sitemap')
     }
   }
   return doc
@@ -34,10 +34,10 @@ export const revalidatePost: CollectionAfterChangeHook<Post> = ({
 
 export const revalidateDelete: CollectionAfterDeleteHook<Post> = ({ doc, req: { context } }) => {
   if (!context.disableRevalidate) {
-    const path = `/posts/${doc?.slug}`
+    const path = `/projects/${doc?.slug}`
 
     revalidatePath(path)
-    revalidateTag('posts-sitemap')
+    revalidateTag('projects-sitemap')
   }
 
   return doc
