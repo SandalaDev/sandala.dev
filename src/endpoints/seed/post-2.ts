@@ -1,5 +1,5 @@
 import { RequiredDataFromCollectionSlug } from 'payload'
-import type { ProjectArgs } from './Project-1'
+import type { ProjectArgs } from './post-1'
 
 export const Project2: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'projects'> = ({
   heroImage,
@@ -8,6 +8,10 @@ export const Project2: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'pr
   return {
     slug: 'global-gaze',
     _status: 'published',
+    projectDate: {
+      year: 2024,
+      month: '01',
+    },
     content: {
       root: {
         type: 'root',
@@ -224,7 +228,7 @@ export const Project2: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'pr
       image: heroImage.id,
       title: 'Global Gaze: Beyond the Headlines',
     },
-    relatedProjectects: [], // this is populated by the seed script
+    relatedProjects: [], // this is populated by the seed script
     title: 'Global Gaze: Beyond the Headlines',
   }
 }

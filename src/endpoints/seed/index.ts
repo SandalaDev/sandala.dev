@@ -6,9 +6,9 @@ import { home } from './home'
 import { image1 } from './image-1'
 import { image2 } from './image-2'
 import { imageHero1 } from './image-hero-1'
-import { Project1 } from './Project-1'
-import { Project2 } from './Project-2'
-import { Project3 } from './Project-3'
+import { Project1 } from './post-1'
+import { Project2 } from './post-2'
+import { Project3 } from './post-3'
 
 const collections: CollectionSlug[] = [
   'categories',
@@ -207,7 +207,7 @@ export const seed = async ({
 
   // Do not create projects with `Promise.all` because we want them to be created in order
   // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
-  const Project1Doc = await payload.create({
+  const project1Doc = await payload.create({
     collection: 'projects',
     depth: 0,
     context: {
@@ -216,7 +216,7 @@ export const seed = async ({
     data: Project1({ heroImage: image1Doc, blockImage: image2Doc }),
   })
 
-  const Project2Doc = await payload.create({
+  const project2Doc = await payload.create({
     collection: 'projects',
     depth: 0,
     context: {
@@ -225,7 +225,7 @@ export const seed = async ({
     data: Project2({ heroImage: image2Doc, blockImage: image3Doc }),
   })
 
-  const Project3Doc = await payload.create({
+  const project3Doc = await payload.create({
     collection: 'projects',
     depth: 0,
     context: {

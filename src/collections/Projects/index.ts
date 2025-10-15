@@ -15,7 +15,7 @@ import { Banner } from '../../blocks/Banner/config'
 import { Code } from '../../blocks/Code/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { revalidateDelete, revalidateProject } from './hooks/revalidateProject'
+import { revalidateDelete, revalidateProject } from './hooks/revalidatePost'
 
 import {
   MetaDescriptionField,

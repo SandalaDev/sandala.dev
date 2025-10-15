@@ -13,6 +13,10 @@ export const Project1: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'pr
   return {
     slug: 'digital-horizons',
     _status: 'published',
+    projectDate: {
+      year: 2024,
+      month: '01',
+    },
     content: {
       root: {
         type: 'root',
@@ -306,7 +310,7 @@ export const Project1: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'pr
       image: heroImage.id,
       title: 'Digital Horizons: A Glimpse into Tomorrow',
     },
-    relatedProjectects: [], // this is populated by the seed script
+    relatedProjects: [], // this is populated by the seed script
     title: 'Digital Horizons: A Glimpse into Tomorrow',
   }
 }

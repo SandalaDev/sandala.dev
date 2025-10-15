@@ -7,13 +7,13 @@ import type { Project } from '@/payload-types'
 import { Card } from '../../components/Card'
 import { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 
-export type RelatedProjectectsProps = {
+export type RelatedPostsProps = {
   className?: string
   docs?: Project[]
   introContent?: DefaultTypedEditorState
 }
 
-export const RelatedProjectects: React.FC<RelaProjectrojectsProps> = (props) => {
+export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
   const { className, docs, introContent } = props
 
   return (
