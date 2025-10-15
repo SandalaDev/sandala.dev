@@ -1,7 +1,7 @@
 import { RequiredDataFromCollectionSlug } from 'payload'
-import type { PostArgs } from './post-1'
+import type { ProjectArgs } from './Project-1'
 
-export const post2: (args: PostArgs) => RequiredDataFromCollectionSlug<'projects'> = ({
+export const Project2: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'projects'> = ({
   heroImage,
   blockImage,
 }) => {
@@ -58,7 +58,7 @@ export const post2: (args: PostArgs) => RequiredDataFromCollectionSlug<'projects
                           format: 0,
                           mode: 'normal',
                           style: '',
-                          text: ' This content is fabricated and for demonstration purposes only. To edit this post, ',
+                          text: ' This content is fabricated and for demonstration purposes only. To edit this Project, ',
                           version: 1,
                         },
                         {
@@ -224,7 +224,7 @@ export const post2: (args: PostArgs) => RequiredDataFromCollectionSlug<'projects
       image: heroImage.id,
       title: 'Global Gaze: Beyond the Headlines',
     },
-    relatedPosts: [], // this is populated by the seed script
+    relatedProjectects: [], // this is populated by the seed script
     title: 'Global Gaze: Beyond the Headlines',
   }
 }

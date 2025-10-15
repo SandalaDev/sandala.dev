@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-Projectgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   // Rename columns with existence checks

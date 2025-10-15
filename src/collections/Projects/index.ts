@@ -15,7 +15,7 @@ import { Banner } from '../../blocks/Banner/config'
 import { Code } from '../../blocks/Code/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
+import { revalidateDelete, revalidateProject } from './hooks/revalidateProject'
 
 import {
   MetaDescriptionField,
@@ -33,9 +33,9 @@ export const Projects: CollectionConfig<'projects'> = {
     read: authenticatedOrPublished,
     update: authenticated,
   },
-  // This config controls what's populated by default when a post is referenced
+  // This config controls what's populated by default when a Project is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'posts'>
+  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'Projectects'>
   defaultPopulate: {
     title: true,
     slug: true,
@@ -212,7 +212,7 @@ export const Projects: CollectionConfig<'projects'> = {
     ...slugField(),
   ],
   hooks: {
-    afterChange: [revalidatePost],
+    afterChange: [revalidateProject],
     afterDelete: [revalidateDelete],
   },
   versions: {

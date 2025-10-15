@@ -1,12 +1,12 @@
 import type { Media } from '@/payload-types'
 import { RequiredDataFromCollectionSlug } from 'payload'
 
-export type PostArgs = {
+export type ProjectArgs = {
   heroImage: Media
   blockImage: Media
 }
 
-export const post1: (args: PostArgs) => RequiredDataFromCollectionSlug<'projects'> = ({
+export const Project1: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'projects'> = ({
   heroImage,
   blockImage,
 }) => {
@@ -63,7 +63,7 @@ export const post1: (args: PostArgs) => RequiredDataFromCollectionSlug<'projects
                           format: 0,
                           mode: 'normal',
                           style: '',
-                          text: ' This content is fabricated and for demonstration purposes only. To edit this post, ',
+                          text: ' This content is fabricated and for demonstration purposes only. To edit this Project, ',
                           version: 1,
                         },
                         {
@@ -164,7 +164,7 @@ export const post1: (args: PostArgs) => RequiredDataFromCollectionSlug<'projects
                 format: 0,
                 mode: 'normal',
                 style: '',
-                text: 'To demonstrate basic AI functionality, here is a javascript snippet that makes a POST request to a generic AI API in order to generate text based on a prompt. ',
+                text: 'To demonstrate basic AI functionality, here is a javascript snippet that makes a Project request to a generic AI API in order to generate text based on a prompt. ',
                 version: 1,
               },
             ],
@@ -179,7 +179,7 @@ export const post1: (args: PostArgs) => RequiredDataFromCollectionSlug<'projects
             fields: {
               blockName: 'Generate Text',
               blockType: 'code',
-              code: "async function generateText(prompt) {\n    const apiKey = 'your-api-key';\n    const apiUrl = 'https://api.example.com/generate-text';\n\n    const response = await fetch(apiUrl, {\n        method: 'POST',\n        headers: {\n            'Content-Type': 'application/json',\n            'Authorization': `Bearer ${apiKey}`\n        },\n        body: JSON.stringify({\n            model: 'text-generation-model',\n            prompt: prompt,\n            max_tokens: 50\n        })\n    });\n\n    const data = await response.json();\n    console.log(data.choices[0].text.trim());\n}\n\n// Example usage\ngenerateText(\"Once upon a time in a faraway land,\");\n",
+              code: "async function generateText(prompt) {\n    const apiKey = 'your-api-key';\n    const apiUrl = 'https://api.example.com/generate-text';\n\n    const response = await fetch(apiUrl, {\n        method: 'Project',\n        headers: {\n            'Content-Type': 'application/json',\n            'Authorization': `Bearer ${apiKey}`\n        },\n        body: JSON.stringify({\n            model: 'text-generation-model',\n            prompt: prompt,\n            max_tokens: 50\n        })\n    });\n\n    const data = await response.json();\n    console.log(data.choices[0].text.trim());\n}\n\n// Example usage\ngenerateText(\"Once upon a time in a faraway land,\");\n",
               language: 'javascript',
             },
             format: '',
@@ -306,7 +306,7 @@ export const post1: (args: PostArgs) => RequiredDataFromCollectionSlug<'projects
       image: heroImage.id,
       title: 'Digital Horizons: A Glimpse into Tomorrow',
     },
-    relatedPosts: [], // this is populated by the seed script
+    relatedProjectects: [], // this is populated by the seed script
     title: 'Digital Horizons: A Glimpse into Tomorrow',
   }
 }

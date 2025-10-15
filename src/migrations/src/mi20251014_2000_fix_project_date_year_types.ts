@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-Projectgres'
 
 export async function up({ db }: MigrateUpArgs): Promise<void> {
   console.log('Fixing project_date_year types in projects and _projects_v…')

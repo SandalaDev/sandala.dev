@@ -71,7 +71,7 @@ export const FormBlock: React.FC<
             headers: {
               'Content-Type': 'application/json',
             },
-            method: 'POST',
+            method: 'Project',
           })
 
           const res = await req.json()

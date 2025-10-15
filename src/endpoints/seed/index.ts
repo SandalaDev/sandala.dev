@@ -6,9 +6,9 @@ import { home } from './home'
 import { image1 } from './image-1'
 import { image2 } from './image-2'
 import { imageHero1 } from './image-hero-1'
-import { post1 } from './post-1'
-import { post2 } from './post-2'
-import { post3 } from './post-3'
+import { Project1 } from './Project-1'
+import { Project2 } from './Project-2'
+import { Project3 } from './Project-3'
 
 const collections: CollectionSlug[] = [
   'categories',
@@ -82,13 +82,13 @@ export const seed = async ({
 
   const [image1Buffer, image2Buffer, image3Buffer, hero1Buffer] = await Promise.all([
     fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post1.webp',
+      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-Project1.webp',
     ),
     fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post2.webp',
+      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-Project2.webp',
     ),
     fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post3.webp',
+      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-Project3.webp',
     ),
     fetchFileByURL(
       'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-hero1.webp',
@@ -207,31 +207,31 @@ export const seed = async ({
 
   // Do not create projects with `Promise.all` because we want them to be created in order
   // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
-  const post1Doc = await payload.create({
+  const Project1Doc = await payload.create({
     collection: 'projects',
     depth: 0,
     context: {
       disableRevalidate: true,
     },
-    data: post1({ heroImage: image1Doc, blockImage: image2Doc }),
+    data: Project1({ heroImage: image1Doc, blockImage: image2Doc }),
   })
 
-  const post2Doc = await payload.create({
+  const Project2Doc = await payload.create({
     collection: 'projects',
     depth: 0,
     context: {
       disableRevalidate: true,
     },
-    data: post2({ heroImage: image2Doc, blockImage: image3Doc }),
+    data: Project2({ heroImage: image2Doc, blockImage: image3Doc }),
   })
 
-  const post3Doc = await payload.create({
+  const Project3Doc = await payload.create({
     collection: 'projects',
     depth: 0,
     context: {
       disableRevalidate: true,
     },
-    data: post3({ heroImage: image3Doc, blockImage: image1Doc }),
+    data: Project3({ heroImage: image3Doc, blockImage: image1Doc }),
   })
 
   payload.logger.info(`— Seeding contact form...`)
