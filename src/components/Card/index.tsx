@@ -29,6 +29,8 @@ export const Card: React.FC<{
   const sanitizedDescription = description?.replace(/\s/g, ' ')
   const href = `/${relationTo}/${slug}`
 
+  console.log('technologies:', technologies)
+
   return (
     <article
       ref={card.ref}
@@ -65,6 +67,7 @@ export const Card: React.FC<{
 
         {technologies && technologies.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-2">
+            <h4>icons div</h4>
             {technologies.map((tech) => {
               const TechIconComponent = TECH_ICONS[tech as TechIcon]
               const label = getIconLabel(tech as TechIcon)
@@ -79,6 +82,7 @@ export const Card: React.FC<{
                 </span>
               )
             })}
+            console.log('technologies:', technologies)
           </div>
         )}
       </div>
