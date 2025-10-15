@@ -1,4 +1,4 @@
-import type { MigrateUpArgs } from '@payloadcms/db-Postgres'
+import type { MigrateUpArgs } from '@payloadcms/db-postgres'
 
 export async function up({ db }: MigrateUpArgs) {
   await db.execute(`
