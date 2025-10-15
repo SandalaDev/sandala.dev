@@ -20,7 +20,7 @@ export const Pagination: React.FC<{
 }> = (props) => {
   const router = useRouter()
 
-  const { className, page, totalPages, basePath = '/posts' } = props
+  const { className, page, totalPages, basePath = '/projects' } = props
   const hasNextPage = page < totalPages
   const hasPrevPage = page > 1
 
@@ -78,12 +78,6 @@ export const Pagination: React.FC<{
               >
                 {page + 1}
               </PaginationLink>
-            </PaginationItem>
-          )}
-
-          {hasExtraNextPages && (
-            <PaginationItem>
-              <PaginationEllipsis />
             </PaginationItem>
           )}
 

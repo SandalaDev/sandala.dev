@@ -1,2 +1,2 @@
-// Deprecated: authors are no longer used in Posts. This file remains to preserve import paths.
+// Deprecated: authors are no longer used in projects. This file remains to preserve import paths.
 export {}

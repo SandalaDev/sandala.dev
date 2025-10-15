@@ -1,31 +1,22 @@
 const redirects = async () => {
+  // 1️⃣ define each redirect rule as an object
   const internetExplorerRedirect = {
     destination: '/ie-incompatible.html',
     has: [
       {
         type: 'header',
         key: 'user-agent',
-        value: '(.*Trident.*)', // all ie browsers
+        value: '(.*Trident.*)', // all IE browsers
       },
     ],
     permanent: false,
-    source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
+    source: '/:path((?!ie-incompatible.html$).*)', // all pages except the IE page
   }
 
-  const projectsRootToProjects = {
-    source: '/projects',
-    destination: '/projects',
-    permanent: true,
-  }
+  // 2️⃣ gather them into an array
+  const redirects = [internetExplorerRedirect]
 
-  const projectsToProjects = {
-    source: '/projects/:path*',
-    destination: '/projects/:path*',
-    permanent: true,
-  }
-
-  const redirects = [projectsRootToProjects, projectsToProjects, internetExplorerRedirect]
-
+  // 3️⃣ return the array
   return redirects
 }
 
