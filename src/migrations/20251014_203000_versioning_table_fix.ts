@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-Projectgres'
+import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-Postgres'
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(`

@@ -194,21 +194,21 @@ Although Next.js includes a robust set of caching strategies out of the box, Pay
 
 To spin up this example locally, follow the [Quick Start](#quick-start). Then [Seed](#seed) the database with a few pages, projects, and projects.
 
-### Working with Projectgres
+### Working with Postgres
 
-Projectgres and other SQL-based databases follow a strict schema for managing your data. In comparison to our MongoDB adapter, this means that there's a few extra steps to working with Projectgres.
+Postgres and other SQL-based databases follow a strict schema for managing your data. In comparison to our MongoDB adapter, this means that there's a few extra steps to working with Postgres.
 
 Note that often times when making big schema changes you can run the risk of losing data if you're not manually migrating it.
 
 #### Local development
 
-Ideally we recommend running a local copy of your database so that schema updates are as fast as possible. By default the Projectgres adapter has `push: true` for development environments. This will let you add, modify and remove fields and collections without needing to run any data migrations.
+Ideally we recommend running a local copy of your database so that schema updates are as fast as possible. By default the Postgres adapter has `push: true` for development environments. This will let you add, modify and remove fields and collections without needing to run any data migrations.
 
 If your database is pointed to production you will want to set `push: false` otherwise you will risk losing data or having your migrations out of sync.
 
 #### Migrations
 
-[Migrations](https://payloadcms.com/docs/database/migrations) are essentially SQL code versions that keeps track of your schema. When deploy with Projectgres you will need to make sure you create and then run your migrations.
+[Migrations](https://payloadcms.com/docs/database/migrations) are essentially SQL code versions that keeps track of your schema. When deploy with Postgres you will need to make sure you create and then run your migrations.
 
 Locally create a migration
 
@@ -265,18 +265,18 @@ The easiest way to deploy your project is to use [Payload Cloud](https://payload
 This template can also be deployed to Vercel for free. You can get started by choosing the Vercel DB adapter during the setup of the template or by manually installing and configuring it:
 
 ```bash
-pnpm add @payloadcms/db-vercel-Projectgres
+pnpm add @payloadcms/db-vercel-Postgres
 ```
 
 ```ts
 // payload.config.ts
-import { vercelProjectgresAdapter } from '@payloadcms/db-vercel-Projectgres'
+import { vercelPostgresAdapter } from '@payloadcms/db-vercel-Postgres'
 
 export default buildConfig({
   // ...
-  db: vercelProjectgresAdapter({
+  db: vercelPostgresAdapter({
     pool: {
-      connectionString: process.env.ProjectGRES_URL || '',
+      connectionString: process.env.Postgres_URL || '',
     },
   }),
   // ...
@@ -305,7 +305,7 @@ export default buildConfig({
   // ...
 ```
 
-There is also a simplified [one click deploy](https://github.com/payloadcms/payload/tree/templates/with-vercel-Projectgres) to Vercel should you need it.
+There is also a simplified [one click deploy](https://github.com/payloadcms/payload/tree/templates/with-vercel-Postgres) to Vercel should you need it.
 
 ### Self-hosting
 

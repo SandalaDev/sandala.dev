@@ -13,7 +13,7 @@ importers:
       '@payloadcms/admin-bar':
         specifier: 3.58.0
         version: 3.58.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@payloadcms/db-Projectgres':
+      '@payloadcms/db-Postgres':
         specifier: 3.58.0
         version: 3.58.0(payload@3.58.0(graphql@16.11.0)(typescript@5.7.3))
       '@payloadcms/email-nodemailer':
@@ -2422,7 +2422,7 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  '@payloadcms/db-Projectgres@3.58.0':
+  '@payloadcms/db-Postgres@3.58.0':
     resolution:
       {
         integrity: sha512-btLC9W2Jycl0an+C4wSBTzLlTe1ZLEglR4CP8ldVizqiX92oXFFGUxyLo7PZHiM03YS5WRB6DTB21sBtMGqv8A==,
@@ -4960,7 +4960,7 @@ packages:
       '@types/pg': '*'
       '@types/sql.js': '*'
       '@upstash/redis': '>=1.34.7'
-      '@vercel/Projectgres': '>=0.8.0'
+      '@vercel/Postgres': '>=0.8.0'
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
       bun-types: '*'
@@ -4970,7 +4970,7 @@ packages:
       kysely: '*'
       mysql2: '>=2'
       pg: '>=8'
-      Projectgres: '>=3'
+      Postgres: '>=3'
       prisma: '*'
       sql.js: '>=1'
       sqlite3: '>=5'
@@ -5005,7 +5005,7 @@ packages:
         optional: true
       '@upstash/redis':
         optional: true
-      '@vercel/Projectgres':
+      '@vercel/Postgres':
         optional: true
       '@xata.io/client':
         optional: true
@@ -5025,7 +5025,7 @@ packages:
         optional: true
       pg:
         optional: true
-      Projectgres:
+      Postgres:
         optional: true
       prisma:
         optional: true
@@ -7394,63 +7394,63 @@ packages:
       }
     engines: { node: ^10 || ^12 || >=14 }
 
-  Projectgres-array@2.0.0:
+  Postgres-array@2.0.0:
     resolution:
       {
         integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==,
       }
     engines: { node: '>=4' }
 
-  Projectgres-array@3.0.4:
+  Postgres-array@3.0.4:
     resolution:
       {
         integrity: sha512-nAUSGfSDGOaOAEGwqsRY27GPOea7CNipJPOA7lPbdEpx5Kg3qzdP0AaWC5MlhTWV9s4hFX39nomVZ+C4tnGOJQ==,
       }
     engines: { node: '>=12' }
 
-  Projectgres-bytea@1.0.0:
+  Postgres-bytea@1.0.0:
     resolution:
       {
         integrity: sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==,
       }
     engines: { node: '>=0.10.0' }
 
-  Projectgres-bytea@3.0.0:
+  Postgres-bytea@3.0.0:
     resolution:
       {
         integrity: sha512-CNd4jim9RFPkObHSjVHlVrxoVQXz7quwNFpz7RY1okNNme49+sVyiTvTRobiLV548Hx/hb1BG+iE7h9493WzFw==,
       }
     engines: { node: '>= 6' }
 
-  Projectgres-date@1.0.7:
+  Postgres-date@1.0.7:
     resolution:
       {
         integrity: sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==,
       }
     engines: { node: '>=0.10.0' }
 
-  Projectgres-date@2.1.0:
+  Postgres-date@2.1.0:
     resolution:
       {
         integrity: sha512-K7Juri8gtgXVcDfZttFKVmhglp7epKb1K4pgrkLxehjqkrgPhfG6OO8LHLkfaqkbpjNRnra018XwAr1yQFWGcA==,
       }
     engines: { node: '>=12' }
 
-  Projectgres-interval@1.2.0:
+  Postgres-interval@1.2.0:
     resolution:
       {
         integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==,
       }
     engines: { node: '>=0.10.0' }
 
-  Projectgres-interval@3.0.0:
+  Postgres-interval@3.0.0:
     resolution:
       {
         integrity: sha512-BSNDnbyZCXSxgA+1f5UU2GmwhoI0aU5yMxRGO8CdFEcY2BQF9xm/7MqKnYoM1nJDk8nONNWDk9WeSmePFhQdlw==,
       }
     engines: { node: '>=12' }
 
-  Projectgres-range@1.1.4:
+  Postgres-range@1.1.4:
     resolution:
       {
         integrity: sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w==,
@@ -10715,7 +10715,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@payloadcms/db-Projectgres@3.58.0(payload@3.58.0(graphql@16.11.0)(typescript@5.7.3))':
+  '@payloadcms/db-Postgres@3.58.0(payload@3.58.0(graphql@16.11.0)(typescript@5.7.3))':
     dependencies:
       '@payloadcms/drizzle': 3.58.0(@types/pg@8.10.2)(payload@3.58.0(graphql@16.11.0)(typescript@5.7.3))(pg@8.16.3)
       '@types/pg': 8.10.2
@@ -10742,7 +10742,7 @@ snapshots:
       - '@types/better-sqlite3'
       - '@types/sql.js'
       - '@upstash/redis'
-      - '@vercel/Projectgres'
+      - '@vercel/Postgres'
       - '@xata.io/client'
       - better-sqlite3
       - bun-types
@@ -10752,7 +10752,7 @@ snapshots:
       - kysely
       - mysql2
       - pg-native
-      - Projectgres
+      - Postgres
       - prisma
       - sql.js
       - sqlite3
@@ -10783,7 +10783,7 @@ snapshots:
       - '@types/pg'
       - '@types/sql.js'
       - '@upstash/redis'
-      - '@vercel/Projectgres'
+      - '@vercel/Postgres'
       - '@xata.io/client'
       - better-sqlite3
       - bun-types
@@ -10793,7 +10793,7 @@ snapshots:
       - kysely
       - mysql2
       - pg
-      - Projectgres
+      - Postgres
       - prisma
       - sql.js
       - sqlite3
@@ -14120,20 +14120,20 @@ snapshots:
   pg-types@2.2.0:
     dependencies:
       pg-int8: 1.0.1
-      Projectgres-array: 2.0.0
-      Projectgres-bytea: 1.0.0
-      Projectgres-date: 1.0.7
-      Projectgres-interval: 1.2.0
+      Postgres-array: 2.0.0
+      Postgres-bytea: 1.0.0
+      Postgres-date: 1.0.7
+      Postgres-interval: 1.2.0
 
   pg-types@4.1.0:
     dependencies:
       pg-int8: 1.0.1
       pg-numeric: 1.0.2
-      Projectgres-array: 3.0.4
-      Projectgres-bytea: 3.0.0
-      Projectgres-date: 2.1.0
-      Projectgres-interval: 3.0.0
-      Projectgres-range: 1.1.4
+      Postgres-array: 3.0.4
+      Postgres-bytea: 3.0.0
+      Postgres-date: 2.1.0
+      Postgres-interval: 3.0.0
+      Postgres-range: 1.1.4
 
   pg@8.16.3:
     dependencies:
@@ -14256,27 +14256,27 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  Projectgres-array@2.0.0: {}
+  Postgres-array@2.0.0: {}
 
-  Projectgres-array@3.0.4: {}
+  Postgres-array@3.0.4: {}
 
-  Projectgres-bytea@1.0.0: {}
+  Postgres-bytea@1.0.0: {}
 
-  Projectgres-bytea@3.0.0:
+  Postgres-bytea@3.0.0:
     dependencies:
       obuf: 1.1.2
 
-  Projectgres-date@1.0.7: {}
+  Postgres-date@1.0.7: {}
 
-  Projectgres-date@2.1.0: {}
+  Postgres-date@2.1.0: {}
 
-  Projectgres-interval@1.2.0:
+  Postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
 
-  Projectgres-interval@3.0.0: {}
+  Postgres-interval@3.0.0: {}
 
-  Projectgres-range@1.1.4: {}
+  Postgres-range@1.1.4: {}
 
   prelude-ls@1.2.1: {}
 

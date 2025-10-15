@@ -77,7 +77,7 @@ Testing
     pnpm exec playwright test --headed --debug
     ```
 
-Database migrations (Payload, Projectgres)
+Database migrations (Payload, Postgres)
 
 - Create a migration locally when making schema changes
   ```bash path=null start=null
@@ -114,7 +114,7 @@ Key directories and responsibilities
 - src/Header and src/Footer: Global configs and related hooks/components
 - src/providers: Theme and UI providers
 - src/search: Server-side search integration
-- src/migrations: Versioned DB migrations for Projectgres
+- src/migrations: Versioned DB migrations for Postgres
 - src/components: Frontend UI, admin bar, rich text, media components, and shared UI
 
 Notable configuration
@@ -142,10 +142,10 @@ Important references summarized
 
 - README.md
   - Quick start with pnpm dev, draft/live preview, on-demand revalidation hooks, SEO, search, redirects, scheduled publish via jobs
-  - Projectgres migration workflow using pnpm payload migrate:create and migrate
+  - Postgres migration workflow using pnpm payload migrate:create and migrate
   - Optional Docker usage; production build and start flow
 - QWEN.md
-  - Confirms stack: Next.js + Payload CMS, Projectgres DB, S3-compatible storage via Cloudflare R2, Tailwind + shadcn, Lexical editor, production-ready template
+  - Confirms stack: Next.js + Payload CMS, Postgres DB, S3-compatible storage via Cloudflare R2, Tailwind + shadcn, Lexical editor, production-ready template
 
 Tips for common tasks (repo-specific)
 

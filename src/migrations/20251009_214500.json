@@ -2,7 +2,7 @@
   "id": "fa9f9d9d-84ad-4999-aa39-c8a6af0b5278",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
-  "dialect": "Projectgresql",
+  "dialect": "Postgresql",
   "tables": {
     "public.pages_hero_links": {
       "name": "pages_hero_links",

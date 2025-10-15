@@ -1,5 +1,5 @@
 // storage-adapter-import-placeholder
-import { ProjectgresAdapter } from '@payloadcms/db-Projectgres'
+import { PostgresAdapter } from '@payloadcms/db-Postgres'
 import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp' // sharp-import
 import path from 'path'
@@ -86,7 +86,7 @@ export default buildConfig({
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
-  db: ProjectgresAdapter({
+  db: PostgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },

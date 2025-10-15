@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-Projectgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-Postgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   // Step 1: Convert enum columns to text temporarily
