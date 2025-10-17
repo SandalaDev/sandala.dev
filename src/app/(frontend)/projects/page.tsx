@@ -22,6 +22,7 @@ export default async function Page() {
     select: {
       title: true,
       slug: true,
+      technologies: true,
       categories: true,
       meta: true,
     },

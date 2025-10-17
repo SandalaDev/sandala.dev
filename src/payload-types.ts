@@ -245,7 +245,7 @@ export interface Project {
     };
     [k: string]: unknown;
   };
-  technologies?: ('nextjs-icon.svg' | 'react-icon.svg' | 'payload-icon.svg')[] | null;
+  technologies?: ('nextjs' | 'react' | 'payload' | 'github')[] | null;
   categories?: (number | Category)[] | null;
   meta?: {
     title?: string | null;

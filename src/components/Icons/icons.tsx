@@ -213,7 +213,9 @@ export const TECH_ICONS = {
   nextjs: NextJSIcon,
   react: ReactIcon,
   payload: PayloadIcon,
-  github: GitHubIcon, // Can be used in both contexts
+  github: GitHubIcon,
+  // postgres: postgresIcon,
+  // node: nodeIcon,
   // Add more as needed
 } as const
 

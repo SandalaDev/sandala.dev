@@ -107,15 +107,19 @@ export const Projects: CollectionConfig<'projects'> = {
               options: [
                 {
                   label: 'Next.js',
-                  value: 'nextjs-icon.svg',
+                  value: 'nextjs',
                 },
                 {
                   label: 'React',
-                  value: 'react-icon.svg',
+                  value: 'react',
                 },
                 {
                   label: 'Payload CMS',
-                  value: 'payload-icon.svg',
+                  value: 'payload',
+                },
+                {
+                  label: 'GitHub/Git',
+                  value: 'github',
                 },
               ],
               admin: {

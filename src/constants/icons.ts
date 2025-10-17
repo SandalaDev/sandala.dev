@@ -29,6 +29,8 @@ export const ICON_METADATA = {
     react: { label: 'React', category: 'tech' },
     payload: { label: 'Payload CMS', category: 'tech' },
     github: { label: 'GitHub', category: 'tech' },
+    // postgres: { label: 'Postgres', category: 'tech' },
+    // node: { label: 'Node', category: 'tech' },
   },
   benefit: {
     payload: { label: 'Payload CMS', category: 'benefit' },

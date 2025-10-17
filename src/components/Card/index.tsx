@@ -64,6 +64,9 @@ export const Card: React.FC<{
           </div>
         )}
         {description && <p className="mt-2 text-coral-mist">{sanitizedDescription}</p>}
+        <div>
+          <h3>test div</h3>
+        </div>
 
         {technologies && technologies.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-2">
@@ -75,14 +78,13 @@ export const Card: React.FC<{
               return (
                 <span
                   key={tech}
-                  className="shadow-card inline-flex items-center px-3 py-1 rounded-full text-sm bg-card text-foreground"
+                  className="shadow-card inline-flex items-center px-3 py-1 rounded-full text-sm bg-card text-red-600"
                 >
                   <TechIconComponent size={16} className="mr-2" />
                   {label}
                 </span>
               )
             })}
-            console.log('technologies:', technologies)
           </div>
         )}
       </div>
