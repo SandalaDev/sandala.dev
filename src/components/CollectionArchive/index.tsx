@@ -16,15 +16,7 @@ export const CollectionArchive: React.FC<Props> = (props) => {
         <div className="flex flex-col gap-8">
           {projects?.map((result, index) => {
             if (typeof result === 'object' && result !== null) {
-              return (
-                <Card
-                  key={index}
-                  className="w-full"
-                  doc={result}
-                  relationTo="projects"
-                  showCategories
-                />
-              )
+              return <Card key={index} className="w-full" doc={result} relationTo="projects" />
             }
 
             return null

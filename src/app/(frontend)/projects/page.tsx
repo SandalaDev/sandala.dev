@@ -41,15 +41,6 @@ export default async function Page() {
         </div>
       </div>
 
-      <div className="container mb-8">
-        <PageRange
-          collection="projects"
-          currentPage={projects.page}
-          limit={12}
-          totalDocs={projects.totalDocs}
-        />
-      </div>
-
       <CollectionArchive projects={projects.docs} />
 
       <div className="container">
@@ -57,12 +48,20 @@ export default async function Page() {
           <Pagination page={projects.page} totalPages={projects.totalPages} />
         )}
       </div>
+      <div className="container mb-8 mt-24">
+        <PageRange
+          collection="projects"
+          currentPage={projects.page}
+          limit={12}
+          totalDocs={projects.totalDocs}
+        />
+      </div>
     </div>
   )
 }
 
 export function generateMetadata(): Metadata {
   return {
-    title: `my projects`,
+    title: `work`,
   }
 }
