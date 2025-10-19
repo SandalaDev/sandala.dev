@@ -25,3 +25,11 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_projects_v_version_scope_order_idx" ON "_projects_v_version_scope" USING btree ("order");
   CREATE INDEX "_projects_v_version_scope_parent_idx" ON "_projects_v_version_scope" USING btree ("parent_id");`)
 }
+
+export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
+  await db.execute(sql`
+  DROP TABLE "projects_scope" CASCADE;
+  DROP TABLE "_projects_v_version_scope" CASCADE;
+  DROP TYPE "public"."enum_projects_scope";
+  DROP TYPE "public"."enum__projects_v_version_scope";`)
+}
