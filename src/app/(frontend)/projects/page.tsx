@@ -23,7 +23,7 @@ export default async function Page() {
       title: true,
       slug: true,
       technologies: true,
-      categories: true,
+      scope: true,
       meta: true,
     },
   })

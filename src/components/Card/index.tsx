@@ -7,10 +7,7 @@ import type { Project } from '@/payload-types'
 import { TECH_ICONS, getIconLabel, type TechIcon } from '@/constants/icons'
 import { Media } from '@/components/Media'
 
-export type CardProjectData = Pick<
-  Project,
-  'slug' | 'categories' | 'meta' | 'title' | 'technologies'
->
+export type CardProjectData = Pick<Project, 'slug' | 'meta' | 'title' | 'technologies' | 'scope'>
 
 export const Card: React.FC<{
   alignItems?: 'center'
@@ -21,11 +18,15 @@ export const Card: React.FC<{
 }> = (props) => {
   const { card, link } = useClickableCard({})
   const { className, doc, relationTo, title: titleFromProps } = props
-  const { slug, meta, title, technologies } = doc || {}
+
+  const { slug, meta, title, technologies, scope } = doc || {}
   const { description, image: metaImage } = meta || {}
+
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ')
   const href = `/${relationTo}/${slug}`
+
+  console.log('scope', scope)
 
   return (
     <article
@@ -48,7 +49,7 @@ export const Card: React.FC<{
       )}
 
       {/* Content overlay (bottom half) */}
-      <div className="absolute bottom-0 left-0 right-0 h-1/2 p-4 flex flex-col justify-end bg-coral-whisper/10 backdrop-blur-md border border-coral-mist/20 shadow-xl rounded-2xl">
+      <div className="absolute bottom-0 left-0 right-0 h-1/2 p-4 flex flex-col justify-end bg-coral-mist/10 backdrop-blur-sm border border-coral-mist/20 shadow-xl rounded-2xl">
         {titleToUse && (
           <div className="prose">
             <h3 className="text-primary">
@@ -78,6 +79,10 @@ export const Card: React.FC<{
             })}
           </div>
         )}
+        {/* scope tags */}
+        <div className="font-light text-[1.2ch] my-4">
+          {scope && scope.length > 0 && scope.join(' | ').toUpperCase()}
+        </div>
       </div>
     </article>
   )

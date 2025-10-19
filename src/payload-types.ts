@@ -70,7 +70,6 @@ export interface Config {
     pages: Page;
     projects: Project;
     media: Media;
-    categories: Category;
     users: User;
     redirects: Redirect;
     forms: Form;
@@ -86,7 +85,6 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
@@ -245,8 +243,25 @@ export interface Project {
     };
     [k: string]: unknown;
   };
+  scope?:
+    | (
+        | 'Brand Strategy'
+        | 'Content Strategy'
+        | 'Front-End Development'
+        | 'Back-End Development'
+        | 'Database Design'
+        | 'User Training'
+        | 'UI & Brand Design'
+        | 'System Architecture'
+        | 'Hosting & Deployment'
+        | 'SEO & Analytics'
+        | 'Creative Direction'
+        | 'Brand Voice & Tone'
+        | 'Naming & Messaging'
+        | 'Content Writing'
+      )[]
+    | null;
   technologies?: ('nextjs' | 'react' | 'payload' | 'github')[] | null;
-  categories?: (number | Category)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -360,27 +375,6 @@ export interface Media {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: number;
-  title: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  parent?: (number | null) | Category;
-  breadcrumbs?:
-    | {
-        doc?: (number | null) | Category;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -512,7 +506,6 @@ export interface ArchiveBlock {
   } | null;
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'projects' | null;
-  categories?: (number | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
@@ -935,10 +928,6 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'categories';
-        value: number | Category;
-      } | null)
-    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
@@ -1123,7 +1112,6 @@ export interface ArchiveBlockSelect<T extends boolean = true> {
   introContent?: T;
   populateBy?: T;
   relationTo?: T;
-  categories?: T;
   limit?: T;
   selectedDocs?: T;
   id?: T;
@@ -1148,8 +1136,8 @@ export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
   content?: T;
+  scope?: T;
   technologies?: T;
-  categories?: T;
   meta?:
     | T
     | {
@@ -1262,26 +1250,6 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
       };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  slugLock?: T;
-  parent?: T;
-  breadcrumbs?:
-    | T
-    | {
-        doc?: T;
-        url?: T;
-        label?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

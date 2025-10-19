@@ -62,7 +62,6 @@ export default async function Project({ params: paramsPromise }: Args) {
     select: {
       title: true,
       slug: true,
-      categories: true,
       meta: true,
     },
   })

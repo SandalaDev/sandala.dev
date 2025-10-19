@@ -39,7 +39,6 @@ export const Projects: CollectionConfig<'projects'> = {
   defaultPopulate: {
     title: true,
     slug: true,
-    categories: true,
     meta: {
       image: true,
       description: true,
@@ -100,6 +99,36 @@ export const Projects: CollectionConfig<'projects'> = {
               label: false,
               required: true,
             },
+          ],
+          label: 'Content',
+        },
+        {
+          fields: [
+            {
+              name: 'scope',
+              type: 'select',
+              label: 'Scope',
+              hasMany: true,
+              options: [
+                'Brand Strategy',
+                'Content Strategy',
+                'Front-End Development',
+                'Back-End Development',
+                'Database Design',
+                'User Training',
+                'UI & Brand Design',
+                'System Architecture',
+                'Hosting & Deployment',
+                'SEO & Analytics',
+                'Creative Direction',
+                'Brand Voice & Tone',
+                'Naming & Messaging',
+                'Content Writing',
+              ],
+              admin: {
+                placeholder: 'Define Scope of Project',
+              },
+            },
             {
               name: 'technologies',
               type: 'select',
@@ -127,21 +156,7 @@ export const Projects: CollectionConfig<'projects'> = {
               },
             },
           ],
-          label: 'Content',
-        },
-        {
-          fields: [
-            {
-              name: 'categories',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              hasMany: true,
-              relationTo: 'categories',
-            },
-          ],
-          label: 'Meta',
+          label: 'Icons & Tags',
         },
         {
           name: 'meta',

@@ -10,6 +10,7 @@ import * as migration_20251014_203000_change_project_date_year_type from './2025
 import * as migration_20251014_203000_versioning_table_fix from './20251014_203000_versioning_table_fix';
 import * as migration_20251016_211343 from './20251016_211343';
 import * as migration_20251017_154918 from './20251017_154918';
+import * as migration_20251019_001608 from './20251019_001608';
 
 export const migrations = [
   {
@@ -70,6 +71,11 @@ export const migrations = [
   {
     up: migration_20251017_154918.up,
     down: migration_20251017_154918.down,
-    name: '20251017_154918'
+    name: '20251017_154918',
+  },
+  {
+    up: migration_20251019_001608.up,
+    down: migration_20251019_001608.down,
+    name: '20251019_001608'
   },
 ];
