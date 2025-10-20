@@ -7,7 +7,7 @@ const defaultLabels = {
 
 const defaultCollectionLabels = {
   projects: {
-    plural: 'Projectects',
+    plural: 'Projects',
     singular: 'Project',
   },
 }

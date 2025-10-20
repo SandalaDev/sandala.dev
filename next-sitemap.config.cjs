@@ -25,7 +25,7 @@ module.exports = {
     additionalSitemaps: [
       `${SITE_URL}/pages-sitemap.xml`,
       `${SITE_URL}/projects-sitemap.xml`,
-      `${SITE_URL}/Projectects-sitemap.xml`,
+      `${SITE_URL}/Projects-sitemap.xml`,
     ],
   },
 }
