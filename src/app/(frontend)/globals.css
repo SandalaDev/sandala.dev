@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .clip-badge {
+    border-radius: 50% 50% 50% 50% / 60% 40% 60% 40%;
+  }
+}
+
 @layer base {
   h1,
   h2,
@@ -261,6 +267,31 @@ body::before {
 .button-hover-animate:hover {
   animation: buttonFloat 1.5s ease-in-out infinite;
 }
+
+.footer-glass {
+  border: none;
+}
+
+.glass-price {
+  position: relative;
+  background: hsl(var(--card) / 0.05);
+  border-radius: 2rem;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow:
+    0 10px 15px hsl(var(--purple-shadow) / 0.2),
+    0 4px 6px hsl(var(--purple-shadow) / 0.1);
+}
+
+.footer-glass > .container {
+  background: hsl(var(--coral-pink) / 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  overflow: hidden;
+}
+
 .glass {
   position: relative;
   background: hsl(var(--secondary) / 0.04);
@@ -286,6 +317,149 @@ body::before {
   mask-composite: subtract;
   z-index: -1;
   border-radius: inherit;
+}
+
+/* Utilities */
+@layer utilities {
+  .drop-shadow-glass {
+    box-shadow:
+      0 10px 15px hsl(var(--purple-shadow) / 0.2),
+      0 4px 6px hsl(var(--purple-shadow) / 0.1);
+  }
+  .backdrop-blur-\[25px\] {
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
+  .backdrop-blur-\[30px\] {
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  .animate-fadeInUp-delay-1 {
+    animation: fadeInUp 0.8s ease forwards 0.1s;
+  }
+  .animate-fadeInUp-delay-2 {
+    animation: fadeInUp 0.8s ease forwards 0.2s;
+  }
+  .animate-fadeInUp-delay-3 {
+    animation: fadeInUp 0.8s ease forwards 0.3s;
+  }
+  .animate-fadeInUp-delay-4 {
+    animation: fadeInUp 0.8s ease forwards 0.4s;
+  }
+  .animate-fadeInUp-delay-5 {
+    animation: fadeInUp 0.8s ease forwards 0.5s;
+  }
+  .animate-fadeInUp-delay-6 {
+    animation: fadeInUp 0.8s ease forwards 0.6s;
+  }
+  .animate-fadeInUp-delay-7 {
+    animation: fadeInUp 0.8s ease forwards 0.7s;
+  }
+  .animate-fadeInUp-delay-8 {
+    animation: fadeInUp 0.8s ease forwards 0.8s;
+  }
+  .transition-all {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-transform {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-colors {
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-opacity {
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .hover\:transform:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+  .hover\:-translate-y-1:hover {
+    transform: translateY(-4px);
+  }
+  .group:hover .group-hover\:translate-x-1 {
+    transform: translateX(4px);
+  }
+  .group:hover .group-hover\:text-primary {
+    color: hsl(var(--primary));
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-data: reduce) {
+  body::before {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--coral-whisper)) 0%,
+      hsl(var(--coral-pink)) 50%,
+      hsl(var(--purple-bloom)) 100%
+    );
+    animation: none;
+  }
+
+  [data-theme='dark'] body::before {
+    background: linear-gradient(
+      225deg,
+      hsl(var(--purple-void)) 0%,
+      hsl(var(--purple-shadow)) 50%,
+      hsl(var(--coral-pink)) 100%
+    );
+    animation: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .lg\:block {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+/* Timeline Dark Theme Enhancements */
+[data-theme='dark'] .glass {
+  background: hsl(var(--card) / 0.8);
+  border: 1px solid hsl(var(--border) / 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+[data-theme='dark'] .glass:hover {
+  background: hsl(var(--card) / 0.9);
+  border-color: hsl(var(--primary) / 0.2);
+  box-shadow: 0 8px 32px hsl(var(--primary) / 0.1);
 }
 
 html {

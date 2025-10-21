@@ -11,6 +11,13 @@ import { SectionHeadBlock } from '@/blocks/SectionHead/Component'
 import { TabsBlock } from '@/blocks/Tabs/Component'
 import { TableBlock } from '@/blocks/Table/Component'
 import { TimelineBlock } from '@/blocks/Timeline/Component'
+import { TextCardsBlock } from '@/blocks/TextCards/Component'
+import { ProfileCards } from '@/blocks/ProfileCards/Components'
+import { ProcessCardsBlock } from '@/blocks/ProcessCards/component'
+import { PricingBlock } from '@/blocks/Pricing/Component'
+import { OrbitalCardsBlock } from '@/blocks/OrbitalCards/component'
+import { LogoScrollerBlock } from '@/blocks/LogoScroller/Component'
+import { ContactHubBlock } from '@/blocks/ContactHub/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -22,6 +29,13 @@ const blockComponents = {
   tabs: TabsBlock,
   table: TableBlock,
   timeline: TimelineBlock,
+  textCards: TextCardsBlock,
+  profileCards: ProfileCards,
+  processCards: ProcessCardsBlock,
+  pricing: PricingBlock,
+  orbitalCards: OrbitalCardsBlock,
+  logoScroller: LogoScrollerBlock,
+  contactHub: ContactHubBlock,
 }
 
 export const RenderBlocks: React.FC<{

@@ -11,11 +11,18 @@ import { SectionHead } from '../../blocks/SectionHead/config'
 import { Tabs } from '@/blocks/Tabs/config'
 import { Table } from '@/blocks/Table/config'
 import { Timeline } from '@/blocks/Timeline/config'
+import { TextCards } from '../../blocks/TextCards/config'
+import { ProfileCards as ProfileCardsBlock } from '../../blocks/ProfileCards/config'
+import { ProcessCards } from '../../blocks/ProcessCards/config'
+import { Pricing } from '../../blocks/Pricing/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
+import { OrbitalCards } from '../../blocks/OrbitalCards'
+import { LogoScroller } from '../../blocks/LogoScroller'
+import { ContactHub } from '../../blocks/ContactHub/config'
 
 import {
   MetaDescriptionField,
@@ -89,6 +96,13 @@ export const Pages: CollectionConfig<'pages'> = {
                 Tabs,
                 Table,
                 Timeline,
+                TextCards,
+                ProfileCardsBlock,
+                ProcessCards,
+                Pricing,
+                OrbitalCards,
+                LogoScroller,
+                ContactHub,
               ],
               required: true,
               admin: {

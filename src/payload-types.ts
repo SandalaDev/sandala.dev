@@ -214,6 +214,13 @@ export interface Page {
     | TabsBlock
     | TableBlock
     | TimelineBlock
+    | TextCardsBlock
+    | ProfileCardsBlock
+    | ProcessCardsBlock
+    | PricingBlock
+    | OrbitalCardsBlock
+    | LogoScrollerBlock
+    | ContactHubBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1202,6 +1209,471 @@ export interface TimelineBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextCardsBlock".
+ */
+export interface TextCardsBlock {
+  /**
+   * Add reusable text cards. Optional fields are not rendered when empty.
+   */
+  cards?:
+    | {
+        /**
+         * Short headline for the card (e.g., “Brand Foundation”)
+         */
+        title?: string | null;
+        /**
+         * Main body text. Supports bold/italic and headings.
+         */
+        body?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Choose how list items should render (separate from rich text).
+         */
+        listStyle?: ('none' | 'bullet' | 'check') | null;
+        /**
+         * Optional list items rendered below the body (uses chosen list style).
+         */
+        bodyList?:
+          | {
+              /**
+               * One short line per item
+               */
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * Rendered in italic styling by the component.
+         */
+        footnote?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProfileCardsBlock".
+ */
+export interface ProfileCardsBlock {
+  cards: {
+    icon: string;
+    title: string;
+    previewText: string;
+    /**
+     * Italicized helper text at the bottom of the card.
+     */
+    hintText: string;
+    modalContent: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    id?: string | null;
+  }[];
+  personalSection: {
+    avatarEmoji: string;
+    bioText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    ctas?:
+      | {
+          label: string;
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'profileCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessCardsBlock".
+ */
+export interface ProcessCardsBlock {
+  /**
+   * Short tagline above the main heading
+   */
+  headline: string;
+  /**
+   * Main heading for the process section
+   */
+  heading: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Add 3-5 process steps
+   */
+  steps?:
+    | {
+        /**
+         * Step number (1-5)
+         */
+        stepNumber: number;
+        /**
+         * Short, descriptive title
+         */
+        title: string;
+        /**
+         * Detailed explanation of the step
+         */
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'processCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingBlock".
+ */
+export interface PricingBlock {
+  /**
+   * Main heading for the pricing section (e.g., "Choose Your Plan")
+   */
+  title?: string | null;
+  /**
+   * Optional subtitle or description below the main title
+   */
+  subtitle?: string | null;
+  /**
+   * Pricing cards - typically 2-4 cards work best
+   */
+  cards?:
+    | {
+        /**
+         * Optional badge text (e.g., "Best Value", "Popular", "Most Popular")
+         */
+        badge?: string | null;
+        /**
+         * Plan name (e.g., "Basic", "Pro", "Enterprise")
+         */
+        title: string;
+        /**
+         * Short description of the plan
+         */
+        subtitle?: string | null;
+        /**
+         * Currency symbol
+         */
+        currency?: string | null;
+        /**
+         * Main price (e.g., "99", "1,200")
+         */
+        price: string;
+        /**
+         * Optional original price for strikethrough effect
+         */
+        originalPrice?: string | null;
+        /**
+         * Optional note below price (e.g., "per month", "one-time")
+         */
+        priceNote?: string | null;
+        /**
+         * List of features included in this plan
+         */
+        features?:
+          | {
+              /**
+               * Feature name/title (bold text)
+               */
+              title: string;
+              /**
+               * Optional feature description (smaller text below title)
+               */
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * Optional note or additional info for this plan
+         */
+        note?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Make this card stand out (adds border and scale effect)
+         */
+        featured?: boolean | null;
+        /**
+         * Button for this pricing card
+         */
+        cta: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'projects';
+                value: number | Project;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pricing';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OrbitalCardsBlock".
+ */
+export interface OrbitalCardsBlock {
+  /**
+   * Add 3-8 capability cards
+   */
+  cards?:
+    | {
+        /**
+         * Choose an icon for this card
+         */
+        icon:
+          | 'rocket'
+          | 'code'
+          | 'cogs'
+          | 'lightbulb'
+          | 'palette'
+          | 'penTool'
+          | 'network'
+          | 'layers'
+          | 'plug'
+          | 'chartLine'
+          | 'handshake';
+        /**
+         * Keep under 5 words
+         */
+        title: string;
+        /**
+         * 1-2 short sentences
+         */
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'orbitalCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogoScrollerBlock".
+ */
+export interface LogoScrollerBlock {
+  /**
+   * Optional title displayed above the logo scroller (e.g., "Technologies & Expertise")
+   */
+  title?: string | null;
+  /**
+   * Add logos/items to scroll. Minimum 1 required for animation.
+   */
+  logos?:
+    | {
+        logoType?: ('custom' | 'fontawesome') | null;
+        customIcon?: ('payload' | 'react' | 'nextjs') | null;
+        /**
+         * e.g., "fab fa-react", "fas fa-database"
+         */
+        faIconClass?: string | null;
+        /**
+         * Display name for this technology/company (always shown below icon/image)
+         */
+        name: string;
+        /**
+         * Color theme for the icon.
+         */
+        iconColor?:
+          | ('primary' | 'telecom' | 'design' | 'frontend' | 'backend' | 'database' | 'tools' | 'accent')
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * How fast the logos scroll across the screen.
+   */
+  animationSpeed?: ('slow' | 'normal' | 'fast') | null;
+  /**
+   * Pause animation when user hovers over the scroller.
+   */
+  pauseOnHover?: boolean | null;
+  /**
+   * Background styling for the scroller container.
+   */
+  backgroundColor?: ('glass' | 'transparent' | 'theme') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'logoScroller';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactHubBlock".
+ */
+export interface ContactHubBlock {
+  title: string;
+  subtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  contactCards?:
+    | {
+        /**
+         * Unique identifier for this card (used for modal targeting)
+         */
+        id: string;
+        topIcon?: ('nextjs' | 'react' | 'payload' | 'github') | null;
+        bottomIcon?: ('message-circle' | 'video' | 'zap') | null;
+        subtitle?: string | null;
+        title: string;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Optional note or badge text (e.g., "Quick response", "Paid session")
+         */
+        note?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Select the form to display in the modal for this contact card
+         */
+        form: number | Form;
+        /**
+         * Links to suggest other contact options within the modal
+         */
+        crossLinks?:
+          | {
+              /**
+               * Text before the link (e.g., "Sounds like you need a demo?")
+               */
+              text: string;
+              /**
+               * The clickable link text (e.g., "Click here for demo")
+               */
+              linkText: string;
+              /**
+               * The ID of the card to open when this link is clicked
+               */
+              targetCardId: string;
+              id?: string | null;
+            }[]
+          | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactHub';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1517,6 +1989,13 @@ export interface PagesSelect<T extends boolean = true> {
         tabs?: T | TabsBlockSelect<T>;
         table?: T | TableBlockSelect<T>;
         timeline?: T | TimelineBlockSelect<T>;
+        textCards?: T | TextCardsBlockSelect<T>;
+        profileCards?: T | ProfileCardsBlockSelect<T>;
+        processCards?: T | ProcessCardsBlockSelect<T>;
+        pricing?: T | PricingBlockSelect<T>;
+        orbitalCards?: T | OrbitalCardsBlockSelect<T>;
+        logoScroller?: T | LogoScrollerBlockSelect<T>;
+        contactHub?: T | ContactHubBlockSelect<T>;
       };
   meta?:
     | T
@@ -1806,6 +2285,187 @@ export interface TimelineBlockSelect<T extends boolean = true> {
                     description?: T;
                     id?: T;
                   };
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextCardsBlock_select".
+ */
+export interface TextCardsBlockSelect<T extends boolean = true> {
+  cards?:
+    | T
+    | {
+        title?: T;
+        body?: T;
+        listStyle?: T;
+        bodyList?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        footnote?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProfileCardsBlock_select".
+ */
+export interface ProfileCardsBlockSelect<T extends boolean = true> {
+  cards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        previewText?: T;
+        hintText?: T;
+        modalContent?: T;
+        id?: T;
+      };
+  personalSection?:
+    | T
+    | {
+        avatarEmoji?: T;
+        bioText?: T;
+        ctas?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessCardsBlock_select".
+ */
+export interface ProcessCardsBlockSelect<T extends boolean = true> {
+  headline?: T;
+  heading?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingBlock_select".
+ */
+export interface PricingBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  cards?:
+    | T
+    | {
+        badge?: T;
+        title?: T;
+        subtitle?: T;
+        currency?: T;
+        price?: T;
+        originalPrice?: T;
+        priceNote?: T;
+        features?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+        note?: T;
+        featured?: T;
+        cta?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OrbitalCardsBlock_select".
+ */
+export interface OrbitalCardsBlockSelect<T extends boolean = true> {
+  cards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogoScrollerBlock_select".
+ */
+export interface LogoScrollerBlockSelect<T extends boolean = true> {
+  title?: T;
+  logos?:
+    | T
+    | {
+        logoType?: T;
+        customIcon?: T;
+        faIconClass?: T;
+        name?: T;
+        iconColor?: T;
+        id?: T;
+      };
+  animationSpeed?: T;
+  pauseOnHover?: T;
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactHubBlock_select".
+ */
+export interface ContactHubBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  contactCards?:
+    | T
+    | {
+        id?: T;
+        topIcon?: T;
+        bottomIcon?: T;
+        subtitle?: T;
+        title?: T;
+        description?: T;
+        note?: T;
+        form?: T;
+        crossLinks?:
+          | T
+          | {
+              text?: T;
+              linkText?: T;
+              targetCardId?: T;
+              id?: T;
             };
       };
   id?: T;
