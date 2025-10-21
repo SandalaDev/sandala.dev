@@ -204,7 +204,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | SectionHeadBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | SectionHeadBlock | TabsBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -743,6 +743,134 @@ export interface SectionHeadBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabsBlock".
+ */
+export interface TabsBlock {
+  /**
+   * Configure the main interactive demo section with tabs and slideshows.
+   */
+  showcaseSection: {
+    /**
+     * Main heading for the interactive showcase section.
+     */
+    showcaseHeading: string;
+    /**
+     * Subheading providing context for the showcase.
+     */
+    showcaseSubheading: string;
+    /**
+     * How many seconds each slide should display before auto-advancing.
+     */
+    slideshowSpeed?: number | null;
+    /**
+     * Configure tabs with slideshow mockups. Each tab represents a different aspect of your platform.
+     */
+    demoTabs?:
+      | {
+          /**
+           * Text displayed on the tab button (e.g., "Frontend", "Admin Panel").
+           */
+          tabName: string;
+          /**
+           * Optional description text displayed below the slideshow for this tab.
+           */
+          tabDescription?: string | null;
+          /**
+           * Images for desktop/large screens. Recommended size: 1200x800px or similar 3:2 ratio.
+           */
+          desktopImages?:
+            | {
+                /**
+                 * Upload mockup image for desktop view.
+                 */
+                image: number | Media;
+                /**
+                 * Descriptive alt text for accessibility.
+                 */
+                altText: string;
+                id?: string | null;
+              }[]
+            | null;
+          /**
+           * Images for tablet/medium screens. Recommended size: 768x600px or similar 4:3 ratio.
+           */
+          tabletImages?:
+            | {
+                /**
+                 * Upload mockup image for tablet view.
+                 */
+                image: number | Media;
+                /**
+                 * Descriptive alt text for accessibility.
+                 */
+                altText: string;
+                id?: string | null;
+              }[]
+            | null;
+          /**
+           * Images for mobile/small screens. Recommended size: 375x500px or similar portrait ratio.
+           */
+          mobileImages?:
+            | {
+                /**
+                 * Upload mockup image for mobile view.
+                 */
+                image: number | Media;
+                /**
+                 * Descriptive alt text for accessibility.
+                 */
+                altText: string;
+                id?: string | null;
+              }[]
+            | null;
+          /**
+           * Subheading displayed above the benefits list for this tab.
+           */
+          benefitsSubheading?: string | null;
+          /**
+           * Select an icon to use as bullet points for all benefits in this tab.
+           */
+          benefitsIcon?: ('payload' | 'openSource' | 'ownership') | null;
+          /**
+           * Benefits displayed when this tab is active.
+           */
+          benefitsList?:
+            | {
+                /**
+                 * Main title for this benefit.
+                 */
+                title: string;
+                /**
+                 * Detailed description with basic formatting options.
+                 */
+                description: {
+                  root: {
+                    type: string;
+                    children: {
+                      type: any;
+                      version: number;
+                      [k: string]: unknown;
+                    }[];
+                    direction: ('ltr' | 'rtl') | null;
+                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                    indent: number;
+                    version: number;
+                  };
+                  [k: string]: unknown;
+                };
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tabs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1055,6 +1183,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         sectionHead?: T | SectionHeadBlockSelect<T>;
+        tabs?: T | TabsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1159,6 +1288,58 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface SectionHeadBlockSelect<T extends boolean = true> {
   richText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabsBlock_select".
+ */
+export interface TabsBlockSelect<T extends boolean = true> {
+  showcaseSection?:
+    | T
+    | {
+        showcaseHeading?: T;
+        showcaseSubheading?: T;
+        slideshowSpeed?: T;
+        demoTabs?:
+          | T
+          | {
+              tabName?: T;
+              tabDescription?: T;
+              desktopImages?:
+                | T
+                | {
+                    image?: T;
+                    altText?: T;
+                    id?: T;
+                  };
+              tabletImages?:
+                | T
+                | {
+                    image?: T;
+                    altText?: T;
+                    id?: T;
+                  };
+              mobileImages?:
+                | T
+                | {
+                    image?: T;
+                    altText?: T;
+                    id?: T;
+                  };
+              benefitsSubheading?: T;
+              benefitsIcon?: T;
+              benefitsList?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+      };
   id?: T;
   blockName?: T;
 }
