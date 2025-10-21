@@ -204,7 +204,16 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | SectionHeadBlock | TabsBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | SectionHeadBlock
+    | TabsBlock
+    | TableBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -847,6 +856,130 @@ export interface TabsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TableBlock".
+ */
+export interface TableBlock {
+  /**
+   * Configure the platform comparison table section.
+   */
+  comparisonSection: {
+    tableHeading: string;
+    /**
+     * Optional subheading below the main heading.
+     */
+    tableSubheading?: string | null;
+    /**
+     * Flexibility comparison across platforms.
+     */
+    flexibilityFeature?: {
+      /**
+       * Description for Payload CMS.
+       */
+      payloadText?: string | null;
+      /**
+       * Description for WordPress.
+       */
+      wordpressText?: string | null;
+      /**
+       * Description for Shopify.
+       */
+      shopifyText?: string | null;
+      /**
+       * Description for Squarespace/Wix.
+       */
+      squarespaceText?: string | null;
+    };
+    /**
+     * Customization comparison across platforms.
+     */
+    customizationFeature?: {
+      /**
+       * Description for Payload CMS.
+       */
+      payloadText?: string | null;
+      /**
+       * Description for WordPress.
+       */
+      wordpressText?: string | null;
+      /**
+       * Description for Shopify.
+       */
+      shopifyText?: string | null;
+      /**
+       * Description for Squarespace/Wix.
+       */
+      squarespaceText?: string | null;
+    };
+    /**
+     * Ownership & Control comparison across platforms.
+     */
+    ownershipFeature?: {
+      /**
+       * Description for Payload CMS.
+       */
+      payloadText?: string | null;
+      /**
+       * Description for WordPress.
+       */
+      wordpressText?: string | null;
+      /**
+       * Description for Shopify.
+       */
+      shopifyText?: string | null;
+      /**
+       * Description for Squarespace/Wix.
+       */
+      squarespaceText?: string | null;
+    };
+    /**
+     * Long-term Scalability comparison across platforms.
+     */
+    scalabilityFeature?: {
+      /**
+       * Description for Payload CMS.
+       */
+      payloadText?: string | null;
+      /**
+       * Description for WordPress.
+       */
+      wordpressText?: string | null;
+      /**
+       * Description for Shopify.
+       */
+      shopifyText?: string | null;
+      /**
+       * Description for Squarespace/Wix.
+       */
+      squarespaceText?: string | null;
+    };
+    /**
+     * Developer Experience comparison across platforms.
+     */
+    developerExperienceFeature?: {
+      /**
+       * Description for Payload CMS.
+       */
+      payloadText?: string | null;
+      /**
+       * Description for WordPress.
+       */
+      wordpressText?: string | null;
+      /**
+       * Description for Shopify.
+       */
+      shopifyText?: string | null;
+      /**
+       * Description for Squarespace/Wix.
+       */
+      squarespaceText?: string | null;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'table';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1160,6 +1293,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         sectionHead?: T | SectionHeadBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
+        table?: T | TableBlockSelect<T>;
       };
   meta?:
     | T
@@ -1314,6 +1448,60 @@ export interface TabsBlockSelect<T extends boolean = true> {
                     id?: T;
                   };
               id?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TableBlock_select".
+ */
+export interface TableBlockSelect<T extends boolean = true> {
+  comparisonSection?:
+    | T
+    | {
+        tableHeading?: T;
+        tableSubheading?: T;
+        flexibilityFeature?:
+          | T
+          | {
+              payloadText?: T;
+              wordpressText?: T;
+              shopifyText?: T;
+              squarespaceText?: T;
+            };
+        customizationFeature?:
+          | T
+          | {
+              payloadText?: T;
+              wordpressText?: T;
+              shopifyText?: T;
+              squarespaceText?: T;
+            };
+        ownershipFeature?:
+          | T
+          | {
+              payloadText?: T;
+              wordpressText?: T;
+              shopifyText?: T;
+              squarespaceText?: T;
+            };
+        scalabilityFeature?:
+          | T
+          | {
+              payloadText?: T;
+              wordpressText?: T;
+              shopifyText?: T;
+              squarespaceText?: T;
+            };
+        developerExperienceFeature?:
+          | T
+          | {
+              payloadText?: T;
+              wordpressText?: T;
+              shopifyText?: T;
+              squarespaceText?: T;
             };
       };
   id?: T;
