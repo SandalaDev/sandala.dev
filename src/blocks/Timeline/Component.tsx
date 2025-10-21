@@ -5,88 +5,14 @@ import RichText from '@/components/RichText'
 import { cn } from '@/utilities/ui'
 import { Logo } from '@/components/Logo/Logo'
 import { Media } from '@/components/Media'
-import type { Media as MediaType } from '@/payload-types'
+import type { Media as MediaType, TimelineBlock as TimelineBlockType } from '@/payload-types'
 
-// Properly typed interfaces using payload-types
-interface RichTextContent {
-  root: {
-    type: string
-    children: Array<{
-      type: string
-      version: number
-      [k: string]: unknown
-    }>
-    direction: ('ltr' | 'rtl') | null
-    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
-    indent: number
-    version: number
-  }
-  [k: string]: unknown
-}
+interface TimelineBlockProps extends TimelineBlockType {}
 
+// Define the TagItem interface since it's not in the payload-generated types
 interface TagItem {
   tag: string
   id?: string
-}
-
-interface TimelineRole {
-  role: string
-  company: string
-  description?: RichTextContent
-  tags?: TagItem[]
-  id?: string
-}
-
-interface TimelineItem {
-  period: string
-  isDual?: boolean
-  role?: string
-  company?: string
-  description?: RichTextContent
-  tags?: TagItem[]
-  roles?: TimelineRole[]
-  id?: string
-}
-
-interface TimelineEpoch {
-  epochName: string
-  items?: TimelineItem[]
-  id?: string
-}
-
-interface InterestImage {
-  image: string | MediaType
-  alt?: string
-  id?: string
-}
-
-interface Interest {
-  category: string
-  images?: InterestImage[]
-  description?: RichTextContent
-  id?: string
-}
-
-interface TimelineBlockProps {
-  title?: string | null
-  subtitle?: RichTextContent | null
-  layout?: 'default' | 'grid' | null
-  epochs?: TimelineEpoch[] | null
-  profileCards?: {
-    biographyCard?: {
-      title?: string | null
-      teaserText?: string | null
-      emphasisText?: string | null
-      modalContent?: RichTextContent | null
-    } | null
-    interestsCard?: {
-      title?: string | null
-      teaserText?: string | null
-      emphasisText?: string | null
-      cardImage?: string | MediaType | null
-      interests?: Interest[] | null
-    } | null
-  } | null
 }
 
 // Utility functions for common styling patterns
@@ -136,23 +62,25 @@ const TagList: React.FC<TagListProps> = ({ tags, className = '' }) => {
     <ul className={cn('flex flex-wrap gap-1.5', className)}>
       {tags.map((tagItem, tagIdx) => (
         <li
-          key={tagItem.id || tagIdx}
+          key={tagItem?.id || tagIdx}
           className="text-xs font-medium px-2 py-1 rounded-3xl bg-secondary/50 text-coral-bright dark:text-coral-pink border border-secondary/20"
         >
-          {tagItem.tag}
+          {tagItem?.tag}
         </li>
       ))}
     </ul>
   )
 }
 
-export const TimelineBlock: React.FC<TimelineBlockProps> = ({
-  title,
-  subtitle,
-  layout = 'default',
-  epochs,
-  profileCards,
-}) => {
+export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
+  const { 
+    title, 
+    subtitle, 
+    layout = 'default', 
+    epochs, 
+    profileCards 
+  } = props;
+  
   const [activeEpoch, setActiveEpoch] = useState<string>('')
   const [selectedModal, setSelectedModal] = useState<'biography' | 'interests' | null>(null)
   const epochRefs = useRef<Record<string, HTMLElement | null>>({})
@@ -356,8 +284,8 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                       {profileCards.interestsCard.title || 'The way I am'}
                     </h3>
                     <p className="text-sm lg:text-base text-coral-bright leading-relaxed dark:text-foreground/80">
-                      {profileCards.interestsCard.teaserText ||
-                        'Explore the interests, hobbies, and passions that shape my perspective and inspire my creativity.'}
+                        {profileCards.interestsCard.teaserText ||
+                          'Explore the interests, hobbies, and passions that shape my perspective and inspire my creativity.'}
                     </p>
                   </div>
                   <p className="text-xs lg:text-sm italic text-coral-bright font-medium relative z-10 mt-4 dark:text-coral-bright">
@@ -446,13 +374,13 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                                           {role.description && (
                                             <div className="mt-3 text-sm text-foreground/90 leading-relaxed">
                                               <RichText
-                                                data={role.description as RichTextContent}
+                                                data={role.description}
                                                 enableGutter={false}
                                                 enableProse={false}
                                               />
                                             </div>
                                           )}
-                                          <TagList tags={role.tags} className="mt-3" />
+                                          <TagList tags={role.tags as TagItem[]} className="mt-3" />
                                         </div>
                                       )
                                     })}
@@ -469,13 +397,13 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                                   {item.description && (
                                     <div className="mt-4 text-sm text-foreground/90 leading-relaxed">
                                       <RichText
-                                        data={item.description as RichTextContent}
+                                        data={item.description}
                                         enableGutter={false}
                                         enableProse={false}
                                       />
                                     </div>
                                   )}
-                                  <TagList tags={item.tags} className="mt-4" />
+                                  <TagList tags={item.tags as TagItem[]} className="mt-4" />
                                 </>
                               )}
                             </div>
@@ -531,7 +459,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
             >
               {profileCards.biographyCard.modalContent && (
                 <RichText
-                  data={profileCards.biographyCard.modalContent as RichTextContent}
+                  data={profileCards.biographyCard.modalContent}
                   enableGutter={false}
                   enableProse={true}
                 />
@@ -652,7 +580,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                           <div className="glass p-8 rounded-3xl">
                             <div className="prose prose-invert max-w-none text-foreground">
                               <RichText
-                                data={interest.description as RichTextContent}
+                                data={interest.description}
                                 enableGutter={false}
                                 enableProse={true}
                               />
