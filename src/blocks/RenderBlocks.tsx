@@ -17,7 +17,7 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   sectionHead: SectionHeadBlock,
-  tabsBlock: TabsBlock,
+  tabs: TabsBlock,
 }
 
 export const RenderBlocks: React.FC<{

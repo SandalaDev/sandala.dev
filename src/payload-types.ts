@@ -749,7 +749,7 @@ export interface TabsBlock {
   /**
    * Configure the main interactive demo section with tabs and slideshows.
    */
-  showcaseSection: {
+  showcase: {
     /**
      * Main heading for the interactive showcase section.
      */
@@ -780,13 +780,7 @@ export interface TabsBlock {
            */
           desktopImages?:
             | {
-                /**
-                 * Upload mockup image for desktop view.
-                 */
                 image: number | Media;
-                /**
-                 * Descriptive alt text for accessibility.
-                 */
                 altText: string;
                 id?: string | null;
               }[]
@@ -796,13 +790,7 @@ export interface TabsBlock {
            */
           tabletImages?:
             | {
-                /**
-                 * Upload mockup image for tablet view.
-                 */
                 image: number | Media;
-                /**
-                 * Descriptive alt text for accessibility.
-                 */
                 altText: string;
                 id?: string | null;
               }[]
@@ -812,13 +800,7 @@ export interface TabsBlock {
            */
           mobileImages?:
             | {
-                /**
-                 * Upload mockup image for mobile view.
-                 */
                 image: number | Media;
-                /**
-                 * Descriptive alt text for accessibility.
-                 */
                 altText: string;
                 id?: string | null;
               }[]
@@ -836,13 +818,7 @@ export interface TabsBlock {
            */
           benefitsList?:
             | {
-                /**
-                 * Main title for this benefit.
-                 */
                 title: string;
-                /**
-                 * Detailed description with basic formatting options.
-                 */
                 description: {
                   root: {
                     type: string;
@@ -1296,7 +1272,7 @@ export interface SectionHeadBlockSelect<T extends boolean = true> {
  * via the `definition` "TabsBlock_select".
  */
 export interface TabsBlockSelect<T extends boolean = true> {
-  showcaseSection?:
+  showcase?:
     | T
     | {
         showcaseHeading?: T;

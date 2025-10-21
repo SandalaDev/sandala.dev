@@ -2,25 +2,25 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-import type { TabsBlock } from '@/payload-types'
+import type { TabsBlock as TabsBlockType, Media } from '@/payload-types'
 import RichText from '@/components/RichText'
 import { BENEFIT_ICONS, getIconLabel, type BenefitIcon } from '@/constants/icons'
 
-type Props = TabsBlock
+type Props = TabsBlockType
 
-export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
+export const TabsBlock: React.FC<Props> = ({ showcase }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [currentSlides, setCurrentSlides] = useState<{ [key: number]: number }>({})
 
   // Auto-advance slideshow
   useEffect(() => {
-    if (!showcaseSection?.demoTabs) return
+    if (!showcase?.demoTabs) return
 
     const interval = setInterval(
       () => {
         setCurrentSlides((prev) => {
           const newSlides = { ...prev }
-          showcaseSection.demoTabs?.forEach((tab, tabIndex) => {
+          showcase.demoTabs?.forEach((tab, tabIndex) => {
             const currentSlide = prev[tabIndex] || 0
             const imageCount = getImageCount(tab, 'desktop') // Use desktop as reference for slide count
             if (imageCount > 1) {
@@ -30,15 +30,15 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
           return newSlides
         })
       },
-      (showcaseSection.slideshowSpeed || 4) * 1000,
+      (showcase.slideshowSpeed || 4) * 1000,
     )
 
     return () => clearInterval(interval)
-  }, [showcaseSection?.demoTabs, showcaseSection?.slideshowSpeed])
+  }, [showcase?.demoTabs, showcase?.slideshowSpeed])
 
   // Helper to get image count for a tab and screen size
   const getImageCount = (
-    tab: NonNullable<TabsBlock['showcaseSection']['demoTabs']>[0],
+    tab: NonNullable<TabsBlockType['showcase']['demoTabs']>[0],
     screenSize: 'desktop' | 'tablet' | 'mobile',
   ) => {
     const images = tab[`${screenSize}Images`]
@@ -47,7 +47,7 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
 
   // Helper to get current image for a tab and screen size
   const getCurrentImage = (
-    tab: NonNullable<TabsBlock['showcaseSection']['demoTabs']>[0],
+    tab: NonNullable<TabsBlockType['showcase']['demoTabs']>[0],
     tabIndex: number,
     screenSize: 'desktop' | 'tablet' | 'mobile',
   ) => {
@@ -60,7 +60,7 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
 
   // Helper component for responsive image rendering
   const ResponsiveImage: React.FC<{
-    tab: NonNullable<TabsBlock['showcaseSection']['demoTabs']>[0]
+    tab: NonNullable<TabsBlockType['showcase']['demoTabs']>[0]
     tabIndex: number
     screenSize: 'desktop' | 'tablet' | 'mobile'
     className: string
@@ -73,7 +73,11 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
     return (
       <div className={`absolute inset-0 ${className}`}>
         <Image
-          src={typeof image.image === 'string' ? image.image : image.image.url || ''}
+          src={
+            typeof image.image === 'string'
+              ? image.image
+              : ((image.image as Media | undefined)?.url ?? '')
+          }
           alt={image.altText || `${tab.tabName} mockup`}
           fill
           className="object-contain rounded-lg"
@@ -87,11 +91,11 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
     <section className="relative overflow-hidden container">
       <div className="container mx-auto py-16 md:py-24">
         {/* Interactive Showcase Section */}
-        {showcaseSection && (
+        {showcase && (
           <div className="glass rounded-2xl p-8 md:p-12 mb-16">
             <div className="text-center mb-12">
-              <h3>{showcaseSection.showcaseHeading}</h3>
-              <p className="">{showcaseSection.showcaseSubheading}</p>
+              <h3>{showcase.showcaseHeading}</h3>
+              <p className="">{showcase.showcaseSubheading}</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
@@ -101,7 +105,7 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
                   {/* Tab Headers */}
                   <div className="bg-gradient-to-br from-purple-shadow/40 to-coral-pink/40 p-4">
                     <div className="flex gap-2 flex-wrap">
-                      {showcaseSection.demoTabs?.map((tab, index) => (
+                      {showcase.demoTabs?.map((tab, index) => (
                         <button
                           key={tab.id || index}
                           className={`py-2 px-4 rounded-2xl transition-all duration-300 text-sm ${
@@ -119,7 +123,7 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
 
                   {/* Tab Content */}
                   <div className="relative bg-background/80 backdrop-blur-sm">
-                    {showcaseSection.demoTabs?.map((tab, index) => (
+                    {showcase.demoTabs?.map((tab, index) => (
                       <div
                         key={tab.id || index}
                         className={`transition-all duration-300 ${
@@ -159,7 +163,6 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
                               </div>
                             )}
                         </div>
-
                         {/* Tab Description */}
                         {tab.tabDescription && (
                           <div className="p-4 bg-coral-mist/40">
@@ -199,15 +202,15 @@ export const TabsBlock: React.FC<Props> = ({ showcaseSection }) => {
               {/* Benefits List */}
               <div className="flex flex-col gap-6">
                 {/* Benefits Subheading from active tab */}
-                {showcaseSection.demoTabs?.[activeTab]?.benefitsSubheading && (
+                {showcase.demoTabs?.[activeTab]?.benefitsSubheading && (
                   <h4 className="text-lg font-semibold  mb-2">
-                    {showcaseSection.demoTabs[activeTab].benefitsSubheading}
+                    {showcase.demoTabs[activeTab].benefitsSubheading}
                   </h4>
                 )}
 
                 {/* Dynamic Benefits based on active tab */}
-                {showcaseSection.demoTabs?.[activeTab]?.benefitsList?.map((benefit, index) => {
-                  const currentTab = showcaseSection.demoTabs?.[activeTab]
+                {showcase.demoTabs?.[activeTab]?.benefitsList?.map((benefit, index) => {
+                  const currentTab = showcase.demoTabs?.[activeTab]
                   const selectedIcon = currentTab?.benefitsIcon as BenefitIcon
                   const IconComponent = selectedIcon ? BENEFIT_ICONS[selectedIcon] : null
                   const iconLabel = selectedIcon ? getIconLabel(selectedIcon) : ''
