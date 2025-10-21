@@ -213,6 +213,7 @@ export interface Page {
     | SectionHeadBlock
     | TabsBlock
     | TableBlock
+    | TimelineBlock
   )[];
   meta?: {
     title?: string | null;
@@ -980,6 +981,227 @@ export interface TableBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock".
+ */
+export interface TimelineBlock {
+  /**
+   * Main title for the timeline (e.g., "Career Journey", "Project History")
+   */
+  title?: string | null;
+  /**
+   * Optional subtitle or description text
+   */
+  subtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Choose the visual layout for the timeline
+   */
+  layout?: ('default' | 'grid') | null;
+  /**
+   * Group timeline items into epochs/periods
+   */
+  epochs?:
+    | {
+        /**
+         * Name for this time period (e.g., "Foundation", "Growth", "Mastery")
+         */
+        epochName: string;
+        items?:
+          | {
+              /**
+               * Date range or period (e.g., "2020 — 2023", "Jan 2024")
+               */
+              period: string;
+              /**
+               * Check if this item represents multiple concurrent roles/activities
+               */
+              isDual?: boolean | null;
+              /**
+               * Job title or role name
+               */
+              role?: string | null;
+              /**
+               * Company, organization, or project name
+               */
+              company?: string | null;
+              /**
+               * Detailed description of accomplishments and responsibilities
+               */
+              description?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              /**
+               * Skills, technologies, or relevant tags
+               */
+              tags?:
+                | {
+                    tag: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              /**
+               * Multiple roles or activities during this period
+               */
+              roles?:
+                | {
+                    role: string;
+                    company: string;
+                    description?: {
+                      root: {
+                        type: string;
+                        children: {
+                          type: any;
+                          version: number;
+                          [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                      };
+                      [k: string]: unknown;
+                    } | null;
+                    /**
+                     * Skills, technologies, or relevant tags
+                     */
+                    tags?:
+                      | {
+                          tag: string;
+                          id?: string | null;
+                        }[]
+                      | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Two interactive cards below the timeline navigation
+   */
+  profileCards: {
+    biographyCard: {
+      title: string;
+      /**
+       * Short preview text shown on the card
+       */
+      teaserText?: string | null;
+      /**
+       * Italicized text at the bottom of the card
+       */
+      emphasisText?: string | null;
+      /**
+       * Full biography text shown in the modal
+       */
+      modalContent?: {
+        root: {
+          type: string;
+          children: {
+            type: any;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+    };
+    interestsCard: {
+      title: string;
+      /**
+       * Short preview text shown on the card
+       */
+      teaserText?: string | null;
+      /**
+       * Italicized text at the bottom of the card
+       */
+      emphasisText?: string | null;
+      /**
+       * Image to display on the interests card
+       */
+      cardImage?: (number | null) | Media;
+      /**
+       * Categories of interests to display in the modal
+       */
+      interests?:
+        | {
+            /**
+             * e.g., Sports, Movies, Music, Reading, etc.
+             */
+            category: string;
+            /**
+             * Upload up to 5 images that represent this interest category
+             */
+            images?:
+              | {
+                  image: number | Media;
+                  /**
+                   * Brief description of the image for accessibility
+                   */
+                  alt?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Detailed description of your interest in this category
+             */
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'timeline';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1294,6 +1516,7 @@ export interface PagesSelect<T extends boolean = true> {
         sectionHead?: T | SectionHeadBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
         table?: T | TableBlockSelect<T>;
+        timeline?: T | TimelineBlockSelect<T>;
       };
   meta?:
     | T
@@ -1502,6 +1725,87 @@ export interface TableBlockSelect<T extends boolean = true> {
               wordpressText?: T;
               shopifyText?: T;
               squarespaceText?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock_select".
+ */
+export interface TimelineBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  layout?: T;
+  epochs?:
+    | T
+    | {
+        epochName?: T;
+        items?:
+          | T
+          | {
+              period?: T;
+              isDual?: T;
+              role?: T;
+              company?: T;
+              description?: T;
+              tags?:
+                | T
+                | {
+                    tag?: T;
+                    id?: T;
+                  };
+              roles?:
+                | T
+                | {
+                    role?: T;
+                    company?: T;
+                    description?: T;
+                    tags?:
+                      | T
+                      | {
+                          tag?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  profileCards?:
+    | T
+    | {
+        biographyCard?:
+          | T
+          | {
+              title?: T;
+              teaserText?: T;
+              emphasisText?: T;
+              modalContent?: T;
+            };
+        interestsCard?:
+          | T
+          | {
+              title?: T;
+              teaserText?: T;
+              emphasisText?: T;
+              cardImage?: T;
+              interests?:
+                | T
+                | {
+                    category?: T;
+                    images?:
+                      | T
+                      | {
+                          image?: T;
+                          alt?: T;
+                          id?: T;
+                        };
+                    description?: T;
+                    id?: T;
+                  };
             };
       };
   id?: T;

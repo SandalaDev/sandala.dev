@@ -8,8 +8,9 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { SectionHeadBlock } from '@/blocks/SectionHead/Component'
-import { TabsBlock } from './Tabs/Component'
-import { TableBlock } from './Table/Component'
+import { TabsBlock } from '@/blocks/Tabs/Component'
+import { TableBlock } from '@/blocks/Table/Component'
+import { TimelineBlock } from '@/blocks/Timeline/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents = {
   sectionHead: SectionHeadBlock,
   tabs: TabsBlock,
   table: TableBlock,
+  timeline: TimelineBlock,
 }
 
 export const RenderBlocks: React.FC<{

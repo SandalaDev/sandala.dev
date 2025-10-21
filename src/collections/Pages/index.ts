@@ -10,6 +10,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { SectionHead } from '../../blocks/SectionHead/config'
 import { Tabs } from '@/blocks/Tabs/config'
 import { Table } from '@/blocks/Table/config'
+import { Timeline } from '@/blocks/Timeline/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -87,6 +88,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 SectionHead,
                 Tabs,
                 Table,
+                Timeline,
               ],
               required: true,
               admin: {
