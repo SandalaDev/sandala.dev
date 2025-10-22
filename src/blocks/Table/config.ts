@@ -2,7 +2,6 @@ import type { Block } from 'payload'
 
 export const Table: Block = {
   slug: 'table',
-  dbName: 'comparison_table', // Shortened database name to avoid exceeding character limits
   labels: {
     singular: 'Table',
     plural: 'Tables',

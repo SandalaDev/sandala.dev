@@ -7,7 +7,6 @@ export const Tabs: Block = {
     plural: 'Tabs',
   },
   interfaceName: 'TabsBlock',
-  dbName: 'tabs_block', // Only top-level block
   fields: [
     {
       name: 'showcase',
