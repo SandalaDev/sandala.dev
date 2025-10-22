@@ -2,7 +2,8 @@
 
 import { cn } from '@/utilities/ui'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import { Check } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import * as React from 'react'
 
 const Checkbox: React.FC<
@@ -19,7 +20,7 @@ const Checkbox: React.FC<
     {...props}
   >
     <CheckboxPrimitive.Indicator className={cn('flex items-center justify-center text-current')}>
-      <Check className="h-4 w-4" />
+      <FontAwesomeIcon icon={faCheck} className="h-4 w-4" />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 )

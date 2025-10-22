@@ -13,7 +13,6 @@ import { TableBlock } from '@/blocks/Table/Component'
 import { TimelineBlock } from '@/blocks/Timeline/Component'
 import { TextCardsBlock } from '@/blocks/TextCards/Component'
 import { ProfileCards } from '@/blocks/ProfileCards/Components'
-import { ProcessCardsBlock } from '@/blocks/ProcessCards/component'
 import { PricingBlock } from '@/blocks/Pricing/Component'
 import { OrbitalCardsBlock } from '@/blocks/OrbitalCards/component'
 import { LogoScrollerBlock } from '@/blocks/LogoScroller/Component'
@@ -31,7 +30,6 @@ const blockComponents = {
   timeline: TimelineBlock,
   textCards: TextCardsBlock,
   profileCards: ProfileCards,
-  processCards: ProcessCardsBlock,
   pricing: PricingBlock,
   orbitalCards: OrbitalCardsBlock,
   logoScroller: LogoScrollerBlock,

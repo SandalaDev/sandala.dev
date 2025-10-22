@@ -49,6 +49,7 @@ const createTagsField = (condition?: any) => ({
 export const Timeline: Block = {
   slug: 'timeline',
   interfaceName: 'TimelineBlock',
+  dbName: 'timeline_block', // Shortened database name to avoid exceeding character limits
   labels: {
     plural: 'Timeline Blocks',
     singular: 'Timeline Block',
@@ -229,6 +230,7 @@ export const Timeline: Block = {
       name: 'profileCards',
       type: 'group',
       label: 'Profile Cards Section',
+      dbName: 'prof_cards', // Shortened database name to avoid exceeding character limits
       admin: {
         description: 'Two interactive cards below the timeline navigation',
       },
@@ -237,6 +239,7 @@ export const Timeline: Block = {
           name: 'biographyCard',
           type: 'group',
           label: 'Biography Card (Who I am)',
+          dbName: 'bio_card', // Shortened database name to avoid exceeding character limits
           fields: [
             {
               name: 'title',
@@ -278,6 +281,7 @@ export const Timeline: Block = {
           name: 'interestsCard',
           type: 'group',
           label: 'Interests Card (The way I am)',
+          dbName: 'int_card', // Shortened database name to avoid exceeding character limits
           fields: [
             {
               name: 'title',
@@ -318,6 +322,7 @@ export const Timeline: Block = {
               type: 'array',
               label: 'Personal Interests',
               minRows: 1,
+              dbName: 'timeline_interests', // Shortened database name to avoid exceeding character limits
               admin: {
                 description: 'Categories of interests to display in the modal',
               },
@@ -337,6 +342,7 @@ export const Timeline: Block = {
                   label: 'Representative Images',
                   minRows: 1,
                   maxRows: 5,
+                  dbName: 'interest_images', // Shortened database name to avoid exceeding character limits
                   admin: {
                     description: 'Upload up to 5 images that represent this interest category',
                   },

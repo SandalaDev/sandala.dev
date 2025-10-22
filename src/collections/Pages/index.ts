@@ -13,7 +13,6 @@ import { Table } from '@/blocks/Table/config'
 import { Timeline } from '@/blocks/Timeline/config'
 import { TextCards } from '../../blocks/TextCards/config'
 import { ProfileCards as ProfileCardsBlock } from '../../blocks/ProfileCards/config'
-import { ProcessCards } from '../../blocks/ProcessCards/config'
 import { Pricing } from '../../blocks/Pricing/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -98,7 +97,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Timeline,
                 TextCards,
                 ProfileCardsBlock,
-                ProcessCards,
+
                 Pricing,
                 OrbitalCards,
                 LogoScroller,

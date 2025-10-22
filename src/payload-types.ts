@@ -216,7 +216,6 @@ export interface Page {
     | TimelineBlock
     | TextCardsBlock
     | ProfileCardsBlock
-    | ProcessCardsBlock
     | PricingBlock
     | OrbitalCardsBlock
     | LogoScrollerBlock
@@ -1327,57 +1326,6 @@ export interface ProfileCardsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ProcessCardsBlock".
- */
-export interface ProcessCardsBlock {
-  /**
-   * Short tagline above the main heading
-   */
-  headline: string;
-  /**
-   * Main heading for the process section
-   */
-  heading: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  /**
-   * Add 3-5 process steps
-   */
-  steps?:
-    | {
-        /**
-         * Step number (1-5)
-         */
-        stepNumber: number;
-        /**
-         * Short, descriptive title
-         */
-        title: string;
-        /**
-         * Detailed explanation of the step
-         */
-        description: string;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'processCards';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "PricingBlock".
  */
 export interface PricingBlock {
@@ -1991,7 +1939,6 @@ export interface PagesSelect<T extends boolean = true> {
         timeline?: T | TimelineBlockSelect<T>;
         textCards?: T | TextCardsBlockSelect<T>;
         profileCards?: T | ProfileCardsBlockSelect<T>;
-        processCards?: T | ProcessCardsBlockSelect<T>;
         pricing?: T | PricingBlockSelect<T>;
         orbitalCards?: T | OrbitalCardsBlockSelect<T>;
         logoScroller?: T | LogoScrollerBlockSelect<T>;
@@ -2340,24 +2287,6 @@ export interface ProfileCardsBlockSelect<T extends boolean = true> {
               url?: T;
               id?: T;
             };
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ProcessCardsBlock_select".
- */
-export interface ProcessCardsBlockSelect<T extends boolean = true> {
-  headline?: T;
-  heading?: T;
-  steps?:
-    | T
-    | {
-        stepNumber?: T;
-        title?: T;
-        description?: T;
-        id?: T;
       };
   id?: T;
   blockName?: T;

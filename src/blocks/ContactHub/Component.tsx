@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-import { MessageCircle, Video, Zap, X } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComments, faVideo, faBolt, faXmark } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import { cn } from '@/utilities/ui'
 import RichText from '@/components/RichText'
@@ -37,9 +38,9 @@ type Props = {
 } & ContactHubBlockProps
 
 const iconMap = {
-  'message-circle': MessageCircle,
-  video: Video,
-  zap: Zap,
+  'message-circle': faComments,
+  video: faVideo,
+  zap: faBolt,
 }
 
 export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, contactCards }) => {
@@ -133,7 +134,7 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
               {/* Bottom Icon */}
               {IconComponent && (
                 <div className="absolute bottom-4 right-4 opacity-30 group-hover:opacity-60 transition-opacity duration-300">
-                  <IconComponent className="w-6 h-6 text-primary" />
+                  <FontAwesomeIcon icon={IconComponent} className="w-6 h-6 text-primary" />
                 </div>
               )}
             </div>
@@ -175,7 +176,7 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
                   className=" w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors duration-200"
                   aria-label="Close modal"
                 >
-                  <X className="w-5 h-5 text-secondary hover:text-secondary/80" />
+                  <FontAwesomeIcon icon={faXmark} className="w-5 h-5 text-secondary hover:text-secondary/80" />
                 </button>
               </div>
 
