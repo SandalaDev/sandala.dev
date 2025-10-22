@@ -1113,7 +1113,7 @@ export interface TimelineBlock {
   /**
    * Two interactive cards below the timeline navigation
    */
-  profileCards: {
+  pCards: {
     biographyCard: {
       title: string;
       /**
@@ -1143,7 +1143,7 @@ export interface TimelineBlock {
         [k: string]: unknown;
       } | null;
     };
-    interestsCard: {
+    iCard: {
       title: string;
       /**
        * Short preview text shown on the card
@@ -1160,7 +1160,7 @@ export interface TimelineBlock {
       /**
        * Categories of interests to display in the modal
        */
-      interests?:
+      int?:
         | {
             /**
              * e.g., Sports, Movies, Music, Reading, etc.
@@ -2200,7 +2200,7 @@ export interface TimelineBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  profileCards?:
+  pCards?:
     | T
     | {
         biographyCard?:
@@ -2211,14 +2211,14 @@ export interface TimelineBlockSelect<T extends boolean = true> {
               emphasisText?: T;
               modalContent?: T;
             };
-        interestsCard?:
+        iCard?:
           | T
           | {
               title?: T;
               teaserText?: T;
               emphasisText?: T;
               cardImage?: T;
-              interests?:
+              int?:
                 | T
                 | {
                     category?: T;

@@ -225,7 +225,7 @@ export const Timeline: Block = {
       ],
     },
     {
-      name: 'profileCards',
+      name: 'pCards',
       type: 'group',
       label: 'Profile Cards Section',
       admin: {
@@ -275,7 +275,7 @@ export const Timeline: Block = {
           ],
         },
         {
-          name: 'interestsCard',
+          name: 'iCard',
           type: 'group',
           label: 'Interests Card (The way I am)',
           fields: [
@@ -315,7 +315,7 @@ export const Timeline: Block = {
               },
             },
             {
-              name: 'interests',
+              name: 'int',
               type: 'array',
               label: 'Personal Interests',
               minRows: 1,

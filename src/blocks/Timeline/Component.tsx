@@ -78,7 +78,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
     subtitle, 
     layout = 'default', 
     epochs, 
-    profileCards 
+    pCards 
   } = props;
   
   const [activeEpoch, setActiveEpoch] = useState<string>('')
@@ -234,10 +234,10 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
           )}
 
           {/* Profile Cards Section */}
-          {profileCards && (
+          {pCards && (
             <div className="flex flex-col gap-6 mb-8">
               {/* Biography Card */}
-              {profileCards.biographyCard && (
+              {pCards.biographyCard && (
                 <button
                   onClick={() => openModal('biography')}
                   className="glass group text-left min-h-[16rem] lg:min-h-[18rem] xl:min-h-[20rem] p-6 lg:p-8 flex flex-col justify-between rounded-3xl cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4 "
@@ -249,47 +249,47 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg lg:text-xl xl:text-2xl font-semibold text-foreground mb-3 lg:mb-4 dark:text-coral-bright">
-                        {profileCards.biographyCard.title || 'Who I am'}
+                        {pCards.biographyCard.title || 'Who I am'}
                       </h3>
                       <p className="text-sm lg:text-base text-coral-bright leading-relaxed dark:text-foreground/80">
-                        {profileCards.biographyCard.teaserText ||
+                        {pCards.biographyCard.teaserText ||
                           'Discover the journey, experiences, and passion that drive my work and creativity.'}
                       </p>
                     </div>
                   </div>
                   <p className="text-xs lg:text-sm italic text-coral-bright font-medium mt-4 dark:text-coral-bright">
-                    {profileCards.biographyCard.emphasisText ||
+                    {pCards.biographyCard.emphasisText ||
                       'Click to learn more about my story'}
                   </p>
                 </button>
               )}
 
               {/* Interests Card */}
-              {profileCards.interestsCard && (
+              {pCards.iCard && (
                 <button
                   onClick={() => openModal('interests')}
                   className="glass group text-left min-h-[16rem] lg:min-h-[18rem] xl:min-h-[20rem] p-6 lg:p-8 flex flex-col justify-between rounded-3xl cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4 overflow-hidden relative"
                   style={{ animationDelay: '200ms' }}
                 >
-                  {profileCards.interestsCard.cardImage && (
+                  {pCards.iCard.cardImage && (
                     <div className="absolute inset-0 opacity-45 group-hover:opacity-55 transition-opacity">
                       <Media
-                        resource={profileCards.interestsCard.cardImage}
+                        resource={pCards.iCard.cardImage}
                         className="w-full h-full object-cover"
                       />
                     </div>
                   )}
                   <div className="relative z-10 flex-1">
                     <h3 className="text-lg lg:text-xl xl:text-2xl font-semibold text-foreground mb-3 lg:mb-4 prose dark:text-coral-bright">
-                      {profileCards.interestsCard.title || 'The way I am'}
+                      {pCards.iCard.title || 'The way I am'}
                     </h3>
                     <p className="text-sm lg:text-base text-coral-bright leading-relaxed dark:text-foreground/80">
-                        {profileCards.interestsCard.teaserText ||
+                        {pCards.iCard.teaserText ||
                           'Explore the interests, hobbies, and passions that shape my perspective and inspire my creativity.'}
                     </p>
                   </div>
                   <p className="text-xs lg:text-sm italic text-coral-bright font-medium relative z-10 mt-4 dark:text-coral-bright">
-                    {profileCards.interestsCard.emphasisText || 'See what drives my creativity'}
+                    {pCards.iCard.emphasisText || 'See what drives my creativity'}
                   </p>
                 </button>
               )}
@@ -423,7 +423,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
       </div>
 
       {/* Biography Modal */}
-      {selectedModal === 'biography' && profileCards?.biographyCard && (
+      {selectedModal === 'biography' && pCards?.biographyCard && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md p-4 animate-in fade-in"
           onClick={closeModal}
@@ -450,16 +450,16 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
                 id="biography-modal-title"
                 className="text-3xl font-bold text-primary dark:text-coral-bright"
               >
-                {profileCards.biographyCard.title || 'Who I am'}
+                {pCards.biographyCard.title || 'Who I am'}
               </h2>
             </div>
             <div
               id="biography-modal-content"
               className="prose prose-invert max-w-none text-foreground"
             >
-              {profileCards.biographyCard.modalContent && (
+              {pCards.biographyCard.modalContent && (
                 <RichText
-                  data={profileCards.biographyCard.modalContent}
+                  data={pCards.biographyCard.modalContent}
                   enableGutter={false}
                   enableProse={true}
                 />
@@ -470,7 +470,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
       )}
 
       {/* Interests Modal */}
-      {selectedModal === 'interests' && profileCards?.interestsCard && (
+      {selectedModal === 'interests' && pCards?.iCard && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md p-4 animate-in fade-in"
           onClick={closeModal}
@@ -492,10 +492,10 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
               ×
             </button>
             <div className="text-center mb-12">
-              {profileCards.interestsCard.cardImage && (
+              {pCards.iCard.cardImage && (
                 <div className="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-4 border-gradient-to-r from-coral-bright to-purple-bloom shadow-2xl">
                   <Media
-                    resource={profileCards.interestsCard.cardImage}
+                    resource={pCards.iCard.cardImage}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -504,23 +504,23 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = (props) => {
                 id="interests-modal-title"
                 className="text-4xl font-bold text-primary mb-6"
               >
-                {profileCards.interestsCard.title || 'The way I am'}
+                {pCards.iCard.title || 'The way I am'}
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                {profileCards.interestsCard.teaserText}
+                {pCards.iCard.teaserText}
               </p>
             </div>
 
             {/* Interests Sections */}
-            {profileCards.interestsCard.interests &&
-              profileCards.interestsCard.interests.length > 0 && (
+            {pCards.iCard.int &&
+              pCards.iCard.int.length > 0 && (
                 <div
                   id="interests-modal-content"
                   className="space-y-16"
                   role="region"
                   aria-label="Personal interests categories"
                 >
-                  {profileCards.interestsCard.interests.map((interest, idx) => {
+                  {pCards.iCard.int.map((interest, idx) => {
                     if (!interest?.category) return null
 
                     const interestKey = interest.id || `interest-${idx}`
