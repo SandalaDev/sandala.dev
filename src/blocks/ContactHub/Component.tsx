@@ -7,7 +7,7 @@ import { cn } from '@/utilities/ui'
 import RichText from '@/components/RichText'
 import { FormBlock } from '@/blocks/Form/Component'
 import { TECH_ICONS, getIconLabel, type TechIcon } from '@/constants/icons'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 import type { Form } from '@payloadcms/plugin-form-builder/types'
 
 type ContactCard = {
@@ -16,8 +16,8 @@ type ContactCard = {
   bottomIcon?: 'message-circle' | 'video' | 'zap'
   subtitle?: string
   title?: string
-  description?: SerializedEditorState
-  note?: SerializedEditorState
+  description?: DefaultTypedEditorState
+  note?: DefaultTypedEditorState
   form?: Form
   crossLinks?: Array<{
     text?: string
@@ -29,7 +29,7 @@ type ContactCard = {
 type ContactHubBlockProps = {
   blockType?: 'contactHub'
   title?: string
-  subtitle?: SerializedEditorState
+  subtitle?: DefaultTypedEditorState
   contactCards?: ContactCard[]
 }
 
@@ -176,7 +176,10 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
                   className=" w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors duration-200"
                   aria-label="Close modal"
                 >
-                  <FontAwesomeIcon icon={faXmark} className="w-5 h-5 text-secondary hover:text-secondary/80" />
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    className="w-5 h-5 text-secondary hover:text-secondary/80"
+                  />
                 </button>
               </div>
 
