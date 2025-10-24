@@ -15,6 +15,8 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
     setHeaderTheme('dark')
   })
 
+  console.log('profile picture', media)
+
   return (
     <div className="relative container min-h-[85vh] py-12 overflow-hidden ">
       <div className="relative grid grid-cols-12 gap-x-4 gap-y-8 h-full">
