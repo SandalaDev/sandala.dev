@@ -3,13 +3,15 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp' // sharp-import
 import path from 'path'
-import { buildConfig, PayloadRequest } from 'payload'
+import { buildConfig, PayloadRequest, CollectionConfig } from 'payload'
 import { fileURLToPath } from 'url'
+import { slugifyFilename } from './utils/slugifyFilename'
 
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Projects } from './collections/Projects'
 import { Users } from './collections/Users' // No change needed here
+import { Forms } from './collections/Forms'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -91,22 +93,25 @@ export default buildConfig({
     },
     push: true,
   }),
-  collections: [Pages, Projects, Media, Users],
+  collections: [Pages, Projects, Media, Users, Forms],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
     s3Storage({
       collections: {
         media: {
-          prefix: 'media',
-          generateFileURL: ({ filename, prefix }) => {
-            // Construct URL via your Worker
-            return `https://media-worker.sandala-r2.workers.dev/${prefix}/${filename}`
+          generateFileURL: ({ filename, prefix = '' }) => {
+            // Handle null/undefined filenames
+            if (!filename) return ''
+
+            const slugified = slugifyFilename(filename)
+            return `${prefix}${slugified}`
           },
         },
       },
+      bucket: process.env.S3_BUCKET!,
       config: {
-        endpoint: process.env.S3_ENDPOINT,
+        endpoint: process.env.S3_ENDPOINT!,
         region: 'auto',
         credentials: {
           accessKeyId: process.env.S3_ACCESS_KEY_ID!,
@@ -114,10 +119,8 @@ export default buildConfig({
         },
         forcePathStyle: true,
       },
-      bucket: process.env.S3_BUCKET!,
     }),
-    ...plugins,
-    // storage-adapter-placeholder
+    // ...other plugins
   ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { slugifyFilename } from '../utils/slugifyFilename'
 
 import {
   FixedToolbarFeature,
@@ -26,7 +27,6 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
-      //required: true,
     },
     {
       name: 'caption',
@@ -38,8 +38,20 @@ export const Media: CollectionConfig = {
       }),
     },
   ],
+
+  hooks: {
+    beforeValidate: [
+      // Use beforeValidate instead of beforeChange - runs earlier
+      ({ data }) => {
+        if (data?.filename) {
+          data.filename = slugifyFilename(data.filename)
+        }
+        return data
+      },
+    ],
+  },
+
   upload: {
-    // Upload to the public/media directory in Next.js making them publicly accessible even outside of Payload
     staticDir: path.resolve(dirname, '../../public/media'),
     adminThumbnail: 'thumbnail',
     focalPoint: true,
