@@ -71,7 +71,10 @@ export interface Config {
     projects: Project;
     media: Media;
     users: User;
+    redirects: Redirect;
     forms: Form;
+    'form-submissions': FormSubmission;
+    search: Search;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -83,7 +86,10 @@ export interface Config {
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
+    'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    search: SearchSelect<false> | SearchSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -206,7 +212,6 @@ export interface Page {
     | FormBlock
     | SectionHeadBlock
     | TabsBlock
-    | TableBlock
     | TimelineBlock
     | TextCardsBlock
     | ProfileCardsBlock
@@ -315,6 +320,7 @@ export interface Media {
     };
     [k: string]: unknown;
   } | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -563,44 +569,116 @@ export interface Form {
     | (
         | {
             name: string;
-            label: string;
-            required?: boolean | null;
+            label?: string | null;
             width?: number | null;
+            required?: boolean | null;
+            defaultValue?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'checkbox';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'country';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'email';
+          }
+        | {
+            message?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'message';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'number';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            placeholder?: string | null;
+            options?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'select';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'state';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'text';
           }
         | {
             name: string;
-            label: string;
-            required?: boolean | null;
+            label?: string | null;
             width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'textarea';
           }
-        | {
-            name: string;
-            label: string;
-            required?: boolean | null;
-            width?: number | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'email';
-          }
-        | {
-            name: string;
-            label: string;
-            required?: boolean | null;
-            width?: number | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'number';
-          }
       )[]
     | null;
   submitButtonLabel?: string | null;
-  confirmationType: 'message' | 'redirect';
+  /**
+   * Choose whether to display an on-page message or redirect to a different page after they submit the form.
+   */
+  confirmationType?: ('message' | 'redirect') | null;
   confirmationMessage?: {
     root: {
       type: string;
@@ -616,12 +694,23 @@ export interface Form {
     };
     [k: string]: unknown;
   } | null;
-  redirect?: (number | null) | Page;
+  redirect?: {
+    url: string;
+  };
+  /**
+   * Send custom emails when the form submits. Use comma separated lists to send the same email to multiple recipients. To reference a value from this form, wrap that field's name with double curly brackets, i.e. {{firstName}}. You can use a wildcard {{*}} to output all data and {{*:table}} to format it as an HTML table in the email.
+   */
   emails?:
     | {
-        emailTo: string;
-        emailFrom: string;
+        emailTo?: string | null;
+        cc?: string | null;
+        bcc?: string | null;
+        replyTo?: string | null;
+        emailFrom?: string | null;
         subject: string;
+        /**
+         * Enter the message that should be sent in this email.
+         */
         message?: {
           root: {
             type: string;
@@ -770,130 +859,6 @@ export interface TabsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'tabs';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TableBlock".
- */
-export interface TableBlock {
-  /**
-   * Configure the platform comparison table section.
-   */
-  comparisonSection: {
-    tableHeading: string;
-    /**
-     * Optional subheading below the main heading.
-     */
-    tableSubheading?: string | null;
-    /**
-     * Flexibility comparison across platforms.
-     */
-    flexibilityFeature?: {
-      /**
-       * Description for Payload CMS.
-       */
-      payloadText?: string | null;
-      /**
-       * Description for WordPress.
-       */
-      wordpressText?: string | null;
-      /**
-       * Description for Shopify.
-       */
-      shopifyText?: string | null;
-      /**
-       * Description for Squarespace/Wix.
-       */
-      squarespaceText?: string | null;
-    };
-    /**
-     * Customization comparison across platforms.
-     */
-    customizationFeature?: {
-      /**
-       * Description for Payload CMS.
-       */
-      payloadText?: string | null;
-      /**
-       * Description for WordPress.
-       */
-      wordpressText?: string | null;
-      /**
-       * Description for Shopify.
-       */
-      shopifyText?: string | null;
-      /**
-       * Description for Squarespace/Wix.
-       */
-      squarespaceText?: string | null;
-    };
-    /**
-     * Ownership & Control comparison across platforms.
-     */
-    ownershipFeature?: {
-      /**
-       * Description for Payload CMS.
-       */
-      payloadText?: string | null;
-      /**
-       * Description for WordPress.
-       */
-      wordpressText?: string | null;
-      /**
-       * Description for Shopify.
-       */
-      shopifyText?: string | null;
-      /**
-       * Description for Squarespace/Wix.
-       */
-      squarespaceText?: string | null;
-    };
-    /**
-     * Long-term Scalability comparison across platforms.
-     */
-    scalabilityFeature?: {
-      /**
-       * Description for Payload CMS.
-       */
-      payloadText?: string | null;
-      /**
-       * Description for WordPress.
-       */
-      wordpressText?: string | null;
-      /**
-       * Description for Shopify.
-       */
-      shopifyText?: string | null;
-      /**
-       * Description for Squarespace/Wix.
-       */
-      squarespaceText?: string | null;
-    };
-    /**
-     * Developer Experience comparison across platforms.
-     */
-    developerExperienceFeature?: {
-      /**
-       * Description for Payload CMS.
-       */
-      payloadText?: string | null;
-      /**
-       * Description for WordPress.
-       */
-      wordpressText?: string | null;
-      /**
-       * Description for Shopify.
-       */
-      shopifyText?: string | null;
-      /**
-       * Description for Squarespace/Wix.
-       */
-      squarespaceText?: string | null;
-    };
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'table';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1557,6 +1522,80 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  /**
+   * You will need to rebuild the website when changing this field.
+   */
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'projects';
+          value: number | Project;
+        } | null);
+    url?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: number;
+  form: number | Form;
+  submissionData?:
+    | {
+        field: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search".
+ */
+export interface Search {
+  id: number;
+  title?: string | null;
+  priority?: number | null;
+  doc: {
+    relationTo: 'projects';
+    value: number | Project;
+  };
+  slug?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  categories?:
+    | {
+        relationTo?: string | null;
+        categoryID?: string | null;
+        title?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
@@ -1671,8 +1710,20 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
+      } | null)
+    | ({
         relationTo: 'forms';
         value: number | Form;
+      } | null)
+    | ({
+        relationTo: 'form-submissions';
+        value: number | FormSubmission;
+      } | null)
+    | ({
+        relationTo: 'search';
+        value: number | Search;
       } | null)
     | ({
         relationTo: 'payload-jobs';
@@ -1759,7 +1810,6 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         sectionHead?: T | SectionHeadBlockSelect<T>;
         tabs?: T | TabsBlockSelect<T>;
-        table?: T | TableBlockSelect<T>;
         timeline?: T | TimelineBlockSelect<T>;
         textCards?: T | TextCardsBlockSelect<T>;
         profileCards?: T | ProfileCardsBlockSelect<T>;
@@ -1921,60 +1971,6 @@ export interface TabsBlockSelect<T extends boolean = true> {
                     id?: T;
                   };
               id?: T;
-            };
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TableBlock_select".
- */
-export interface TableBlockSelect<T extends boolean = true> {
-  comparisonSection?:
-    | T
-    | {
-        tableHeading?: T;
-        tableSubheading?: T;
-        flexibilityFeature?:
-          | T
-          | {
-              payloadText?: T;
-              wordpressText?: T;
-              shopifyText?: T;
-              squarespaceText?: T;
-            };
-        customizationFeature?:
-          | T
-          | {
-              payloadText?: T;
-              wordpressText?: T;
-              shopifyText?: T;
-              squarespaceText?: T;
-            };
-        ownershipFeature?:
-          | T
-          | {
-              payloadText?: T;
-              wordpressText?: T;
-              shopifyText?: T;
-              squarespaceText?: T;
-            };
-        scalabilityFeature?:
-          | T
-          | {
-              payloadText?: T;
-              wordpressText?: T;
-              shopifyText?: T;
-              squarespaceText?: T;
-            };
-        developerExperienceFeature?:
-          | T
-          | {
-              payloadText?: T;
-              wordpressText?: T;
-              shopifyText?: T;
-              squarespaceText?: T;
             };
       };
   id?: T;
@@ -2260,6 +2256,7 @@ export interface ProjectsSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2371,6 +2368,22 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?:
+    | T
+    | {
+        type?: T;
+        reference?: T;
+        url?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "forms_select".
  */
 export interface FormsSelect<T extends boolean = true> {
@@ -2378,23 +2391,24 @@ export interface FormsSelect<T extends boolean = true> {
   fields?:
     | T
     | {
-        text?:
+        checkbox?:
           | T
           | {
               name?: T;
               label?: T;
-              required?: T;
               width?: T;
+              required?: T;
+              defaultValue?: T;
               id?: T;
               blockName?: T;
             };
-        textarea?:
+        country?:
           | T
           | {
               name?: T;
               label?: T;
-              required?: T;
               width?: T;
+              required?: T;
               id?: T;
               blockName?: T;
             };
@@ -2403,8 +2417,15 @@ export interface FormsSelect<T extends boolean = true> {
           | {
               name?: T;
               label?: T;
-              required?: T;
               width?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        message?:
+          | T
+          | {
+              message?: T;
               id?: T;
               blockName?: T;
             };
@@ -2413,8 +2434,60 @@ export interface FormsSelect<T extends boolean = true> {
           | {
               name?: T;
               label?: T;
-              required?: T;
               width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        select?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              placeholder?: T;
+              options?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        state?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        text?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        textarea?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
               id?: T;
               blockName?: T;
             };
@@ -2422,14 +2495,64 @@ export interface FormsSelect<T extends boolean = true> {
   submitButtonLabel?: T;
   confirmationType?: T;
   confirmationMessage?: T;
-  redirect?: T;
+  redirect?:
+    | T
+    | {
+        url?: T;
+      };
   emails?:
     | T
     | {
         emailTo?: T;
+        cc?: T;
+        bcc?: T;
+        replyTo?: T;
         emailFrom?: T;
         subject?: T;
         message?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions_select".
+ */
+export interface FormSubmissionsSelect<T extends boolean = true> {
+  form?: T;
+  submissionData?:
+    | T
+    | {
+        field?: T;
+        value?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search_select".
+ */
+export interface SearchSelect<T extends boolean = true> {
+  title?: T;
+  priority?: T;
+  doc?: T;
+  slug?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  categories?:
+    | T
+    | {
+        relationTo?: T;
+        categoryID?: T;
+        title?: T;
         id?: T;
       };
   updatedAt?: T;

@@ -5,7 +5,6 @@ import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig, PayloadRequest, CollectionConfig } from 'payload'
 import { fileURLToPath } from 'url'
-import { slugifyFilename } from './utils/slugifyFilename'
 
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
@@ -93,33 +92,33 @@ export default buildConfig({
     },
     push: true,
   }),
-  collections: [Pages, Projects, Media, Users, Forms],
+  collections: [Pages, Projects, Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
+    ...plugins,
     s3Storage({
       collections: {
         media: {
-          generateFileURL: ({ filename, prefix = '' }) => {
-            // Handle null/undefined filenames
-            if (!filename) return ''
-
-            const slugified = slugifyFilename(filename)
-            return `${prefix}${slugified}`
+          prefix: 'media', // matches your R2 folder
+          generateFileURL: ({ filename, prefix }) => {
+            // Construct URL via your Worker
+            return `https://media-worker.sandala-r2.workers.dev/${prefix}/${filename}`
           },
         },
       },
-      bucket: process.env.S3_BUCKET!,
       config: {
-        endpoint: process.env.S3_ENDPOINT!,
-        region: 'auto',
+        endpoint: process.env.S3_ENDPOINT, // your R2 endpoint
+        region: 'auto', // required for R2
         credentials: {
           accessKeyId: process.env.S3_ACCESS_KEY_ID!,
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
         },
-        forcePathStyle: true,
+        forcePathStyle: true, // important for R2
       },
+      bucket: process.env.S3_BUCKET!, // e.g., sandala-folio-upload
     }),
+
     // ...other plugins
   ],
   secret: process.env.PAYLOAD_SECRET,

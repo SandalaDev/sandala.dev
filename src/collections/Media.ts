@@ -39,18 +39,6 @@ export const Media: CollectionConfig = {
     },
   ],
 
-  hooks: {
-    beforeValidate: [
-      // Use beforeValidate instead of beforeChange - runs earlier
-      ({ data }) => {
-        if (data?.filename) {
-          data.filename = slugifyFilename(data.filename)
-        }
-        return data
-      },
-    ],
-  },
-
   upload: {
     staticDir: path.resolve(dirname, '../../public/media'),
     adminThumbnail: 'thumbnail',
@@ -86,6 +74,18 @@ export const Media: CollectionConfig = {
         width: 1200,
         height: 630,
         crop: 'center',
+      },
+    ],
+  },
+  hooks: {
+    beforeChange: [
+      ({ data, operation }) => {
+        // Only process on create (upload), not on update
+        if (operation === 'create' && data?.filename) {
+          // Payload passes the original filename in `data.filename`
+          data.filename = slugifyFilename(data.filename)
+        }
+        return data
       },
     ],
   },
