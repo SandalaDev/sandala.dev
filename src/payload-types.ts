@@ -962,23 +962,23 @@ export interface TableBlock {
     /**
      * Developer Experience comparison across platforms.
      */
-    developerExperienceFeature?: {
+    dx_Feature?: {
       /**
        * Description for Payload CMS.
        */
-      payloadText?: string | null;
+      payload?: string | null;
       /**
        * Description for WordPress.
        */
-      wordpressText?: string | null;
+      wordpress?: string | null;
       /**
        * Description for Shopify.
        */
-      shopifyText?: string | null;
+      shopify?: string | null;
       /**
        * Description for Squarespace/Wix.
        */
-      squarespaceText?: string | null;
+      squarespace?: string | null;
     };
   };
   id?: string | null;
@@ -2144,13 +2144,13 @@ export interface TableBlockSelect<T extends boolean = true> {
               shopifyText?: T;
               squarespaceText?: T;
             };
-        developerExperienceFeature?:
+        dx_Feature?:
           | T
           | {
-              payloadText?: T;
-              wordpressText?: T;
-              shopifyText?: T;
-              squarespaceText?: T;
+              payload?: T;
+              wordpress?: T;
+              shopify?: T;
+              squarespace?: T;
             };
       };
   id?: T;

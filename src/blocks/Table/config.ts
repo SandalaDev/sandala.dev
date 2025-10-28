@@ -1,4 +1,4 @@
-import type { Block } from 'payload'
+import type { Block } from 'payload/types'
 
 export const Table: Block = {
   slug: 'table',
@@ -21,8 +21,7 @@ export const Table: Block = {
           name: 'tableHeading',
           label: 'Table Heading',
           type: 'text',
-          defaultValue:
-            "Spoiler: I could just use WordPress for everything — but then your project wouldn't do all the cool stuff.",
+          defaultValue: 'The Payload Advantage.',
           required: true,
         },
         {
@@ -224,7 +223,7 @@ export const Table: Block = {
           ],
         },
         {
-          name: 'developerExperienceFeature',
+          name: 'dx_Feature',
           label: 'Developer Experience Feature',
           type: 'group',
           admin: {
@@ -232,7 +231,7 @@ export const Table: Block = {
           },
           fields: [
             {
-              name: 'payloadText',
+              name: 'payload',
               label: 'Payload Description',
               type: 'textarea',
               defaultValue:
@@ -242,7 +241,7 @@ export const Table: Block = {
               },
             },
             {
-              name: 'wordpressText',
+              name: 'wordpress',
               label: 'WordPress Description',
               type: 'textarea',
               defaultValue: 'Legacy PHP codebase — can become maintenance nightmare',
@@ -251,7 +250,7 @@ export const Table: Block = {
               },
             },
             {
-              name: 'shopifyText',
+              name: 'shopify',
               label: 'Shopify Description',
               type: 'textarea',
               defaultValue: 'Decent developer tools, but limited to e-commerce use cases',
@@ -260,7 +259,7 @@ export const Table: Block = {
               },
             },
             {
-              name: 'squarespaceText',
+              name: 'squarespace',
               label: 'Squarespace/Wix Description',
               type: 'textarea',
               defaultValue: "No code access — developers can't help beyond basic styling",
