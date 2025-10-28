@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
 
-import type { TableBlock } from '@/payload-types'
+import type { TableBlock as TableBlockType } from '@/payload-types'
 import RichText from '@/components/RichText'
 
-type Props = TableBlock
+type Props = TableBlockType
 
 export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
   // Rating helpers (defaults + icon rendering)
