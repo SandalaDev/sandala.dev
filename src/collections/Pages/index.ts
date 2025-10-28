@@ -9,7 +9,7 @@ import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { SectionHead } from '../../blocks/SectionHead/config'
 import { Tabs } from '@/blocks/Tabs/config'
-// import { Table } from '@/blocks/Table/config'
+import { Table } from '@/blocks/Table/config'
 import { Timeline } from '@/blocks/Timeline/config'
 import { TextCards } from '../../blocks/TextCards/config'
 import { ProfileCards as ProfileCardsBlock } from '../../blocks/ProfileCards/config'
@@ -93,7 +93,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 SectionHead,
                 Tabs,
-                // Table,
+                Table,
                 Timeline,
                 TextCards,
                 ProfileCardsBlock,
