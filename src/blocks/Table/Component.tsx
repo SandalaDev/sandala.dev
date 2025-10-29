@@ -256,25 +256,25 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
                     </td>
                     <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
                       {renderCell(
-                        comparisonSection.developerExperienceFeature?.payloadText,
+                        comparisonSection.dx_Feature?.payload,
                         DefaultRatings.developer.payload,
                       )}
                     </td>
                     <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
                       {renderCell(
-                        comparisonSection.developerExperienceFeature?.wordpressText,
+                        comparisonSection.dx_Feature?.wordpress,
                         DefaultRatings.developer.wordpress,
                       )}
                     </td>
                     <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
                       {renderCell(
-                        comparisonSection.developerExperienceFeature?.squarespaceText,
+                        comparisonSection.dx_Feature?.squarespace,
                         DefaultRatings.developer.squarespace,
                       )}
                     </td>
                     <td className="bg-card px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
                       {renderCell(
-                        comparisonSection.developerExperienceFeature?.shopifyText,
+                        comparisonSection.dx_Feature?.shopify,
                         DefaultRatings.developer.shopify,
                       )}
                     </td>
