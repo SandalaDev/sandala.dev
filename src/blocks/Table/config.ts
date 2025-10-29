@@ -1,4 +1,4 @@
-import type { Block } from 'payload/dist/types/index'
+import type { Block } from 'payload'
 
 export const Table: Block = {
   slug: 'table',
