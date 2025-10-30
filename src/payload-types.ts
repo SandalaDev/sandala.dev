@@ -1032,18 +1032,6 @@ export interface TimelineBlock {
                */
               period: string;
               /**
-               * Check if this item represents multiple concurrent roles/activities
-               */
-              isDual?: boolean | null;
-              /**
-               * Job title or role name
-               */
-              role?: string | null;
-              /**
-               * Company, organization, or project name
-               */
-              company?: string | null;
-              /**
                * Detailed description of accomplishments and responsibilities
                */
               description?: {
@@ -1061,49 +1049,6 @@ export interface TimelineBlock {
                 };
                 [k: string]: unknown;
               } | null;
-              /**
-               * Skills, technologies, or relevant tags
-               */
-              tags?:
-                | {
-                    tag: string;
-                    id?: string | null;
-                  }[]
-                | null;
-              /**
-               * Multiple roles or activities during this period
-               */
-              roles?:
-                | {
-                    role: string;
-                    company: string;
-                    description?: {
-                      root: {
-                        type: string;
-                        children: {
-                          type: any;
-                          version: number;
-                          [k: string]: unknown;
-                        }[];
-                        direction: ('ltr' | 'rtl') | null;
-                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                        indent: number;
-                        version: number;
-                      };
-                      [k: string]: unknown;
-                    } | null;
-                    /**
-                     * Skills, technologies, or relevant tags
-                     */
-                    tags?:
-                      | {
-                          tag: string;
-                          id?: string | null;
-                        }[]
-                      | null;
-                    id?: string | null;
-                  }[]
-                | null;
               id?: string | null;
             }[]
           | null;
@@ -2172,30 +2117,7 @@ export interface TimelineBlockSelect<T extends boolean = true> {
           | T
           | {
               period?: T;
-              isDual?: T;
-              role?: T;
-              company?: T;
               description?: T;
-              tags?:
-                | T
-                | {
-                    tag?: T;
-                    id?: T;
-                  };
-              roles?:
-                | T
-                | {
-                    role?: T;
-                    company?: T;
-                    description?: T;
-                    tags?:
-                      | T
-                      | {
-                          tag?: T;
-                          id?: T;
-                        };
-                    id?: T;
-                  };
               id?: T;
             };
         id?: T;

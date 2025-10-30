@@ -114,24 +114,24 @@ export const Timeline: Block = {
             singular: 'Timeline Item',
             plural: 'Timeline Items',
           },
-          hooks: {
-            beforeChange: [
-              ({ siblingData }) => {
-                // Clean up inappropriate fields when isDual toggle changes
-                if (siblingData?.isDual) {
-                  // Clear single role fields when switching to dual
-                  delete siblingData.role
-                  delete siblingData.company
-                  delete siblingData.description
-                  delete siblingData.tags
-                } else {
-                  // Clear dual role fields when switching to single
-                  delete siblingData.roles
-                }
-                return siblingData
-              },
-            ],
-          },
+          // hooks: {
+          //   beforeChange: [
+          //     ({ siblingData }) => {
+          //       // Clean up inappropriate fields when isDual toggle changes
+          //       if (siblingData?.isDual) {
+          //         // Clear single role fields when switching to dual
+          //         delete siblingData.role
+          //         delete siblingData.company
+          //         delete siblingData.description
+          //         delete siblingData.tags
+          //       } else {
+          //         // Clear dual role fields when switching to single
+          //         delete siblingData.roles
+          //       }
+          //       return siblingData
+          //     },
+          //   ],
+          // },
           fields: [
             {
               name: 'period',
@@ -142,40 +142,40 @@ export const Timeline: Block = {
                 description: 'Date range or period (e.g., "2020 — 2023", "Jan 2024")',
               },
             },
-            {
-              name: 'isDual',
-              type: 'checkbox',
-              label: 'Dual Role Item',
-              defaultValue: false,
-              admin: {
-                description: 'Check if this item represents multiple concurrent roles/activities',
-              },
-            },
-            {
-              type: 'row',
-              fields: [
-                {
-                  name: 'role',
-                  type: 'text',
-                  label: 'Role/Title',
-                  admin: {
-                    condition: (data, siblingData) => !siblingData?.isDual,
-                    description: 'Job title or role name',
-                    width: '50%',
-                  },
-                },
-                {
-                  name: 'company',
-                  type: 'text',
-                  label: 'Company/Organization',
-                  admin: {
-                    condition: (data, siblingData) => !siblingData?.isDual,
-                    description: 'Company, organization, or project name',
-                    width: '50%',
-                  },
-                },
-              ],
-            },
+            // {
+            //   name: 'isDual',
+            //   type: 'checkbox',
+            //   label: 'Dual Role Item',
+            //   defaultValue: false,
+            //   admin: {
+            //     description: 'Check if this item represents multiple concurrent roles/activities',
+            //   },
+            // },
+            // {
+            //   type: 'row',
+            //   fields: [
+            //     {
+            //       name: 'role',
+            //       type: 'text',
+            //       label: 'Role/Title',
+            //       admin: {
+            //         condition: (data, siblingData) => !siblingData?.isDual,
+            //         description: 'Job title or role name',
+            //         width: '50%',
+            //       },
+            //     },
+            //     {
+            //       name: 'company',
+            //       type: 'text',
+            //       label: 'Company/Organization',
+            //       admin: {
+            //         condition: (data, siblingData) => !siblingData?.isDual,
+            //         description: 'Company, organization, or project name',
+            //         width: '50%',
+            //       },
+            //     },
+            //   ],
+            // },
             {
               name: 'description',
               type: 'richText',
@@ -186,40 +186,40 @@ export const Timeline: Block = {
               },
               editor: headingLexicalConfig(),
             },
-            createTagsField((data: any, siblingData: any) => !siblingData?.isDual),
+            // createTagsField((data: any, siblingData: any) => !siblingData?.isDual),
             // Dual role fields
-            {
-              name: 'roles',
-              type: 'array',
-              label: 'Concurrent Roles',
-              minRows: 2,
-              maxRows: 3,
-              admin: {
-                condition: (data, siblingData) => siblingData?.isDual,
-                description: 'Multiple roles or activities during this period',
-              },
-              fields: [
-                {
-                  name: 'role',
-                  type: 'text',
-                  label: 'Role/Title',
-                  required: true,
-                },
-                {
-                  name: 'company',
-                  type: 'text',
-                  label: 'Company/Organization',
-                  required: true,
-                },
-                {
-                  name: 'description',
-                  type: 'richText',
-                  label: 'Description',
-                  editor: basicLexicalConfig(),
-                },
-                createTagsField(),
-              ],
-            },
+            // {
+            //   name: 'roles',
+            //   type: 'array',
+            //   label: 'Concurrent Roles',
+            //   minRows: 2,
+            //   maxRows: 3,
+            //   admin: {
+            //     condition: (data, siblingData) => siblingData?.isDual,
+            //     description: 'Multiple roles or activities during this period',
+            //   },
+            //   fields: [
+            //     {
+            //       name: 'role',
+            //       type: 'text',
+            //       label: 'Role/Title',
+            //       required: true,
+            //     },
+            //     {
+            //       name: 'company',
+            //       type: 'text',
+            //       label: 'Company/Organization',
+            //       required: true,
+            //     },
+            //     {
+            //       name: 'description',
+            //       type: 'richText',
+            //       label: 'Description',
+            //       editor: basicLexicalConfig(),
+            //     },
+            //     createTagsField(),
+            //   ],
+            // },
           ],
         },
       ],
