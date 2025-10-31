@@ -10,7 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { SectionHeadBlock } from '@/blocks/SectionHead/Component'
 import { TabsBlock } from '@/blocks/Tabs/Component'
 import { TableBlock } from '@/blocks/Table/Component'
-import { TimelineBlock } from '@/blocks/Timeline/Component'
+// import { TimelineBlock } from '@/blocks/Timeline/Component'
 import { TextCardsBlock } from '@/blocks/TextCards/Component'
 import { ProfileCards } from '@/blocks/ProfileCards/Components'
 import { PricingBlock } from '@/blocks/Pricing/Component'
@@ -27,7 +27,7 @@ const blockComponents = {
   sectionHead: SectionHeadBlock,
   tabs: TabsBlock,
   table: TableBlock,
-  timeline: TimelineBlock,
+  // timeline: TimelineBlock,
   textCards: TextCardsBlock,
   profileCards: ProfileCards,
   pricing: PricingBlock,
