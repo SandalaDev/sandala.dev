@@ -10,7 +10,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { SectionHead } from '../../blocks/SectionHead/config'
 import { Tabs } from '@/blocks/Tabs/config'
 import { Table } from '@/blocks/Table/config'
-// import { Timeline } from '@/blocks/Timeline/config'
+import { Timeline } from '@/blocks/Timeline/config'
 import { TextCards } from '../../blocks/TextCards/config'
 import { ProfileCards as ProfileCardsBlock } from '../../blocks/ProfileCards/config'
 import { Pricing } from '../../blocks/Pricing/config'
@@ -94,7 +94,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 SectionHead,
                 Tabs,
                 Table,
-                // Timeline,
+                Timeline,
                 TextCards,
                 ProfileCardsBlock,
 
@@ -154,13 +154,17 @@ export const Pages: CollectionConfig<'pages'> = {
     beforeChange: [populatePublishedAt],
     afterDelete: [revalidateDelete],
   },
+
   versions: {
-    drafts: {
-      autosave: {
-        interval: 100, // We set this interval for optimal live preview
-      },
-      schedulePublish: true,
-    },
-    maxPerDoc: 50,
+    drafts: false,
   },
+  // versions: {
+  //   drafts: {
+  //     autosave: {
+  //       interval: 100, // We set this interval for optimal live preview
+  //     },
+  //     schedulePublish: true,
+  //   },
+  //   maxPerDoc: 50,
+  // },
 }
