@@ -12,7 +12,7 @@ export const Project1: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'pr
 }) => {
   return {
     slug: 'digital-horizons',
-    _status: 'published',
+
     projectDate: {
       year: 2024,
       month: '01',

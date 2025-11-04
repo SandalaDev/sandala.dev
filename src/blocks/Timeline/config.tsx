@@ -84,7 +84,7 @@ const createRoleFields = () => [
   {
     name: 'description',
     type: 'richText' as const,
-    label: 'Description',
+    label: 'Description (Single Role)',
     admin: {
       condition: (data: any, siblingData: any) => !siblingData?.isDual,
       description: 'Detailed description of accomplishments and responsibilities',
@@ -118,7 +118,7 @@ const createRoleFields = () => [
       {
         name: 'description',
         type: 'richText' as const,
-        label: 'Description',
+        label: 'Description (Concurrent Role)',
         editor: basicLexicalConfig(),
       },
       createTagsField(),

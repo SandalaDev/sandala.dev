@@ -55,10 +55,7 @@ export default async function Project({ params: paramsPromise }: Args) {
     limit: 3,
     overrideAccess: draft,
     pagination: false,
-    where: {
-      slug: { not_equals: slug },
-      _status: { equals: 'published' },
-    },
+
     select: {
       title: true,
       slug: true,

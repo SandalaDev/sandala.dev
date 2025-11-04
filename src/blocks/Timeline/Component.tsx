@@ -7,23 +7,6 @@ import { Logo } from '@/components/Logo/Logo'
 import { Media } from '@/components/Media'
 import type { Media as MediaType } from '@/payload-types'
 
-// Properly typed interfaces
-interface RichTextContent {
-  root: {
-    type: string
-    children: Array<{
-      type: string
-      version: number
-      [k: string]: unknown
-    }>
-    direction: ('ltr' | 'rtl') | null
-    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
-    indent: number
-    version: number
-  }
-  [k: string]: unknown
-}
-
 interface TagItem {
   tag: string
   id?: string
@@ -32,7 +15,7 @@ interface TagItem {
 interface TimelineRole {
   role: string
   company: string
-  description?: RichTextContent
+  description?: any
   tags?: TagItem[]
   id?: string
 }
@@ -42,7 +25,7 @@ interface TimelineItem {
   isDual?: boolean
   role?: string
   company?: string
-  description?: RichTextContent
+  description?: any
   tags?: TagItem[]
   roles?: TimelineRole[]
   id?: string
@@ -53,37 +36,37 @@ interface EpochGroup {
 }
 
 interface InterestImage {
-  image: string | MediaType
+  img: string | MediaType
   alt?: string
   id?: string
 }
 
 interface Interest {
-  category: string
-  images?: InterestImage[]
-  description?: RichTextContent
+  cat: string
+  imgs?: InterestImage[]
+  desc?: any
   id?: string
 }
 
 interface TimelineBlockProps {
   title?: string | null
-  subtitle?: RichTextContent | null
+  subtitle?: any
   foundation?: EpochGroup | null
   convergence?: EpochGroup | null
   awakening?: EpochGroup | null
-  profileCards?: {
-    biographyCard?: {
+  cards?: {
+    bio?: {
       title?: string | null
-      teaserText?: string | null
-      emphasisText?: string | null
-      modalContent?: RichTextContent | null
+      teaser?: string | null
+      emphasis?: string | null
+      content?: any
     } | null
-    interestsCard?: {
+    int?: {
       title?: string | null
-      teaserText?: string | null
-      emphasisText?: string | null
-      cardImage?: string | MediaType | null
-      interests?: Interest[] | null
+      teaser?: string | null
+      emphasis?: string | null
+      img?: string | MediaType | null
+      list?: Interest[] | null
     } | null
   } | null
 }
@@ -149,7 +132,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
   foundation,
   convergence,
   awakening,
-  profileCards,
+  cards,
 }) => {
   const [activeEpoch, setActiveEpoch] = useState<string>('foundation')
   const [selectedModal, setSelectedModal] = useState<'biography' | 'interests' | null>(null)
@@ -288,10 +271,10 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
           </nav>
 
           {/* Profile Cards Section */}
-          {profileCards && (
+          {cards && (
             <div className="flex flex-col gap-6 mb-8">
               {/* Biography Card */}
-              {profileCards.biographyCard && (
+              {cards.bio && (
                 <button
                   onClick={() => openModal('biography')}
                   className="glass group text-left min-h-[16rem] lg:min-h-[18rem] xl:min-h-[20rem] p-6 lg:p-8 flex flex-col justify-between rounded-3xl cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4"
@@ -303,47 +286,43 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg lg:text-xl xl:text-2xl font-semibold text-foreground mb-3 lg:mb-4 dark:text-coral-bright">
-                        {profileCards.biographyCard.title || 'Who I am'}
+                        {cards.bio.title || 'Who I am'}
                       </h3>
                       <p className="text-sm lg:text-base text-coral-bright leading-relaxed dark:text-foreground/80">
-                        {profileCards.biographyCard.teaserText ||
+                        {cards.bio.teaser ||
                           'Discover the journey, experiences, and passion that drive my work and creativity.'}
                       </p>
                     </div>
                   </div>
                   <p className="text-xs lg:text-sm italic text-coral-bright font-medium mt-4 dark:text-coral-bright">
-                    {profileCards.biographyCard.emphasisText ||
-                      'Click to learn more about my story'}
+                    {cards.bio.emphasis || 'Click to learn more about my story'}
                   </p>
                 </button>
               )}
 
               {/* Interests Card */}
-              {profileCards.interestsCard && (
+              {cards.int && (
                 <button
                   onClick={() => openModal('interests')}
                   className="glass group text-left min-h-[16rem] lg:min-h-[18rem] xl:min-h-[20rem] p-6 lg:p-8 flex flex-col justify-between rounded-3xl cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4 overflow-hidden relative"
                   style={{ animationDelay: '200ms' }}
                 >
-                  {profileCards.interestsCard.cardImage && (
+                  {cards.int.img && (
                     <div className="absolute inset-0 opacity-45 group-hover:opacity-55 transition-opacity">
-                      <Media
-                        resource={profileCards.interestsCard.cardImage}
-                        className="w-full h-full object-cover"
-                      />
+                      <Media resource={cards.int.img} className="w-full h-full object-cover" />
                     </div>
                   )}
                   <div className="relative z-10 flex-1">
                     <h3 className="text-lg lg:text-xl xl:text-2xl font-semibold text-foreground mb-3 lg:mb-4 prose dark:text-coral-bright">
-                      {profileCards.interestsCard.title || 'The way I am'}
+                      {cards.int.title || 'The way I am'}
                     </h3>
                     <p className="text-sm lg:text-base text-coral-bright leading-relaxed dark:text-foreground/80">
-                      {profileCards.interestsCard.teaserText ||
+                      {cards.int.teaser ||
                         'Explore the interests, hobbies, and passions that shape my perspective and inspire my creativity.'}
                     </p>
                   </div>
                   <p className="text-xs lg:text-sm italic text-coral-bright font-medium relative z-10 mt-4 dark:text-coral-bright">
-                    {profileCards.interestsCard.emphasisText || 'See what drives my creativity'}
+                    {cards.int.emphasis || 'See what drives my creativity'}
                   </p>
                 </button>
               )}
@@ -420,7 +399,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                                           {role.description && (
                                             <div className="mt-3 text-sm text-foreground/90 leading-relaxed">
                                               <RichText
-                                                data={role.description as RichTextContent}
+                                                data={role.description}
                                                 enableGutter={false}
                                                 enableProse={false}
                                               />
@@ -443,7 +422,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                                   {item.description && (
                                     <div className="mt-4 text-sm text-foreground/90 leading-relaxed">
                                       <RichText
-                                        data={item.description as RichTextContent}
+                                        data={item.description}
                                         enableGutter={false}
                                         enableProse={false}
                                       />
@@ -469,7 +448,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
       </div>
 
       {/* Biography Modal */}
-      {selectedModal === 'biography' && profileCards?.biographyCard && (
+      {selectedModal === 'biography' && cards?.bio && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md p-4 animate-in fade-in"
           onClick={closeModal}
@@ -496,19 +475,15 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                 id="biography-modal-title"
                 className="text-3xl font-bold text-primary dark:text-coral-bright"
               >
-                {profileCards.biographyCard.title || 'Who I am'}
+                {cards.bio.title || 'Who I am'}
               </h2>
             </div>
             <div
               id="biography-modal-content"
               className="prose prose-invert max-w-none text-foreground"
             >
-              {profileCards.biographyCard.modalContent && (
-                <RichText
-                  data={profileCards.biographyCard.modalContent as RichTextContent}
-                  enableGutter={false}
-                  enableProse={true}
-                />
+              {cards.bio.content && (
+                <RichText data={cards.bio.content} enableGutter={false} enableProse={true} />
               )}
             </div>
           </div>
@@ -516,7 +491,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
       )}
 
       {/* Interests Modal */}
-      {selectedModal === 'interests' && profileCards?.interestsCard && (
+      {selectedModal === 'interests' && cards?.int && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md p-4 animate-in fade-in"
           onClick={closeModal}
@@ -538,100 +513,94 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
               ×
             </button>
             <div className="text-center mb-12">
-              {profileCards.interestsCard.cardImage && (
+              {cards.int.img && (
                 <div className="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-4 border-gradient-to-r from-coral-bright to-purple-bloom shadow-2xl">
-                  <Media
-                    resource={profileCards.interestsCard.cardImage}
-                    className="w-full h-full object-cover"
-                  />
+                  <Media resource={cards.int.img} className="w-full h-full object-cover" />
                 </div>
               )}
               <h2 id="interests-modal-title" className="text-4xl font-bold text-primary mb-6">
-                {profileCards.interestsCard.title || 'The way I am'}
+                {cards.int.title || 'The way I am'}
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                {profileCards.interestsCard.teaserText}
+                {cards.int.teaser}
               </p>
             </div>
 
             {/* Interests Sections */}
-            {profileCards.interestsCard.interests &&
-              profileCards.interestsCard.interests.length > 0 && (
-                <div
-                  id="interests-modal-content"
-                  className="space-y-16"
-                  role="region"
-                  aria-label="Personal interests categories"
-                >
-                  {profileCards.interestsCard.interests.map((interest, idx) => {
-                    if (!interest?.category) return null
+            {cards.int.list && cards.int.list.length > 0 && (
+              <div
+                id="interests-modal-content"
+                className="space-y-16"
+                role="region"
+                aria-label="Personal interests categories"
+              >
+                {cards.int.list.map((interest, idx) => {
+                  if (!interest?.cat) return null
 
-                    const interestKey = interest.id || `interest-${idx}`
+                  const interestKey = interest.id || `interest-${idx}`
 
-                    return (
-                      <div
-                        key={interestKey}
-                        className="animate-in fade-in slide-in-from-bottom-4"
-                        style={{ animationDelay: `${idx * 150}ms` }}
-                      >
-                        <h3 className="text-2xl font-bold text-primary mb-6 text-center">
-                          {interest.category}
-                        </h3>
+                  return (
+                    <div
+                      key={interestKey}
+                      className="animate-in fade-in slide-in-from-bottom-4"
+                      style={{ animationDelay: `${idx * 150}ms` }}
+                    >
+                      <h3 className="text-2xl font-bold text-primary mb-6 text-center">
+                        {interest.cat}
+                      </h3>
 
-                        {interest.images && interest.images.length > 0 && (
-                          <div className="mb-8">
-                            <div
-                              className={cn(
-                                'grid gap-4 mb-6',
-                                interest.images.length === 1
-                                  ? 'grid-cols-1 max-w-md mx-auto'
-                                  : interest.images.length === 2
-                                    ? 'grid-cols-2 max-w-2xl mx-auto'
-                                    : interest.images.length === 3
-                                      ? 'grid-cols-3 max-w-3xl mx-auto'
-                                      : interest.images.length === 4
-                                        ? 'grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto'
-                                        : 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 max-w-5xl mx-auto',
-                              )}
-                            >
-                              {interest.images.map((imageItem, imgIdx) => {
-                                if (!imageItem || !imageItem.image) return null
+                      {interest.imgs && interest.imgs.length > 0 && (
+                        <div className="mb-8">
+                          <div
+                            className={cn(
+                              'grid gap-4 mb-6',
+                              interest.imgs.length === 1
+                                ? 'grid-cols-1 max-w-md mx-auto'
+                                : interest.imgs.length === 2
+                                  ? 'grid-cols-2 max-w-2xl mx-auto'
+                                  : interest.imgs.length === 3
+                                    ? 'grid-cols-3 max-w-3xl mx-auto'
+                                    : interest.imgs.length === 4
+                                      ? 'grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto'
+                                      : 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 max-w-5xl mx-auto',
+                            )}
+                          >
+                            {interest.imgs.map((imageItem, imgIdx) => {
+                              if (!imageItem || !imageItem.img) return null
 
-                                return (
-                                  <div
-                                    key={imgIdx}
-                                    className="glass aspect-square rounded-3xl overflow-hidden hover:scale-105 transition-transform duration-300 group"
-                                  >
-                                    <Media
-                                      resource={imageItem.image}
-                                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                      alt={
-                                        imageItem.alt || `${interest.category} image ${imgIdx + 1}`
-                                      }
-                                    />
-                                  </div>
-                                )
-                              })}
-                            </div>
+                              return (
+                                <div
+                                  key={imgIdx}
+                                  className="glass aspect-square rounded-3xl overflow-hidden hover:scale-105 transition-transform duration-300 group"
+                                >
+                                  <Media
+                                    resource={imageItem.img}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    alt={imageItem.alt || `${interest.cat} image ${imgIdx + 1}`}
+                                  />
+                                </div>
+                              )
+                            })}
                           </div>
-                        )}
+                        </div>
+                      )}
 
-                        {interest.description && (
-                          <div className="glass p-8 rounded-3xl">
-                            <div className="prose prose-invert max-w-none text-foreground">
-                              <RichText
-                                data={interest.description as RichTextContent}
-                                enableGutter={false}
-                                enableProse={true}
-                              />
-                            </div>
+                      {interest.desc && (
+                        <div className="glass p-8 rounded-3xl">
+                          <div className="prose prose-invert max-w-none text-foreground">
+                            <RichText
+                              data={interest.desc}
+                              enableGutter={false}
+                              enableProse={true}
+                            />
                           </div>
-                        )}
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
           </div>
         </div>
       )}

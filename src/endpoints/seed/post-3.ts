@@ -7,7 +7,7 @@ export const Project3: (args: ProjectArgs) => RequiredDataFromCollectionSlug<'pr
 }) => {
   return {
     slug: 'dollar-and-sense-the-financial-forecast',
-    _status: 'published',
+
     projectDate: {
       year: 2024,
       month: '01',

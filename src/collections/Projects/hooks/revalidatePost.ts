@@ -1,40 +1,29 @@
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
-
 import { revalidatePath, revalidateTag } from 'next/cache'
-
 import type { Project } from '../../../payload-types'
 
+// Triggered whenever a project is created or updated
 export const revalidateProject: CollectionAfterChangeHook<Project> = ({
   doc,
-  previousDoc,
   req: { payload, context },
 }) => {
   if (!context.disableRevalidate) {
-    if (doc._status === 'published') {
-      const path = `/projects/${doc.slug}`
+    const path = `/projects/${doc.slug}`
 
-      payload.logger.info(`Revalidating project at path: ${path}`)
+    payload.logger.info(`Revalidating project at path: ${path}`)
 
-      revalidatePath(path)
-      revalidateTag('projects-sitemap')
-    }
-
-    // If the project was previously published, we need to revalidate the old path
-    if (previousDoc._status === 'published' && doc._status !== 'published') {
-      const oldPath = `/projects/${previousDoc.slug}`
-
-      payload.logger.info(`Revalidating old project at path: ${oldPath}`)
-
-      revalidatePath(oldPath)
-      revalidateTag('projects-sitemap')
-    }
+    // Invalidate both path and sitemap cache tags
+    revalidatePath(path)
+    revalidateTag('projects-sitemap')
   }
+
   return doc
 }
 
+// Triggered whenever a project is deleted
 export const revalidateDelete: CollectionAfterDeleteHook<Project> = ({ doc, req: { context } }) => {
-  if (!context.disableRevalidate) {
-    const path = `/projects/${doc?.slug}`
+  if (!context.disableRevalidate && doc?.slug) {
+    const path = `/projects/${doc.slug}`
 
     revalidatePath(path)
     revalidateTag('projects-sitemap')
