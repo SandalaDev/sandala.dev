@@ -26,6 +26,15 @@ export const SectionHead: Block = {
       }),
       label: false,
     },
+    {
+      name: 'anchorId',
+      type: 'text',
+      label: 'Anchor ID',
+      admin: {
+        description:
+          'Optional. Add an ID so this section can be linked (e.g. “about”, “contact”, “features”).',
+      },
+    },
   ],
   labels: {
     plural: 'Section Headers',

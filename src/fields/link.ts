@@ -51,6 +51,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
               },
             ],
           },
+
           {
             name: 'newTab',
             type: 'checkbox',
@@ -86,6 +87,22 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       },
       label: 'Custom URL',
       required: true,
+    },
+    {
+      name: 'anchor',
+      type: 'text',
+      label: 'Anchor (optional)',
+      admin: {
+        description: 'Add an anchor ID to link to a specific section (e.g. "about").',
+        condition: (_, siblingData) => siblingData?.type === 'reference',
+        width: '50%',
+      },
+      validate: (val: unknown) => {
+        if (typeof val === 'string' && val.length > 0 && !/^[a-zA-Z0-9\-_]+$/.test(val)) {
+          return 'Anchor can only contain letters, numbers, dashes, or underscores.'
+        }
+        return true
+      },
     },
   ]
 

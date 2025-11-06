@@ -193,6 +193,10 @@ export interface Page {
                   value: number | Project;
                 } | null);
             url?: string | null;
+            /**
+             * Add an anchor ID to link to a specific section (e.g. "about").
+             */
+            anchor?: string | null;
             label: string;
             /**
              * Choose how the link should be rendered.
@@ -426,6 +430,10 @@ export interface CallToActionBlock {
                 value: number | Project;
               } | null);
           url?: string | null;
+          /**
+           * Add an anchor ID to link to a specific section (e.g. "about").
+           */
+          anchor?: string | null;
           label: string;
           /**
            * Choose how the link should be rendered.
@@ -476,6 +484,10 @@ export interface ContentBlock {
                 value: number | Project;
               } | null);
           url?: string | null;
+          /**
+           * Add an anchor ID to link to a specific section (e.g. "about").
+           */
+          anchor?: string | null;
           label: string;
           /**
            * Choose how the link should be rendered.
@@ -752,6 +764,10 @@ export interface SectionHeadBlock {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Optional. Add an ID so this section can be linked (e.g. “about”, “contact”, “features”).
+   */
+  anchorId?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'sectionHead';
@@ -1577,6 +1593,10 @@ export interface PricingBlock {
                 value: number | Project;
               } | null);
           url?: string | null;
+          /**
+           * Add an anchor ID to link to a specific section (e.g. "about").
+           */
+          anchor?: string | null;
           label: string;
           /**
            * Choose how the link should be rendered.
@@ -2071,6 +2091,7 @@ export interface PagesSelect<T extends boolean = true> {
                     newTab?: T;
                     reference?: T;
                     url?: T;
+                    anchor?: T;
                     label?: T;
                     appearance?: T;
                   };
@@ -2126,6 +2147,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              anchor?: T;
               label?: T;
               appearance?: T;
             };
@@ -2152,6 +2174,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              anchor?: T;
               label?: T;
               appearance?: T;
             };
@@ -2199,6 +2222,7 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface SectionHeadBlockSelect<T extends boolean = true> {
   richText?: T;
+  anchorId?: T;
   id?: T;
   blockName?: T;
 }
@@ -2541,6 +2565,7 @@ export interface PricingBlockSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              anchor?: T;
               label?: T;
               appearance?: T;
             };
@@ -3039,11 +3064,19 @@ export interface Header {
                 value: number | Project;
               } | null);
           url?: string | null;
+          /**
+           * Add an anchor ID to link to a specific section (e.g. "about").
+           */
+          anchor?: string | null;
           label: string;
         };
         id?: string | null;
       }[]
     | null;
+  /**
+   * Add an optional anchor ID to link to a section, e.g. "about" or "contact".
+   */
+  anchor?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -3068,6 +3101,10 @@ export interface Footer {
                 value: number | Project;
               } | null);
           url?: string | null;
+          /**
+           * Add an anchor ID to link to a specific section (e.g. "about").
+           */
+          anchor?: string | null;
           label: string;
         };
         id?: string | null;
@@ -3091,10 +3128,12 @@ export interface HeaderSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              anchor?: T;
               label?: T;
             };
         id?: T;
       };
+  anchor?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -3114,6 +3153,7 @@ export interface FooterSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              anchor?: T;
               label?: T;
             };
         id?: T;
