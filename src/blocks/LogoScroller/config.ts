@@ -14,7 +14,8 @@ export const LogoScroller: Block = {
       type: 'text',
       label: 'Section Title',
       admin: {
-        description: 'Optional title displayed above the logo scroller (e.g., "Technologies & Expertise")',
+        description:
+          'Optional title displayed above the logo scroller (e.g., "Technologies & Expertise")',
       },
     },
     {
@@ -32,34 +33,11 @@ export const LogoScroller: Block = {
       },
       fields: [
         {
-          name: 'logoType',
-          type: 'select',
-          label: 'Logo Type',
-          defaultValue: 'custom',
-          options: [
-            { label: 'Custom SVG Icon', value: 'custom' },
-            { label: 'Font Awesome Icon', value: 'fontawesome' },
-          ],
-        },
-        {
           name: 'customIcon',
           type: 'select',
           label: 'Custom Icon',
           options: customIconOptions,
           required: true,
-          admin: {
-            condition: (_, siblingData) => siblingData.logoType === 'custom',
-          },
-        },
-        {
-          name: 'faIconClass',
-          type: 'text',
-          label: 'Font Awesome Class',
-          required: true,
-          admin: {
-            description: 'e.g., "fab fa-react", "fas fa-database" ',
-            condition: (_, siblingData) => siblingData.logoType === 'fontawesome',
-          },
         },
         {
           name: 'name',
@@ -67,26 +45,7 @@ export const LogoScroller: Block = {
           label: 'Name/Label',
           required: true,
           admin: {
-            description: 'Display name for this technology/company (always shown below icon/image)',
-          },
-        },
-        {
-          name: 'iconColor',
-          type: 'select',
-          label: 'Icon Color Theme',
-          defaultValue: 'primary',
-          options: [
-            { label: 'Primary (Text Color)', value: 'primary' },
-            { label: 'Telecom (Blue)', value: 'telecom' },
-            { label: 'Design (Pink)', value: 'design' },
-            { label: 'Frontend (Cyan)', value: 'frontend' },
-            { label: 'Backend (Green)', value: 'backend' },
-            { label: 'Database (Amber)', value: 'database' },
-            { label: 'Tools (Purple)', value: 'tools' },
-            { label: 'Accent (Theme Accent)', value: 'accent' },
-          ],
-          admin: {
-            description: 'Color theme for the icon.',
+            description: 'Display name for this technology/company (shown below icon)',
           },
         },
       ],

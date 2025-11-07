@@ -1664,22 +1664,11 @@ export interface LogoScrollerBlock {
    */
   logos?:
     | {
-        logoType?: ('custom' | 'fontawesome') | null;
-        customIcon?: ('payload' | 'react' | 'nextjs') | null;
+        customIcon: 'payload' | 'react' | 'nextjs';
         /**
-         * e.g., "fab fa-react", "fas fa-database"
-         */
-        faIconClass?: string | null;
-        /**
-         * Display name for this technology/company (always shown below icon/image)
+         * Display name for this technology/company (shown below icon)
          */
         name: string;
-        /**
-         * Color theme for the icon.
-         */
-        iconColor?:
-          | ('primary' | 'telecom' | 'design' | 'frontend' | 'backend' | 'database' | 'tools' | 'accent')
-          | null;
         id?: string | null;
       }[]
     | null;
@@ -2599,11 +2588,8 @@ export interface LogoScrollerBlockSelect<T extends boolean = true> {
   logos?:
     | T
     | {
-        logoType?: T;
         customIcon?: T;
-        faIconClass?: T;
         name?: T;
-        iconColor?: T;
         id?: T;
       };
   animationSpeed?: T;
