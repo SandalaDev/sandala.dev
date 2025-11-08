@@ -17,7 +17,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const pathname = usePathname()
 
   return (
-    <header className="container relative z-20  glass mt-4 rounded-2xl shadow-card">
+    <header className="container relative z-20  header-glass mt-[-0.25rem] shadow-card">
       <div className="py-8 flex justify-between">
         <Link href="/">
           <Logo loading="eager" priority="high" className="" />
