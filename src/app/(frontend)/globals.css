@@ -98,7 +98,7 @@
     }
   }
   body {
-    @apply font-serif text-foreground min-h-[100vh] flex flex-col;
+    @apply font-serif text-primary min-h-[100vh] flex flex-col;
     position: relative;
     margin: 0;
   }
