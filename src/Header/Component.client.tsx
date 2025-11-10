@@ -19,6 +19,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <>
+      {/* Desktop Header */}
       <header className="container relative z-20 mt-[-0.25rem] shadow-card header-glass hidden lg:block">
         <div className="py-8 flex justify-between">
           <Link href="/">
@@ -27,7 +28,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <HeaderNav data={data} />
         </div>
       </header>
+
+      {/* Mobile/Tablet - Hamburger & Logo */}
       <div className="lg:hidden">
+        {/* Logo - fixed top-left */}
+        <Link href="/" className="fixed top-6 left-6 z-50">
+          <Logo loading="eager" priority="high" className="" />
+        </Link>
+
         <HamburgerMenu navItems={navItems} />
       </div>
     </>
