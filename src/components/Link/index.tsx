@@ -18,8 +18,9 @@ type CMSLinkType = {
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
-  /** ✨ Added field for anchors (optional section ID) */
+
   anchor?: string | null
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
