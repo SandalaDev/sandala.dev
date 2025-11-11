@@ -79,6 +79,10 @@ const config = {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
         },
+        link: {
+          DEFAULT: 'hsl(var(--purple-dusk))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
@@ -176,10 +180,9 @@ const config = {
               },
 
               a: {
-                fontWeight: '500',
-                color: theme('colors.primary.DEFAULT'),
+                color: theme('colors.link.DEFAULT'),
                 textDecoration: 'none',
-                fontWeight: '600',
+                fontWeight: '700',
               },
 
               blockquote: {

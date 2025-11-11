@@ -93,9 +93,9 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
         {/* Interactive Showcase Section */}
         {showcase && (
           <div className="glass rounded-2xl p-8 md:p-12 mb-16">
-            <div className="text-center mb-12">
-              <h3>{showcase.showcaseHeading}</h3>
-              <p className="">{showcase.showcaseSubheading}</p>
+            <div className="text-center  mb-12">
+              <h3 className="text-primary text-2xl font-bold">{showcase.showcaseHeading}</h3>
+              <p className="text-primary">{showcase.showcaseSubheading}</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
@@ -165,7 +165,7 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
                         </div>
                         {/* Tab Description */}
                         {tab.tabDescription && (
-                          <div className="p-4 bg-coral-mist/40">
+                          <div className="p-4 bg-coral-/40">
                             {/* Slide Indicators (above description) */}
                             {getImageCount(tab, 'desktop') > 1 && (
                               <div className="flex justify-center gap-2 mb-3">
@@ -190,7 +190,7 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
                                 )}
                               </div>
                             )}
-                            <p className="text-sm text-coral-pink">{tab.tabDescription}</p>
+                            <p className="text-sm text-coral-bright">{tab.tabDescription}</p>
                           </div>
                         )}
                       </div>
@@ -218,7 +218,7 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
                   return (
                     <div key={benefit.id || index} className="flex gap-4 items-start">
                       {IconComponent && (
-                        <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 text-secondary">
+                        <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 text-coral-bright">
                           <IconComponent size={24} aria-label={iconLabel} />
                         </div>
                       )}

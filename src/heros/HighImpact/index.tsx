@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import type { Page } from '@/payload-types'
 
@@ -8,17 +8,15 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline, subhead }) => {
-  // console.log('profile picture', media)
-
   return (
-    <div className="relative container min-h-[85vh] py-12 overflow-hidden ">
-      <div className="relative grid grid-cols-12 gap-x-4 gap-y-8 h-full">
-        {/* Profile image - 40% on sm, 1:1 aspect ratio */}
-        <div className="col-span-12 sm:col-span-5 sm:col-start-8 md:col-span-4 md:col-start-9 row-start-1 rounded-3xl">
-          <div className="relative h-full rounded-3xl aspect-square">
-            {/* Decorative frame elements */}
-            <div className="absolute -inset-2 bg-gradient-to-br from-primary/20 to-secondary/15 rounded-3xl rotate-1"></div>
-            <div className="absolute -inset-1 bg-gradient-to-tl from-secondary/10 to-primary/20 rounded-3xl -rotate-1"></div>
+    <div className="relative container min-h-[85vh] max-sm:min-h-[70vh] py-12 max-sm:py-6 overflow-hidden">
+      <div className="relative grid grid-cols-12 gap-x-4 gap-y-8 max-sm:gap-x-2 max-sm:gap-y-4 h-full">
+        {/* Profile image - smaller on mobile, stays on right */}
+        <div className="col-span-5 col-start-8 md:col-span-4 md:col-start-9 max-sm:col-span-4 max-sm:col-start-9 row-start-1 rounded-3xl">
+          <div className="relative h-full rounded-3xl aspect-square max-sm:aspect-auto max-sm:max-h-[35vh]">
+            {/* Decorative frame elements - scaled down for mobile */}
+            <div className="absolute -inset-2 max-sm:-inset-1 bg-gradient-to-br from-primary/20 to-secondary/15 rounded-3xl rotate-1"></div>
+            <div className="absolute -inset-1 max-sm:-inset-0.5 bg-gradient-to-tl from-secondary/10 to-primary/20 rounded-3xl -rotate-1"></div>
 
             {/* Main image container */}
             <div className="relative h-full rounded-3xl">
@@ -39,36 +37,44 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
           </div>
         </div>
 
-        {/* Headline - 60% on sm */}
+        {/* Headline - larger and more prominent on mobile */}
         {headline && (
-          <div className="col-span-12 sm:col-span-7 md:col-span-7 row-start-1 flex flex-col justify-end">
-            <div className="lowercase [&_h1]:text-3xl sm:[&_h1]:text-6xl md:[&_h1]:text-6xl lg:[&_h1]:text-7xl xl:[&_h1]:text-8xl [&_h1]:leading-tight [&_h1]:mb-2 md:[&_h1]:mb-4">
+          <div className="col-span-7 md:col-span-7 max-sm:col-span-8 max-sm:col-start-1 row-start-1 flex flex-col justify-end max-sm:justify-center max-sm:pr-2">
+            <div className="lowercase [&_h1]:text-6xl md:[&_h1]:text-6xl lg:[&_h1]:text-7xl xl:[&_h1]:text-8xl max-sm:[&_h1]:text-5xl max-sm:leading-tight max-sm:mb-0">
               <div>
-                <RichText data={headline} enableGutter={false} />
+                <RichText
+                  data={headline}
+                  enableProse={false}
+                  enableGutter={false}
+                  className="text-primary font-black"
+                />
               </div>
             </div>
           </div>
         )}
 
-        {/* Subhead - Full width below headline/image */}
+        {/* Subhead - positioned below */}
         {subhead && (
-          <div className="col-span-12 row-start-2 flex flex-col justify-start">
+          <div className=" col-span-12 row-start-2 max-sm:row-start-2 flex flex-col justify-start max-sm:mt-2">
             <RichText
               data={subhead}
               enableGutter={false}
               enableProse={false}
-              className="font-medium text-xl sm:text-2xl md:text-2xl lg:text-2xl leading-relaxed"
+              className="text-primary font-medium text-2xl md:text-2xl lg:text-2xl max-sm:text-lg max-sm:leading-snug"
             />
           </div>
         )}
 
-        {/* Action links - Below subhead */}
-        <div className="col-span-12 sm:col-span-7 row-start-3 flex items-start">
+        {/* Action links */}
+        <div className="col-span-7 max-sm:col-span-12 row-start-3 max-sm:row-start-3 flex items-start">
           {Array.isArray(links) && links.length > 0 && (
             <div className="w-full">
-              <ul className="flex flex-wrap gap-4 list-none">
+              <ul className="flex flex-wrap gap-4 max-sm:gap-2 list-none">
                 {links.map(({ link }, i) => (
-                  <li key={i} className="transform hover:scale-105 transition-transform text-lg">
+                  <li
+                    key={i}
+                    className="transform hover:scale-105 transition-transform text-lg max-sm:text-sm"
+                  >
                     <CMSLink {...link} />
                   </li>
                 ))}
@@ -77,9 +83,9 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
           )}
         </div>
 
-        {/* Decorative elements - hidden on sm */}
-        <div className="hidden md:block col-span-1 row-span-1 row-start-4 col-start-8 relative ">
-          <div className="absolute inset-0 flex items-center justify-center align-bottom "></div>
+        {/* Decorative elements - hidden on mobile */}
+        <div className="hidden md:block col-span-1 row-span-1 row-start-4 col-start-8 relative">
+          <div className="absolute inset-0 flex items-center justify-center align-bottom"></div>
         </div>
         <div className="hidden lg:block col-span-2 row-span-1 row-start-4 col-start-7 relative">
           <div className="absolute inset-0 flex items-center justify-end">
@@ -91,15 +97,15 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, headline,
           </div>
         </div>
 
-        {/* Bottom accent - adjusted row position */}
-        <div className="col-span-12 sm:col-span-6 row-start-4 flex items-end">
+        {/* Bottom accent */}
+        <div className="col-span-6 max-sm:col-span-12 row-start-4 max-sm:row-start-4 flex items-end max-sm:mt-2">
           <div className="w-full">
             <div className="h-px bg-gradient-to-r from-primary/40 via-secondary/20 to-transparent"></div>
-            <div className="mt-2 flex justify-between items-center text-sm text-muted-foreground">
-              <div className="flex space-x-4">
-                <div className="w-8 h-px bg-primary/40"></div>
-                <div className="w-12 h-px bg-secondary/30"></div>
-                <div className="w-6 h-px bg-primary/20"></div>
+            <div className="mt-2 flex justify-between items-center text-sm text-muted-foreground max-sm:text-xs">
+              <div className="flex space-x-4 max-sm:space-x-2">
+                <div className="w-8 h-px bg-primary/40 max-sm:w-6"></div>
+                <div className="w-12 h-px bg-secondary/30 max-sm:w-8"></div>
+                <div className="w-6 h-px bg-primary/20 max-sm:w-4"></div>
               </div>
             </div>
           </div>
