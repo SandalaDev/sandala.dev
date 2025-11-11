@@ -807,7 +807,7 @@ export interface TabsBlock {
            */
           tabDescription?: string | null;
           /**
-           * Images for desktop/large screens. Recommended size: 1200x800px or similar 3:2 ratio.
+           * Images shown on all screens ≥640px (default). Recommended size: 1200x800px or 3:2 ratio.
            */
           desktopImages?:
             | {
@@ -817,17 +817,7 @@ export interface TabsBlock {
               }[]
             | null;
           /**
-           * Images for tablet/medium screens. Recommended size: 768x600px or similar 4:3 ratio.
-           */
-          tabletImages?:
-            | {
-                image: number | Media;
-                altText: string;
-                id?: string | null;
-              }[]
-            | null;
-          /**
-           * Images for mobile/small screens. Recommended size: 375x500px or similar portrait ratio.
+           * Images shown on screens <640px. Recommended size: 375x500px portrait.
            */
           mobileImages?:
             | {
@@ -2232,13 +2222,6 @@ export interface TabsBlockSelect<T extends boolean = true> {
               tabName?: T;
               tabDescription?: T;
               desktopImages?:
-                | T
-                | {
-                    image?: T;
-                    altText?: T;
-                    id?: T;
-                  };
-              tabletImages?:
                 | T
                 | {
                     image?: T;

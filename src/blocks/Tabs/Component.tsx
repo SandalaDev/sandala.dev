@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
@@ -22,7 +23,7 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
           const newSlides = { ...prev }
           showcase.demoTabs?.forEach((tab, tabIndex) => {
             const currentSlide = prev[tabIndex] || 0
-            const imageCount = getImageCount(tab, 'desktop') // Use desktop as reference for slide count
+            const imageCount = getImageCount(tab, 'desktop')
             if (imageCount > 1) {
               newSlides[tabIndex] = (currentSlide + 1) % imageCount
             }
@@ -36,20 +37,20 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
     return () => clearInterval(interval)
   }, [showcase?.demoTabs, showcase?.slideshowSpeed])
 
-  // Helper to get image count for a tab and screen size
+  // Helper: count images
   const getImageCount = (
     tab: NonNullable<TabsBlockType['showcase']['demoTabs']>[0],
-    screenSize: 'desktop' | 'tablet' | 'mobile',
+    screenSize: 'desktop' | 'mobile',
   ) => {
     const images = tab[`${screenSize}Images`]
     return Array.isArray(images) ? images.length : 0
   }
 
-  // Helper to get current image for a tab and screen size
+  // Helper: get current image
   const getCurrentImage = (
     tab: NonNullable<TabsBlockType['showcase']['demoTabs']>[0],
     tabIndex: number,
-    screenSize: 'desktop' | 'tablet' | 'mobile',
+    screenSize: 'desktop' | 'mobile',
   ) => {
     const images = tab[`${screenSize}Images`]
     if (!Array.isArray(images) || images.length === 0) return null
@@ -58,16 +59,15 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
     return images[slideIndex % images.length]
   }
 
-  // Helper component for responsive image rendering
+  // Responsive image component
   const ResponsiveImage: React.FC<{
     tab: NonNullable<TabsBlockType['showcase']['demoTabs']>[0]
     tabIndex: number
-    screenSize: 'desktop' | 'tablet' | 'mobile'
+    screenSize: 'desktop' | 'mobile'
     className: string
     isActive: boolean
   }> = ({ tab, tabIndex, screenSize, className, isActive }) => {
     const image = getCurrentImage(tab, tabIndex, screenSize)
-
     if (!image?.image) return null
 
     return (
@@ -90,10 +90,9 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
   return (
     <section className="relative overflow-hidden container">
       <div className="container mx-auto py-16 md:py-24">
-        {/* Interactive Showcase Section */}
         {showcase && (
           <div className="glass rounded-2xl p-8 md:p-12 mb-16">
-            <div className="text-center  mb-12">
+            <div className="text-center mb-12">
               <h3 className="text-primary text-2xl font-bold">{showcase.showcaseHeading}</h3>
               <p className="text-primary">{showcase.showcaseSubheading}</p>
             </div>
@@ -130,43 +129,35 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
                           index === activeTab ? 'block' : 'hidden'
                         }`}
                       >
-                        {/* Responsive Image Display */}
-                        <div className="relative aspect-[4/3] md:aspect-[3/2] lg:aspect-[16/10]">
+                        <div className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[16/10]">
+                          {/* Desktop (≥640px) */}
                           <ResponsiveImage
                             tab={tab}
                             tabIndex={index}
                             screenSize="desktop"
-                            className="hidden lg:block"
+                            className="hidden sm:block"
                             isActive={index === activeTab}
                           />
-                          <ResponsiveImage
-                            tab={tab}
-                            tabIndex={index}
-                            screenSize="tablet"
-                            className="hidden md:block lg:hidden"
-                            isActive={index === activeTab}
-                          />
+                          {/* Mobile (<640px) */}
                           <ResponsiveImage
                             tab={tab}
                             tabIndex={index}
                             screenSize="mobile"
-                            className="block md:hidden"
+                            className="block sm:hidden"
                             isActive={index === activeTab}
                           />
 
-                          {/* Fallback if no images */}
+                          {/* Fallback */}
                           {!getCurrentImage(tab, index, 'desktop') &&
-                            !getCurrentImage(tab, index, 'tablet') &&
                             !getCurrentImage(tab, index, 'mobile') && (
                               <div className="absolute inset-0 flex items-center justify-center bg-muted/20 rounded-lg">
                                 <p className="text-muted-foreground">No images available</p>
                               </div>
                             )}
                         </div>
-                        {/* Tab Description */}
+
                         {tab.tabDescription && (
                           <div className="p-4 bg-coral-/40">
-                            {/* Slide Indicators (above description) */}
                             {getImageCount(tab, 'desktop') > 1 && (
                               <div className="flex justify-center gap-2 mb-3">
                                 {Array.from({ length: getImageCount(tab, 'desktop') }).map(
@@ -201,14 +192,12 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
 
               {/* Benefits List */}
               <div className="flex flex-col gap-6">
-                {/* Benefits Subheading from active tab */}
                 {showcase.demoTabs?.[activeTab]?.benefitsSubheading && (
-                  <h4 className="text-lg font-semibold  mb-2">
+                  <h4 className="text-lg font-semibold mb-2">
                     {showcase.demoTabs[activeTab].benefitsSubheading}
                   </h4>
                 )}
 
-                {/* Dynamic Benefits based on active tab */}
                 {showcase.demoTabs?.[activeTab]?.benefitsList?.map((benefit, index) => {
                   const currentTab = showcase.demoTabs?.[activeTab]
                   const selectedIcon = currentTab?.benefitsIcon as BenefitIcon
@@ -226,7 +215,7 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
                         <strong className="block text-foreground mb-1 text-base">
                           {benefit.title}
                         </strong>
-                        <RichText data={benefit.description} className="text-primary " />
+                        <RichText data={benefit.description} className="text-primary" />
                       </div>
                     </div>
                   )

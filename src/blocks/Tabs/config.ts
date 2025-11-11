@@ -21,7 +21,7 @@ export const Tabs: Block = {
           label: 'Showcase Heading',
           type: 'text',
           required: true,
-          defaultValue: 'The Power of Composability',
+          defaultValue: 'Enterprise level power. Blog level simplicity',
           admin: {
             description: 'Main heading for the interactive showcase section.',
           },
@@ -82,37 +82,16 @@ export const Tabs: Block = {
             },
             {
               name: 'desktopImages',
-              label: 'Desktop Slideshow Images',
+              label: 'Slideshow Images',
               type: 'array',
               minRows: 1,
               labels: {
-                singular: 'Desktop Image',
-                plural: 'Desktop Images',
+                singular: 'Image',
+                plural: 'Images',
               },
               admin: {
                 description:
-                  'Images for desktop/large screens. Recommended size: 1200x800px or similar 3:2 ratio.',
-              },
-              fields: [
-                {
-                  name: 'image',
-                  label: 'Image',
-                  type: 'upload',
-                  relationTo: 'media',
-                  required: true,
-                },
-                { name: 'altText', label: 'Alt Text', type: 'text', required: true },
-              ],
-            },
-            {
-              name: 'tabletImages',
-              label: 'Tablet Slideshow Images',
-              type: 'array',
-              minRows: 1,
-              labels: { singular: 'Tablet Image', plural: 'Tablet Images' },
-              admin: {
-                description:
-                  'Images for tablet/medium screens. Recommended size: 768x600px or similar 4:3 ratio.',
+                  'Images shown on all screens ≥640px (default). Recommended size: 1200x800px or 3:2 ratio.',
               },
               fields: [
                 {
@@ -133,7 +112,7 @@ export const Tabs: Block = {
               labels: { singular: 'Mobile Image', plural: 'Mobile Images' },
               admin: {
                 description:
-                  'Images for mobile/small screens. Recommended size: 375x500px or similar portrait ratio.',
+                  'Images shown on screens <640px. Recommended size: 375x500px portrait.',
               },
               fields: [
                 {
