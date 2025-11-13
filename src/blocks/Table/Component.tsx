@@ -74,7 +74,7 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
 
   return (
     <section className="relative overflow-hidden container">
-      <div className="container mx-auto py-16 md:py-24">
+      <div className="container mx-auto py-2 md:py-4">
         {/* Comparison Table Section */}
         {comparisonSection && (
           <div className="glass rounded-2xl overflow-hidden mb-16">
