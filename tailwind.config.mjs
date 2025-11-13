@@ -124,9 +124,9 @@ const config = {
           css: [
             {
               // Base colors from your design tokens
-              '--tw-prose-body': 'blue',
-              '--tw-prose-headings': 'green',
-              '--tw-prose-links': theme('colors.primary.DEFAULT'),
+              '--tw-prose-body': theme('colors.primary.DEFAULT'),
+              '--tw-prose-headings': theme('colors.primary.DEFAULT'),
+              '--tw-prose-links': theme('colors.coral-bright'),
               '--tw-prose-bold': theme('colors.foreground'),
               '--tw-prose-quotes': theme('colors.muted.foreground'),
             },
@@ -167,7 +167,7 @@ const config = {
               // Body text uses Lora (serif)
               p: {
                 fontFamily: theme('fontFamily.serif').join(', '),
-                fontWeight: '900',
+                fontWeight: '400',
                 marginTop: '1em',
                 marginBottom: '1em',
               },
@@ -180,7 +180,7 @@ const config = {
               },
 
               a: {
-                color: theme('colors.link.DEFAULT'),
+                // color: theme('colors.link.DEFAULT'),
                 textDecoration: 'none',
                 fontWeight: '700',
               },
@@ -213,9 +213,9 @@ const config = {
         invert: {
           css: [
             {
-              '--tw-prose-body': 'red',
-              '--tw-prose-headings': 'orange',
-              '--tw-prose-links': 'cyan',
+              '--tw-prose-body': theme('colors.primary.DEFAULT'),
+              '--tw-prose-headings': theme('colors.primary.DEFAULT'),
+              '--tw-prose-links': 'colors.coral-bright',
               '--tw-prose-bold': 'orange',
               '--tw-prose-quotes': 'lime',
             },
