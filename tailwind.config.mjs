@@ -9,7 +9,7 @@ const config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
-  darkMode: ['selector', '[data-theme="dark"]'],
+  darkMode: ['class', 'data-theme="dark"'],
   plugins: [tailwindcssAnimate, typography],
   prefix: '',
   safelist: [
@@ -124,8 +124,8 @@ const config = {
           css: [
             {
               // Base colors from your design tokens
-              '--tw-prose-body': theme('colors.foreground'),
-              '--tw-prose-headings': theme('colors.foreground'),
+              '--tw-prose-body': 'blue',
+              '--tw-prose-headings': 'green',
               '--tw-prose-links': theme('colors.primary.DEFAULT'),
               '--tw-prose-bold': theme('colors.foreground'),
               '--tw-prose-quotes': theme('colors.muted.foreground'),
@@ -134,12 +134,12 @@ const config = {
               // Headings use Archivo (sans)
               h1: {
                 fontFamily: theme('fontFamily.sans').join(', '),
-                fontWeight: '800',
+                fontWeight: '900',
                 marginBottom: '0.25em',
               },
               h2: {
                 fontFamily: theme('fontFamily.sans').join(', '),
-                fontWeight: '700',
+                fontWeight: '900',
                 marginTop: '1.5em',
                 marginBottom: '0.75em',
               },
@@ -167,7 +167,7 @@ const config = {
               // Body text uses Lora (serif)
               p: {
                 fontFamily: theme('fontFamily.serif').join(', '),
-                fontWeight: '500',
+                fontWeight: '900',
                 marginTop: '1em',
                 marginBottom: '1em',
               },
@@ -210,15 +210,14 @@ const config = {
             },
           ],
         },
-
         invert: {
           css: [
             {
-              '--tw-prose-body': theme('colors.foreground'),
-              '--tw-prose-headings': theme('colors.foreground'),
-              '--tw-prose-links': theme('colors.primary.DEFAULT'),
-              '--tw-prose-bold': theme('colors.foreground'),
-              '--tw-prose-quotes': theme('colors.muted.foreground'),
+              '--tw-prose-body': 'red',
+              '--tw-prose-headings': 'orange',
+              '--tw-prose-links': 'cyan',
+              '--tw-prose-bold': 'orange',
+              '--tw-prose-quotes': 'lime',
             },
           ],
         },

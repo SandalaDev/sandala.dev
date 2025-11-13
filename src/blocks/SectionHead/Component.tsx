@@ -12,9 +12,9 @@ export const SectionHeadBlock: React.FC<SectionHeadBlockProps> = ({ richText, an
   if (!richText) return null
 
   return (
-    <div id={anchorId || undefined} className="container glass">
+    <div id={anchorId || undefined} className="container glass ">
       <div className="text-end mb-4">
-        <RichText data={richText} className="mb-0" />
+        <RichText data={richText} className="mb-0 " />
       </div>
     </div>
   )

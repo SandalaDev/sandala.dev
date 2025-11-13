@@ -79,11 +79,9 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
         {comparisonSection && (
           <div className="glass rounded-2xl overflow-hidden mb-16">
             <div className="bg-gradient-to-br from-purple-shadow/50 to-coral-pink/55 p-6 text-center">
-              <h3 className="text-secondary dark:text-coral-pink">
-                {comparisonSection.tableHeading}
-              </h3>
+              <h3 className="text-primary text-2xl font-bold">{comparisonSection.tableHeading}</h3>
               {comparisonSection.tableSubheading && (
-                <p className="text-primary-foreground/80">{comparisonSection.tableSubheading}</p>
+                <p className="text-primary font-base">{comparisonSection.tableSubheading}</p>
               )}
             </div>
 

@@ -8,6 +8,12 @@
   }
 }
 
+@layer components {
+  [data-theme='dark'] .prose:not(.prose-light) {
+    @apply prose-invert;
+  }
+}
+
 @layer base {
   h1,
   h2,

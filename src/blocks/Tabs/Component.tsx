@@ -94,7 +94,7 @@ export const TabsBlock: React.FC<Props> = ({ showcase }) => {
           <div className="glass rounded-2xl p-8 md:p-12 mb-16">
             <div className="text-center mb-12">
               <h3 className="text-primary text-2xl font-bold">{showcase.showcaseHeading}</h3>
-              <p className="text-primary">{showcase.showcaseSubheading}</p>
+              <p className="text-primary font-base">{showcase.showcaseSubheading}</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
