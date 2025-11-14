@@ -44,9 +44,18 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
   }
 
   const ratingStyles = {
-    good: { icon: 'text-purple-bloom', text: 'text-purple-bloom' },
-    limited: { icon: 'text-purple-shadow', text: 'text-purple-shadow' },
-    poor: { icon: 'text-purple-void', text: 'text-purple-void' },
+    good: {
+      icon: 'text-success',
+      text: 'text-success',
+    },
+    limited: {
+      icon: 'text-coral-deep',
+      text: 'text-coral-deep',
+    },
+    poor: {
+      icon: 'text-muted',
+      text: 'text-muted',
+    },
   } as const
 
   const RatingIcon: React.FC<{ rating: Rating }> = ({ rating }) => {
@@ -93,16 +102,16 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
                 <thead>
                   <tr>
                     <th className="bg-gradient-to-tr from-coral-pink to-coral-blush text-purple-base px-4 py-3 text-left rounded-l-xl" />
-                    <th className="bg-purple-dusk/90 text-coral-pink px-4 py-3 text-left">
+                    <th className="bg-purple-dusk/90 dark:bg-purple-shadow text-coral-pink dark:text-coral-bright px-4 py-3 text-left">
                       Payload CMS
                     </th>
-                    <th className="bg-purple-dusk/90 text-coral-pink px-4 py-3 text-left">
+                    <th className="bg-purple-dusk/90 dark:bg-purple-shadow text-coral-pink dark:text-coral-bright px-4 py-3 text-left">
                       WordPress
                     </th>
-                    <th className="bg-purple-dusk/90 text-coral-pink px-4 py-3 text-left">
+                    <th className="bg-purple-dusk/90 dark:bg-purple-shadow text-coral-pink dark:text-coral-bright px-4 py-3 text-left">
                       Squarespace/Wix
                     </th>
-                    <th className="bg-purple-dusk/90 text-coral-pink px-4 py-3 text-left rounded-r-xl">
+                    <th className="bg-purple-dusk/90 dark:bg-purple-shadow text-coral-pink dark:text-coral-bright px-4 py-3 text-left rounded-r-xl">
                       Shopify
                     </th>
                   </tr>
@@ -110,31 +119,31 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
                 <tbody>
                   {/* Flexibility */}
                   <tr className="group transition">
-                    <td className="bg-muted/35 px-4 py-4 rounded-l-lg font-semibold text-foreground dark:text-coral-pink align-top group-hover:bg-muted/60">
+                    <td className="bg-muted/35 dark:bg-purple-base/40 px-4 py-4 rounded-l-lg font-semibold text-foreground dark:text-coral-pink align-top group-hover:bg-muted/60 dark:group-hover:bg-purple-base/60">
                       Flexibility
-                      <small className="block text-xs text-muted-foreground dark:text-coral-bright font-normal mt-1">
+                      <small className="block text-xs text-purple-dusk dark:text-coral-bright font-normal mt-1">
                         Can it power a full app, not just a blog?
                       </small>
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.flexibilityFeature?.payloadText,
                         DefaultRatings.flexibility.payload,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.flexibilityFeature?.wordpressText,
                         DefaultRatings.flexibility.wordpress,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.flexibilityFeature?.squarespaceText,
                         DefaultRatings.flexibility.squarespace,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.flexibilityFeature?.shopifyText,
                         DefaultRatings.flexibility.shopify,
@@ -144,31 +153,31 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
 
                   {/* Customization */}
                   <tr className="group transition">
-                    <td className="bg-muted px-4 py-4 rounded-l-lg font-semibold text-foreground align-top group-hover:bg-muted/60">
+                    <td className="bg-muted dark:bg-purple-base/40 px-4 py-4 rounded-l-lg font-semibold text-foreground dark:text-coral-pink align-top group-hover:bg-muted/60 dark:group-hover:bg-purple-base/60">
                       Customization
-                      <small className="block text-xs text-muted-foreground font-normal mt-1">
+                      <small className="block text-xs text-purple-dusk dark:text-coral-bright font-normal mt-1">
                         Can you build unique features?
                       </small>
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.customizationFeature?.payloadText,
                         DefaultRatings.customization.payload,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.customizationFeature?.wordpressText,
                         DefaultRatings.customization.wordpress,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.customizationFeature?.squarespaceText,
                         DefaultRatings.customization.squarespace,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.customizationFeature?.shopifyText,
                         DefaultRatings.customization.shopify,
@@ -178,31 +187,31 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
 
                   {/* Ownership & Control */}
                   <tr className="group transition">
-                    <td className="bg-muted px-4 py-4 rounded-l-lg font-semibold text-foreground align-top group-hover:bg-muted/60">
+                    <td className="bg-muted dark:bg-purple-base/40 px-4 py-4 rounded-l-lg font-semibold purple-dusk dark:text-coral-pink align-top group-hover:bg-muted/60 dark:group-hover:bg-purple-base/60">
                       Ownership & Control
-                      <small className="block text-xs text-muted-foreground font-normal mt-1">
+                      <small className="block text-xs text-purple-dusk dark:text-coral-bright font-normal mt-1">
                         Is the code fully yours?
                       </small>
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.ownershipFeature?.payloadText,
                         DefaultRatings.ownership.payload,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.ownershipFeature?.wordpressText,
                         DefaultRatings.ownership.wordpress,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.ownershipFeature?.squarespaceText,
                         DefaultRatings.ownership.squarespace,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.ownershipFeature?.shopifyText,
                         DefaultRatings.ownership.shopify,
@@ -212,31 +221,31 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
 
                   {/* Long-term Scalability */}
                   <tr className="group transition">
-                    <td className="bg-muted px-4 py-4 rounded-l-lg font-semibold text-foreground align-top group-hover:bg-muted/60">
+                    <td className="bg-muted dark:bg-purple-base/40 px-4 py-4 rounded-l-lg font-semibold text-foreground dark:text-coral-pink align-top group-hover:bg-muted/60 dark:group-hover:bg-purple-base/60">
                       Long-term Scalability
-                      <small className="block text-xs text-muted-foreground font-normal mt-1">
+                      <small className="block text-xs text-purple-dusk dark:text-coral-bright font-normal mt-1">
                         Built to grow with your business?
                       </small>
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.scalabilityFeature?.payloadText,
                         DefaultRatings.scalability.payload,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.scalabilityFeature?.wordpressText,
                         DefaultRatings.scalability.wordpress,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.scalabilityFeature?.squarespaceText,
                         DefaultRatings.scalability.squarespace,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.scalabilityFeature?.shopifyText,
                         DefaultRatings.scalability.shopify,
@@ -246,31 +255,31 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
 
                   {/* Developer Experience */}
                   <tr className="group transition">
-                    <td className="bg-muted px-4 py-4 rounded-l-lg font-semibold text-foreground align-top group-hover:bg-muted/60">
+                    <td className="bg-muted dark:bg-purple-base/40 px-4 py-4 rounded-l-lg font-semibold text-foreground dark:text-coral-pink align-top group-hover:bg-muted/60 dark:group-hover:bg-purple-base/60">
                       Developer Experience
-                      <small className="block text-xs text-muted-foreground font-normal mt-1">
+                      <small className="block text-xs text-purple-dusk dark:text-coral-bright font-normal mt-1">
                         Modern, maintainable, team-friendly?
                       </small>
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.dx_Feature?.payload,
                         DefaultRatings.developer.payload,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.dx_Feature?.wordpress,
                         DefaultRatings.developer.wordpress,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.dx_Feature?.squarespace,
                         DefaultRatings.developer.squarespace,
                       )}
                     </td>
-                    <td className="bg-card px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 group-hover:ring-1 group-hover:ring-coral-pink/30">
+                    <td className="bg-card dark:bg-purple-void/50 px-4 py-4 align-top rounded-r-lg group-hover:bg-muted/40 dark:group-hover:bg-purple-dusk/30 group-hover:ring-1 group-hover:ring-coral-pink/30 dark:group-hover:ring-purple-bloom/30">
                       {renderCell(
                         comparisonSection.dx_Feature?.shopify,
                         DefaultRatings.developer.shopify,
@@ -282,8 +291,8 @@ export const TableBlock: React.FC<Props> = ({ comparisonSection }) => {
             </div>
 
             {/* Bottom line text */}
-            <div className="p-6 bg-background/20 text-center">
-              <p className="text-sm text-purple-dusk italic">
+            <div className="p-6 bg-background/20 dark:bg-coral-pink/10 text-center">
+              <p className="text-sm text-primary italic">
                 <strong>The bottom line:</strong> Payload isn&apos;t just a content management
                 system — it&apos;s a complete application framework that grows with your business,
                 giving you the power to build exactly what you need without platform limitations.

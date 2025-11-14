@@ -68,7 +68,7 @@
     --link: var(--purple-dusk);
     --radius: 0.2rem;
     --shadow-card: 0 20px 40px hsl(var(--purple-void) / 0.25);
-    --success: 127 75% 67%;
+    --success: 127 75% 29%;
     --warning: 37 84% 63%;
     --error: 352 85% 35%;
   }
@@ -84,7 +84,7 @@
     --primary-foreground: var(--purple-void);
     --secondary: var(--purple-dusk);
     --secondary-foreground: var(--coral-whisper);
-    --muted: var(--purple-shadow);
+    --muted: var(--purple-bloom);
     --glass-border: var(--purple-shadow);
     --muted-foreground: var(--purple-twilight);
     --accent: var(--coral-pink);
@@ -95,7 +95,7 @@
     --input: var(--purple-dusk);
     --link: var(--coral-bright);
     --ring: var(--coral-bright);
-    --success: 127 76% 45%;
+    --success: 127 76% 29%;
     --warning: 37 86% 47%;
     --error: 352 85% 55%;
   }
