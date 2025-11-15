@@ -126,6 +126,22 @@ const TagList: React.FC<TagListProps> = ({ tags, className = '' }) => {
   )
 }
 
+// Hard-coded epoch configuration with sci-fi labels
+const EPOCH_CONFIGS = {
+  foundation: {
+    label: 'Epoch: Foundation',
+    period: 'Circa 2001 - 2006',
+  },
+  convergence: {
+    label: 'Epoch: Convergence',
+    period: 'Circa 2007 - 2015',
+  },
+  awakening: {
+    label: 'Epoch: Awakening',
+    period: 'Circa 2016 - Present',
+  },
+}
+
 export const TimelineBlock: React.FC<TimelineBlockProps> = ({
   title,
   subtitle,
@@ -142,9 +158,9 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
 
   // Normalize epochs into a consistent structure
   const epochs = [
-    { name: 'foundation', label: 'Foundation', data: foundation },
-    { name: 'convergence', label: 'Convergence', data: convergence },
-    { name: 'awakening', label: 'Awakening', data: awakening },
+    { name: 'foundation', data: foundation },
+    { name: 'convergence', data: convergence },
+    { name: 'awakening', data: awakening },
   ].filter((epoch) => epoch.data?.items && epoch.data.items.length > 0)
 
   // Modal control functions
@@ -233,6 +249,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
           >
             {epochs.map((epoch) => {
               const isActive = activeEpoch === epoch.name
+              const config = EPOCH_CONFIGS[epoch.name as keyof typeof EPOCH_CONFIGS]
 
               return (
                 <button
@@ -245,7 +262,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                     })
                   }
                   aria-current={isActive ? 'true' : undefined}
-                  aria-label={`Navigate to ${epoch.label} section`}
+                  aria-label={`Navigate to ${config.label} section`}
                 >
                   <span
                     className={cn(
@@ -263,7 +280,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                         : 'text-purple-dusk group-hover:text-coral-bright/50 dark:text-coral-blush',
                     )}
                   >
-                    {epoch.label}
+                    {config.label}
                   </span>
                 </button>
               )
@@ -335,6 +352,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
           <div className="relative border-l border-purple-twilight/55 dark:border-coral-pink/60 ml-4">
             {epochs.map((epoch, epochIndex) => {
               const items = epoch.data?.items || []
+              const config = EPOCH_CONFIGS[epoch.name as keyof typeof EPOCH_CONFIGS]
 
               return (
                 <section
@@ -347,14 +365,19 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                   aria-labelledby={`epoch-heading-${epoch.name}`}
                 >
                   <div className="mb-8 -ml-4">
-                    <div className="inline-flex items-center gap-1.5 px-4 py-0 rounded-3xl backdrop-blur-sm min-w-[50%] bg-coral-pink/40 border border-coral-pink/30 dark:bg-primary/10 dark:border-primary/20">
-                      <div className="w-2 h-2 rounded-full bg-primary/60" />
-                      <h3
-                        id={`epoch-heading-${epoch.name}`}
-                        className="text-primary font-semibold text-base"
-                      >
-                        {epoch.label}
-                      </h3>
+                    <div className="inline-flex flex-col gap-1 px-5 py-2.5 rounded-2xl backdrop-blur-sm min-w-[60%] bg-gradient-to-br from-purple-base/20 via-purple-dusk/15 to-coral-pink/20 border border-purple-twilight/40 dark:border-coral-bright/30 shadow-lg">
+                      <div className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-coral-bright animate-pulse" />
+                        <h3
+                          id={`epoch-heading-${epoch.name}`}
+                          className="text-purple-base dark:text-coral-bright font-bold text-sm tracking-widest uppercase"
+                        >
+                          {config.label}
+                        </h3>
+                      </div>
+                      <span className="text-purple-dusk dark:text-coral-pink text-xs font-mono tracking-wide pl-3.5 opacity-80">
+                        {config.period}
+                      </span>
                     </div>
                   </div>
 
