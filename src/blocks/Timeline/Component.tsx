@@ -236,7 +236,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
         <aside className="lg:sticky lg:top-20 self-start">
           {title && <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">{title}</h2>}
           {subtitle && (
-            <div className="text-lg lg:text-xl xl:text-2xl text-foreground leading-relaxed mb-8 font-medium">
+            <div className="text-base lg:text-lg xl:text-xl text-primary leading-relaxed mb-8 font-light">
               <RichText data={subtitle} enableGutter={false} enableProse={false} />
             </div>
           )}
@@ -297,23 +297,19 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                   className="glass group text-left min-h-[16rem] lg:min-h-[18rem] xl:min-h-[20rem] p-6 lg:p-8 flex flex-col justify-between rounded-3xl cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4"
                   style={{ animationDelay: '100ms' }}
                 >
-                  <div className="flex items-start gap-4 lg:gap-6">
-                    <div className="flex-shrink-0">
-                      <Logo className="w-12 h-8 lg:w-16 lg:h-12" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg lg:text-xl xl:text-2xl font-semibold text-foreground mb-3 lg:mb-4 dark:text-coral-bright">
-                        {cards.bio.title || 'Who I am'}
-                      </h3>
-                      <p className="text-sm lg:text-base text-coral-bright leading-relaxed dark:text-foreground/80">
-                        {cards.bio.teaser ||
-                          'Discover the journey, experiences, and passion that drive my work and creativity.'}
-                      </p>
-                    </div>
+                  <div className="flex flex-col items-center gap-4 lg:gap-6">
+                    <h3 className="text-lg lg:text-xl xl:text-2xl font-semibold text-foreground mb-3 lg:mb-4 dark:text-coral-bright self-start">
+                      {cards.bio.title || 'Who I am'}
+                    </h3>
+                    <p className="text-sm lg:text-base text-coral-bright leading-relaxed dark:text-foreground/80 self-start">
+                      {cards.bio.teaser ||
+                        'Discover the journey, experiences, and passion that drive my work and creativity.'}
+                    </p>
+                    <Logo className="w-full my-8" />
+                    <p className="text-xs lg:text-sm italic text-coral-bright font-medium  dark:text-coral-bright self-start ">
+                      {cards.bio.emphasis || 'Click to learn more about my story'}
+                    </p>
                   </div>
-                  <p className="text-xs lg:text-sm italic text-coral-bright font-medium mt-4 dark:text-coral-bright">
-                    {cards.bio.emphasis || 'Click to learn more about my story'}
-                  </p>
                 </button>
               )}
 
@@ -349,7 +345,14 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
 
         {/* Right Side: Timeline Content */}
         <section className="relative">
-          <div className="relative border-l border-purple-twilight/55 dark:border-coral-pink/60 ml-4">
+          {/* Epoch Intro */}
+          <div className="text-coral-bright inline-flex flex-col gap-1 px-5 py-2 mb-4 rounded-2xl backdrop-blur-sm min-w-[60%] bg-gradient-to-br from-purple-base/20 via-purple-dusk/15 to-coral-pink/20 border border-coral-blush/40 dark:border-coral-bright/30 shadow-lg">
+            <h4>
+              This is an intro explaining what the epochs are, they tie together how my background
+              prepares me for this
+            </h4>
+          </div>
+          <div className="relative border-l border-purple-dusk/55 dark:border-coral-pink/60 ml-4">
             {epochs.map((epoch, epochIndex) => {
               const items = epoch.data?.items || []
               const config = EPOCH_CONFIGS[epoch.name as keyof typeof EPOCH_CONFIGS]
@@ -365,7 +368,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                   aria-labelledby={`epoch-heading-${epoch.name}`}
                 >
                   <div className="mb-8 -ml-4">
-                    <div className="inline-flex flex-col gap-1 px-5 py-2.5 rounded-2xl backdrop-blur-sm min-w-[60%] bg-gradient-to-br from-purple-base/20 via-purple-dusk/15 to-coral-pink/20 border border-purple-twilight/40 dark:border-coral-bright/30 shadow-lg">
+                    <div className="inline-flex flex-col gap-1 px-5 py-2.5 rounded-2xl backdrop-blur-sm min-w-[60%] bg-gradient-to-br from-purple-base/20 via-purple-dusk/15 to-coral-pink/20 border border-coral-blush/40 dark:border-coral-bright/30 shadow-lg">
                       <div className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-coral-bright animate-pulse" />
                         <h3
@@ -428,6 +431,9 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                                               />
                                             </div>
                                           )}
+                                          <p className="text-sm text-coral-bright dark:text-coral-pink font-style: italic pt-2 pb-0">
+                                            relevant skills gained in role
+                                          </p>
                                           <TagList tags={role.tags} className="mt-3" />
                                         </div>
                                       )
@@ -451,7 +457,10 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
                                       />
                                     </div>
                                   )}
-                                  <TagList tags={item.tags} className="mt-4" />
+                                  <p className="text-sm text-coral-bright dark:text-coral-pink font-style: italic pt-2 pb-0">
+                                    relevant skills gained
+                                  </p>
+                                  <TagList tags={item.tags} className="mt-1" />
                                 </>
                               )}
                             </div>
