@@ -1705,7 +1705,7 @@ export interface ContactHubBlock {
          * Unique identifier for this card (used for modal targeting)
          */
         id: string;
-        topIcon?: ('nextjs' | 'react' | 'payload' | 'github') | null;
+        topIcon?: ('message' | 'idea' | 'checklist') | null;
         bottomIcon?: ('message-circle' | 'video' | 'zap') | null;
         subtitle?: string | null;
         title: string;

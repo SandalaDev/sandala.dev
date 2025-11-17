@@ -45,8 +45,8 @@ export const ContactHub: Block = {
         {
           name: 'topIcon',
           type: 'select',
-          label: 'Top Icon (Tech Icon)',
-          options: Object.entries(ICON_METADATA.tech).map(([key, data]) => ({
+          label: 'Top Icon',
+          options: Object.entries(ICON_METADATA.contact).map(([key, data]) => ({
             label: data.label,
             value: key,
           })),
@@ -54,7 +54,7 @@ export const ContactHub: Block = {
         {
           name: 'bottomIcon',
           type: 'select',
-          label: 'Bottom Icon (Lucide Icon)',
+          label: 'Bottom Icon ',
           options: [
             { label: 'Message Circle', value: 'message-circle' },
             { label: 'Video', value: 'video' },

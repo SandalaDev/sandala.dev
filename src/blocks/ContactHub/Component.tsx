@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { cn } from '@/utilities/ui'
 import RichText from '@/components/RichText'
 import { FormBlock } from '@/blocks/Form/Component'
-import { TECH_ICONS, getIconLabel, type TechIcon } from '@/constants/icons'
+import { CONTACT_ICONS, getIconLabel, type ContactIcon } from '@/constants/icons'
 import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 import type { Form } from '@payloadcms/plugin-form-builder/types'
 
@@ -81,13 +81,15 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {contactCards?.map((card, index) => {
           const IconComponent = iconMap[card.bottomIcon as keyof typeof iconMap]
-          const TechIconComponent = card.topIcon ? TECH_ICONS[card.topIcon as TechIcon] : null
-          const techIconLabel = card.topIcon ? getIconLabel(card.topIcon as TechIcon) : ''
+          const ContactIconComponent = card.topIcon
+            ? CONTACT_ICONS[card.topIcon as ContactIcon]
+            : null
+          const contactIconLabel = card.topIcon ? getIconLabel(card.topIcon as ContactIcon) : ''
 
           return (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 glass shadow-card hover:shadow-2xl border border-border/50 hover:border-primary/50"
+              className="group relative overflow-hidden rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 glass shadow-card hover:shadow-2xl border border-coral-blush/50 hover:border-coral-bright/50"
               onClick={() => openModal(card.id || `card-${index}`)}
             >
               {/* Hover overlay */}
@@ -95,25 +97,28 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
 
               {/* Top Icon */}
               <div className="relative mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 text-primary-foreground">
-                  {TechIconComponent ? (
-                    <TechIconComponent size={32} aria-label={techIconLabel} />
+                <div
+                  className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center transition-transform
+                duration-300 group-hover:scale-110 group-hover:rotate-3 text-primary-foreground"
+                >
+                  {ContactIconComponent ? (
+                    <ContactIconComponent size={50} aria-label={contactIconLabel} />
                   ) : (
-                    <div className="w-8 h-8 bg-primary-foreground rounded" />
+                    <div className="w-14 h-14 bg-secondary rounded " />
                   )}
                 </div>
               </div>
 
               {/* Card Content */}
               <div className="relative z-10">
-                {card.subtitle && (
-                  <div className="text-sm font-semibold text-accent uppercase tracking-wider mb-2">
-                    {card.subtitle}
-                  </div>
-                )}
-
                 {card.title && (
                   <h3 className="text-xl font-bold text-foreground mb-4">{card.title}</h3>
+                )}
+
+                {card.subtitle && (
+                  <div className="text-sm font-semibold text-coral-bright  tracking-wider mb-2">
+                    {card.subtitle}
+                  </div>
                 )}
 
                 {card.description && (
