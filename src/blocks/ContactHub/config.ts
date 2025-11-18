@@ -57,8 +57,8 @@ export const ContactHub: Block = {
           label: 'Bottom Icon ',
           options: [
             { label: 'Message Circle', value: 'message-circle' },
-            { label: 'Video', value: 'video' },
-            { label: 'Zap', value: 'zap' },
+            { label: 'Quote Left', value: 'quote-left' },
+            { label: 'Rocket', value: 'rocket' },
           ],
         },
         {

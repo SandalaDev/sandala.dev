@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComments, faVideo, faBolt, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faComments, faQuoteLeft, faRocket, faXmark } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import { cn } from '@/utilities/ui'
 import RichText from '@/components/RichText'
@@ -13,7 +13,7 @@ import type { Form } from '@payloadcms/plugin-form-builder/types'
 type ContactCard = {
   id?: string
   topIcon?: string
-  bottomIcon?: 'message-circle' | 'video' | 'zap'
+  bottomIcon?: 'message-circle' | 'quote-left' | 'rocket'
   subtitle?: string
   title?: string
   description?: DefaultTypedEditorState
@@ -39,8 +39,8 @@ type Props = {
 
 const iconMap = {
   'message-circle': faComments,
-  video: faVideo,
-  zap: faBolt,
+  rocket: faRocket,
+  'quote-left': faQuoteLeft,
 }
 
 export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, contactCards }) => {

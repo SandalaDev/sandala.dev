@@ -1706,7 +1706,7 @@ export interface ContactHubBlock {
          */
         id: string;
         topIcon?: ('message' | 'idea' | 'checklist') | null;
-        bottomIcon?: ('message-circle' | 'video' | 'zap') | null;
+        bottomIcon?: ('message-circle' | 'quote-left' | 'rocket') | null;
         subtitle?: string | null;
         title: string;
         description?: {
