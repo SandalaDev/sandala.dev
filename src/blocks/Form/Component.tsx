@@ -127,7 +127,8 @@ export const FormBlock: React.FC<
           {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
           {!hasSubmitted && (
             <form id={formID} onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4 last:mb-0">
+              {/* FLEX CONTAINER: Wraps items and handles negative margin for gutters */}
+              <div className="flex flex-wrap mb-4 last:mb-0 -mx-3">
                 {formFromProps &&
                   formFromProps.fields &&
                   formFromProps.fields?.map((field, index) => {
@@ -135,11 +136,22 @@ export const FormBlock: React.FC<
                     const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
                     if (Field) {
                       return (
-                        <div className="mb-6 last:mb-0" key={index}>
+                        <div
+                          className="px-3 mb-6 w-full md:w-[var(--field-width)]"
+                          key={index}
+                          style={
+                            {
+                              // We tell TS: "This is a FormFieldBlock, AND it might have a width number"
+                              '--field-width': `${(field as FormFieldBlock & { width?: number }).width || 100}%`,
+                            } as React.CSSProperties
+                          }
+                        >
                           <Field
                             form={formFromProps}
                             {...field}
                             {...formMethods}
+                            // OVERRIDE: Force internal component to fill this wrapper
+                            width="100"
                             control={control}
                             errors={errors}
                             register={register}
