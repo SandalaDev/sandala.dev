@@ -394,10 +394,15 @@ body::before {
 
 /* Utilities */
 @layer utilities {
+  .butt-shadow {
+    box-shadow:
+      0 10px 15px hsl(var(--purple-shadow) / 0.2),
+      0 4px 6px hsl(var(--purple-void) / 0.1);
+  }
   .drop-shadow-glass {
     box-shadow:
       0 10px 15px hsl(var(--purple-shadow) / 0.2),
-      0 4px 6px hsl(var(--purple-shadow) / 0.1);
+      0 4px 6px hsl(var(--purple-void) / 0.1);
   }
   .backdrop-blur-\[25px\] {
     backdrop-filter: blur(25px);

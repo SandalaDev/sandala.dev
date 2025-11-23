@@ -156,11 +156,11 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
           <div
             key={`modal-${index}`}
             className={cn(
-              'fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300',
+              ' fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300',
               isActive ? 'visible opacity-100' : 'invisible opacity-0',
             )}
             style={{
-              background: isActive ? 'rgba(0, 0, 0, 0.8)' : 'transparent',
+              background: isActive ? `hsla(var(--purple-void) / 0.6)` : 'transparent',
               backdropFilter: isActive ? 'blur(10px)' : 'none',
             }}
             onClick={(e) => {
@@ -169,16 +169,16 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
           >
             <div
               className={cn(
-                'relative w-full max-w-2xl max-h-[90vh] overflow-y-auto glass rounded-2xl shadow-2xl border border-border/50 transition-transform duration-300',
+                'relative w-full max-w-2xl max-h-[90vh] overflow-y-auto glass rounded-2xl shadow-2xl  transition-transform duration-300',
                 isActive ? 'scale-100' : 'scale-95',
               )}
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-border/50">
-                <h2 className="text-2xl font-bold text-foreground">{card.title}</h2>
+              <div className="flex items-center justify-between p-2  border-b border-coral-bright/50">
+                <h2 className="text-2xl font-bold text-coral-pink  mb-2">{card.title}</h2>
                 <button
                   onClick={closeModal}
-                  className=" w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors duration-200"
+                  className=" w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors duration-200 justify-self-end"
                   aria-label="Close modal"
                 >
                   <FontAwesomeIcon
@@ -196,9 +196,9 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
 
                 {/* Cross-link suggestions */}
                 {card.crossLinks && card.crossLinks.length > 0 && (
-                  <div className="mt-6 p-4 bg-card/60 rounded-lg border border-border/30">
+                  <div className="mt-6 p-4 bg-coral-pink/60 rounded-2xl border border-coral-pink/30">
                     {card.crossLinks.map((crossLink, linkIndex) => (
-                      <p key={linkIndex} className="text-sm text-card-foreground mb-2 last:mb-0">
+                      <p key={linkIndex} className="text-sm text-coral-blush/90 mb-2 last:mb-0">
                         {crossLink.text}{' '}
                         <button
                           onClick={() => {
@@ -209,7 +209,7 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
                               switchModal(cardId, crossLink.targetCardId || '')
                             }
                           }}
-                          className="text-primary hover:text-primary/80 font-semibold hover:underline transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-card rounded-sm"
+                          className="text-secondary hover:text-primary/80 font-semibold hover:underline transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-card rounded-sm"
                         >
                           {crossLink.linkText}
                         </button>

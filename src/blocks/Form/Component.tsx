@@ -114,11 +114,11 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-[48rem]">
+    <div className="container lg:max-w-[48rem] ">
       {enableIntro && introContent && !hasSubmitted && (
         <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
       )}
-      <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
+      <div className="p-4  lg:p-6 border border-coral-bright rounded-2xl ">
         <FormProvider {...formMethods}>
           {!isLoading && hasSubmitted && confirmationType === 'message' && (
             <RichText data={confirmationMessage} />
@@ -137,7 +137,7 @@ export const FormBlock: React.FC<
                     if (Field) {
                       return (
                         <div
-                          className="px-3 mb-6 w-full md:w-[var(--field-width)]"
+                          className="rounded-2xl text-coral-pink px-3 mb-6 w-full md:w-[var(--field-width)]"
                           key={index}
                           style={
                             {
