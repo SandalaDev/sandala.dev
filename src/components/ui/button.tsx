@@ -23,7 +23,7 @@ const buttonVariants = cva(
           'butt-shadow bg-gradient-to-r from-[hsl(var(--purple-void))] to-[hsl(var(--coral-bright))] via-[hsl(var(--purple-base))] text-secondary hover:from-[hsl(var(--purple-void))] hover:to-[hsl(var(--coral-bright))] hover:via-[hsl(var(--purple-dusk))] dark:text-primary',
         destructive: 'bg-destructive text-secondary hover:bg-destructive/90',
         ghost: 'text-secondary hover:bg-card hover:text-accent-foreground',
-        link: 'text-primary items-start justify-start underline-offset-4',
+        link: 'text-primary items-start justify-start underline-offset-4 min-w-0',
         outline:
           'border-2 rounded-2xl bg-transparent text-primary border-[hsl(var(--coral-pink))] ' +
           'hover:text-[hsl(var(--purple-dusk))] hover:border-[hsl(var(--coral-pink))] hover:bg-transparent ' +
