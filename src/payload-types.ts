@@ -684,6 +684,13 @@ export interface Form {
             blockName?: string | null;
             blockType: 'textarea';
           }
+        | {
+            title: string;
+            width?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'sectionTitle';
+          }
       )[]
     | null;
   submitButtonLabel?: string | null;
@@ -2879,6 +2886,14 @@ export interface FormsSelect<T extends boolean = true> {
               width?: T;
               defaultValue?: T;
               required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        sectionTitle?:
+          | T
+          | {
+              title?: T;
+              width?: T;
               id?: T;
               blockName?: T;
             };

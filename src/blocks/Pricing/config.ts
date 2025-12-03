@@ -7,7 +7,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { link } from '../../fields/link'
+import { link } from '../../Fields/link'
 
 export const Pricing: Block = {
   slug: 'pricing',
@@ -24,7 +24,8 @@ export const Pricing: Block = {
     {
       name: 'subtitle',
       type: 'text',
-      defaultValue: 'I build Payload-powered platforms that put you in complete control of your content. No more waiting for developers to make simple updates.',
+      defaultValue:
+        'I build Payload-powered platforms that put you in complete control of your content. No more waiting for developers to make simple updates.',
       admin: {
         description: 'Optional subtitle or description below the main title',
       },
@@ -46,24 +47,24 @@ export const Pricing: Block = {
           features: [
             {
               title: 'Professional Website',
-              description: 'Custom design reflecting your brand identity'
+              description: 'Custom design reflecting your brand identity',
             },
             {
               title: 'Content Management System',
-              description: 'Easy-to-use CMS for updating your content'
+              description: 'Easy-to-use CMS for updating your content',
             },
             {
               title: 'Mobile Optimization',
-              description: 'Responsive design for all devices'
+              description: 'Responsive design for all devices',
             },
             {
               title: 'Basic SEO Setup',
-              description: 'Search engine optimization foundation'
+              description: 'Search engine optimization foundation',
             },
             {
               title: '3 Months Support',
-              description: 'Technical support and minor updates'
-            }
+              description: 'Technical support and minor updates',
+            },
           ],
           note: {
             root: {
@@ -74,12 +75,12 @@ export const Pricing: Block = {
                   children: [
                     {
                       type: 'text',
-                      text: 'Ideal for businesses wanting to establish a professional online presence with the flexibility to manage their own content.'
-                    }
-                  ]
-                }
-              ]
-            }
+                      text: 'Ideal for businesses wanting to establish a professional online presence with the flexibility to manage their own content.',
+                    },
+                  ],
+                },
+              ],
+            },
           },
           featured: true,
           cta: {
@@ -87,9 +88,9 @@ export const Pricing: Block = {
               type: 'custom',
               url: '/contact',
               label: 'Get Started',
-              appearance: 'default'
-            }
-          }
+              appearance: 'default',
+            },
+          },
         },
         {
           title: 'Growth Partnership',
@@ -100,28 +101,28 @@ export const Pricing: Block = {
           features: [
             {
               title: 'Everything in Strategic Entry',
-              description: 'All features from the previous tier'
+              description: 'All features from the previous tier',
             },
             {
               title: 'E-commerce Integration',
-              description: 'Full online store with payment processing'
+              description: 'Full online store with payment processing',
             },
             {
               title: 'Advanced Analytics',
-              description: 'Detailed insights into user behavior'
+              description: 'Detailed insights into user behavior',
             },
             {
               title: 'API Integration',
-              description: 'Connect with your existing tools'
+              description: 'Connect with your existing tools',
             },
             {
               title: '6 Months Premium Support',
-              description: 'Priority support with regular check-ins'
+              description: 'Priority support with regular check-ins',
             },
             {
               title: 'Performance Optimization',
-              description: 'Speed and conversion optimization'
-            }
+              description: 'Speed and conversion optimization',
+            },
           ],
           note: {
             root: {
@@ -132,12 +133,12 @@ export const Pricing: Block = {
                   children: [
                     {
                       type: 'text',
-                      text: 'Perfect for growing businesses that need advanced features and ongoing optimization to maximize their digital ROI.'
-                    }
-                  ]
-                }
-              ]
-            }
+                      text: 'Perfect for growing businesses that need advanced features and ongoing optimization to maximize their digital ROI.',
+                    },
+                  ],
+                },
+              ],
+            },
           },
           featured: false,
           cta: {
@@ -145,9 +146,9 @@ export const Pricing: Block = {
               type: 'custom',
               url: '/contact',
               label: 'Scale Up',
-              appearance: 'outline'
-            }
-          }
+              appearance: 'outline',
+            },
+          },
         },
         {
           title: 'Custom Platform',
@@ -158,28 +159,28 @@ export const Pricing: Block = {
           features: [
             {
               title: 'Everything in Growth Partnership',
-              description: 'All previous features included'
+              description: 'All previous features included',
             },
             {
               title: 'Custom Development',
-              description: 'Bespoke features built for your workflow'
+              description: 'Bespoke features built for your workflow',
             },
             {
               title: 'Multi-site Management',
-              description: 'Manage multiple websites from one dashboard'
+              description: 'Manage multiple websites from one dashboard',
             },
             {
               title: 'Advanced Integrations',
-              description: 'Complex third-party system connections'
+              description: 'Complex third-party system connections',
             },
             {
               title: 'Dedicated Project Manager',
-              description: 'Personal point of contact throughout'
+              description: 'Personal point of contact throughout',
             },
             {
               title: '12 Months Enterprise Support',
-              description: 'White-glove support with SLA guarantees'
-            }
+              description: 'White-glove support with SLA guarantees',
+            },
           ],
           note: {
             root: {
@@ -190,12 +191,12 @@ export const Pricing: Block = {
                   children: [
                     {
                       type: 'text',
-                      text: 'For established businesses requiring sophisticated digital infrastructure with enterprise-grade reliability and support.'
-                    }
-                  ]
-                }
-              ]
-            }
+                      text: 'For established businesses requiring sophisticated digital infrastructure with enterprise-grade reliability and support.',
+                    },
+                  ],
+                },
+              ],
+            },
           },
           featured: false,
           cta: {
@@ -203,10 +204,10 @@ export const Pricing: Block = {
               type: 'custom',
               url: '/contact',
               label: 'Discuss Project',
-              appearance: 'default'
-            }
-          }
-        }
+              appearance: 'default',
+            },
+          },
+        },
       ],
       admin: {
         description: 'Pricing cards - typically 2-4 cards work best',

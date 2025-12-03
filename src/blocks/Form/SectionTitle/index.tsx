@@ -6,9 +6,6 @@ export const SectionTitle: React.FC<
   FormFieldBlock & {
     title?: string
     width?: number | string
-
-    register?: any
-    errors?: any
   }
 > = ({ title, width }) => {
   return (

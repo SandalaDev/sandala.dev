@@ -1,5 +1,5 @@
 import type { Block } from 'payload'
-import { defaultLexical } from '../../fields/defaultLexical'
+import { defaultLexical } from '../../Fields/defaultLexical'
 
 export const ProfileCards: Block = {
   slug: 'profileCards',

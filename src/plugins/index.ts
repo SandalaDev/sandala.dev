@@ -51,10 +51,13 @@ export const plugins: Plugin[] = [
     generateURL,
   }),
   formBuilderPlugin({
-    fields: { payment: false },
+    fields: {
+      payment: false,
+    },
     formOverrides: {
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
+          // Override confirmationMessage field
           if ('name' in field && field.name === 'confirmationMessage') {
             return {
               ...field,
@@ -69,6 +72,39 @@ export const plugins: Plugin[] = [
               }),
             }
           }
+
+          // Add sectionTitle block to the fields blocks
+          if ('name' in field && field.name === 'fields' && field.type === 'blocks') {
+            return {
+              ...field,
+              blocks: [
+                ...(field.blocks || []),
+                {
+                  slug: 'sectionTitle',
+                  labels: {
+                    singular: 'Section Title',
+                    plural: 'Section Titles',
+                  },
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'text',
+                      required: true,
+                      label: 'Section Title',
+                    },
+                    {
+                      name: 'width',
+                      type: 'number',
+                      defaultValue: 100,
+                      min: 0,
+                      max: 100,
+                    },
+                  ],
+                },
+              ],
+            }
+          }
+
           return field
         })
       },
