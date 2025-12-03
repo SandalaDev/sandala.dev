@@ -113,6 +113,7 @@ export const Forms: CollectionConfig = {
         },
       ],
     },
+
     {
       name: 'submitButtonLabel',
       type: 'text',

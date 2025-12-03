@@ -51,9 +51,7 @@ export const plugins: Plugin[] = [
     generateURL,
   }),
   formBuilderPlugin({
-    fields: {
-      payment: false,
-    },
+    fields: { payment: false },
     formOverrides: {
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
@@ -76,6 +74,7 @@ export const plugins: Plugin[] = [
       },
     },
   }),
+
   searchPlugin({
     collections: ['projects'],
     beforeSync: beforeSyncWithSearch,
