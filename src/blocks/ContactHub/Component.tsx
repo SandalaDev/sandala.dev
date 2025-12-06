@@ -66,7 +66,7 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
       {/* Hero Section */}
       <div className="text-center mb-16 py-8">
         {title && (
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-4">
+          <h1 className="text-2xl md:text-2xl lg:text-3xl font-extrabold leading-tight tracking-tight mb-4">
             {title}
           </h1>
         )}
@@ -116,7 +116,7 @@ export const ContactHubBlock: React.FC<Props> = ({ className, title, subtitle, c
                 )}
 
                 {card.subtitle && (
-                  <div className="text-sm font-semibold text-coral-bright  tracking-wider mb-2">
+                  <div className="text-sm font-semibold text-secondary bg-primary/60 tracking-wider mb-2 rounded-2xl p-3">
                     {card.subtitle}
                   </div>
                 )}

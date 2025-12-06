@@ -109,7 +109,7 @@ export const CheckboxGroup: React.FC<{
           {/* None option with separator */}
           {includeNoneOption && options.length > 0 && (
             <>
-              <div className="h-px bg-gray-200 my-3" />
+              <div className="h-px bg-coral-bright opacity-30 my-3" />
               <div className="flex items-center gap-2">
                 <CheckboxUi
                   id={`${name}-${noneValue}`}

@@ -9,11 +9,11 @@ export const SectionTitle: React.FC<
   }
 > = ({ title, width }) => {
   return (
-    <div className="-mb-3 mt-16">
+    <div className="mt-16">
       <Width width={width}>
         <div className="">
-          <h3 className="text-xl font-semibold text-coral-pink mt-8 mb-4">{title}</h3>
-          <div className="h-px bg-coral-bright opacity-30 mb-6" />
+          <h3 className="text-xl font-semibold text-coral-pink mt-8 mb-2">{title}</h3>
+          <div className="h-px bg-coral-bright opacity-80 mb-0" />
         </div>
       </Width>
     </div>
