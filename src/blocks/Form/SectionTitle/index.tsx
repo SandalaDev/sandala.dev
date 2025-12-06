@@ -9,11 +9,13 @@ export const SectionTitle: React.FC<
   }
 > = ({ title, width }) => {
   return (
-    <Width width={width}>
-      <div className="section-title-wrapper">
-        <h3 className="text-xl font-semibold text-coral-pink mt-8 mb-4">{title}</h3>
-        <div className="h-px bg-coral-bright opacity-30 mb-6" />
-      </div>
-    </Width>
+    <div className="-mb-3 mt-16">
+      <Width width={width}>
+        <div className="">
+          <h3 className="text-xl font-semibold text-coral-pink mt-8 mb-4">{title}</h3>
+          <div className="h-px bg-coral-bright opacity-30 mb-6" />
+        </div>
+      </Width>
+    </div>
   )
 }

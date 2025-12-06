@@ -73,12 +73,13 @@ export const plugins: Plugin[] = [
             }
           }
 
-          // Add sectionTitle block to the fields blocks
+          // Add custom blocks to the fields
           if ('name' in field && field.name === 'fields' && field.type === 'blocks') {
             return {
               ...field,
               blocks: [
                 ...(field.blocks || []),
+                // Section Title block
                 {
                   slug: 'sectionTitle',
                   labels: {
@@ -98,6 +99,94 @@ export const plugins: Plugin[] = [
                       defaultValue: 100,
                       min: 0,
                       max: 100,
+                    },
+                  ],
+                },
+                // Checkbox Group block
+                {
+                  slug: 'checkboxGroup',
+                  labels: {
+                    singular: 'Checkbox Group',
+                    plural: 'Checkbox Groups',
+                  },
+                  fields: [
+                    {
+                      name: 'name',
+                      type: 'text',
+                      required: true,
+                      label: 'Field Name',
+                      admin: {
+                        description:
+                          'This will be used as the field name in form submissions (lowercase, no spaces)',
+                      },
+                    },
+                    {
+                      name: 'label',
+                      type: 'text',
+                      required: true,
+                      label: 'Group Label',
+                      admin: {
+                        description: 'The main label displayed above the checkbox group',
+                      },
+                    },
+                    {
+                      name: 'options',
+                      type: 'array',
+                      required: true,
+                      minRows: 1,
+                      label: 'Checkbox Options',
+                      fields: [
+                        {
+                          name: 'label',
+                          type: 'text',
+                          required: true,
+                          label: 'Option Label',
+                        },
+                        {
+                          name: 'value',
+                          type: 'text',
+                          required: true,
+                          label: 'Option Value',
+                          admin: {
+                            description: 'Internal value (lowercase, no spaces recommended)',
+                          },
+                        },
+                      ],
+                      admin: {
+                        description: 'Add the checkbox options for this group',
+                      },
+                    },
+                    {
+                      name: 'includeNoneOption',
+                      type: 'checkbox',
+                      label: 'Include "None" option',
+                      defaultValue: true,
+                      admin: {
+                        description: 'When checked, deselects all other options',
+                      },
+                    },
+                    {
+                      name: 'noneLabel',
+                      type: 'text',
+                      label: 'Label for "None" option',
+                      defaultValue: 'None of the above',
+                      admin: {
+                        condition: (_, siblingData) => siblingData?.includeNoneOption,
+                      },
+                    },
+                    {
+                      name: 'required',
+                      type: 'checkbox',
+                      label: 'Required',
+                      defaultValue: false,
+                    },
+                    {
+                      name: 'width',
+                      type: 'number',
+                      defaultValue: 100,
+                      min: 25,
+                      max: 100,
+                      label: 'Field Width (%)',
                     },
                   ],
                 },

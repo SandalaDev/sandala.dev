@@ -8,6 +8,7 @@ import { State } from './State'
 import { Text } from './Text'
 import { Textarea } from './Textarea'
 import { SectionTitle } from './SectionTitle'
+import { CheckboxGroup } from './CheckboxGroup'
 
 export const fields = {
   checkbox: Checkbox,
@@ -20,4 +21,5 @@ export const fields = {
   text: Text,
   textarea: Textarea,
   sectionTitle: SectionTitle,
+  checkboxGroup: CheckboxGroup,
 }

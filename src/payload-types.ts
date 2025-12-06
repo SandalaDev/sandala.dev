@@ -691,6 +691,37 @@ export interface Form {
             blockName?: string | null;
             blockType: 'sectionTitle';
           }
+        | {
+            /**
+             * This will be used as the field name in form submissions (lowercase, no spaces)
+             */
+            name: string;
+            /**
+             * The main label displayed above the checkbox group
+             */
+            label: string;
+            /**
+             * Add the checkbox options for this group
+             */
+            options: {
+              label: string;
+              /**
+               * Internal value (lowercase, no spaces recommended)
+               */
+              value: string;
+              id?: string | null;
+            }[];
+            /**
+             * When checked, deselects all other options
+             */
+            includeNoneOption?: boolean | null;
+            noneLabel?: string | null;
+            required?: boolean | null;
+            width?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'checkboxGroup';
+          }
       )[]
     | null;
   submitButtonLabel?: string | null;
@@ -2893,6 +2924,25 @@ export interface FormsSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
+              width?: T;
+              id?: T;
+              blockName?: T;
+            };
+        checkboxGroup?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              options?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              includeNoneOption?: T;
+              noneLabel?: T;
+              required?: T;
               width?: T;
               id?: T;
               blockName?: T;

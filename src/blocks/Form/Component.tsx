@@ -128,39 +128,39 @@ export const FormBlock: React.FC<
           {!hasSubmitted && (
             <form id={formID} onSubmit={handleSubmit(onSubmit)}>
               {/* FLEX CONTAINER: Wraps items and handles negative margin for gutters */}
-              <div className="flex flex-wrap mb-4 last:mb-0 -mx-3">
-                {formFromProps &&
-                  formFromProps.fields &&
-                  formFromProps.fields?.map((field, index) => {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
-                    if (Field) {
-                      return (
-                        <div
-                          className="rounded-2xl text-coral-pink px-3 mb-6 w-full md:w-[var(--field-width)]"
-                          key={index}
-                          style={
-                            {
-                              // We tell TS: "This is a FormFieldBlock, AND it might have a width number"
-                              '--field-width': `${(field as FormFieldBlock & { width?: number }).width || 100}%`,
-                            } as React.CSSProperties
-                          }
-                        >
-                          <Field
-                            form={formFromProps}
-                            {...field}
-                            {...formMethods}
-                            // OVERRIDE: Force internal component to fill this wrapper
-                            width="100"
-                            control={control}
-                            errors={errors}
-                            register={register}
-                          />
-                        </div>
-                      )
-                    }
-                    return null
-                  })}
+              <div className="max-h-[60vh] overflow-y-auto overflow-x-hidden pr-2 px-3 scrollbar-thin scrollbar-thumb-coral-bright scrollbar-track-transparent">
+                {/* Remove -mx-3 from flex container */}
+                <div className="flex flex-wrap mb-4 last:mb-0">
+                  {formFromProps &&
+                    formFromProps.fields &&
+                    formFromProps.fields?.map((field, index) => {
+                      const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
+                      if (Field) {
+                        return (
+                          <div
+                            className="rounded-2xl text-coral-pink px-3 mb-6 w-full md:w-[var(--field-width)]"
+                            key={index}
+                            style={
+                              {
+                                '--field-width': `${(field as FormFieldBlock & { width?: number }).width || 100}%`,
+                              } as React.CSSProperties
+                            }
+                          >
+                            <Field
+                              form={formFromProps}
+                              {...field}
+                              {...formMethods}
+                              width="100"
+                              control={control}
+                              errors={errors}
+                              register={register}
+                            />
+                          </div>
+                        )
+                      }
+                      return null
+                    })}
+                </div>
               </div>
 
               <Button form={formID} type="submit" variant="default">
