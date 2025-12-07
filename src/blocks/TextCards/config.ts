@@ -8,7 +8,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { link } from '../../Fields/link'
+import { link } from '../../fields/link'
 
 export const TextCards: Block = {
   slug: 'textCards',
