@@ -3,14 +3,14 @@ import redirects from './redirects.js'
 
 const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : undefined || process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
+  : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+
+  // Remove the eslint block – it’s no longer supported in Next.js 16
+  // eslint: { ignoreDuringBuilds: true },
 
   images: {
     remotePatterns: [
@@ -22,7 +22,7 @@ const nextConfig = {
           protocol: url.protocol.replace(':', ''),
         }
       }),
-      // Cloudflare R2 raw bucket (optional, in case you still fetch directly)
+      // Cloudflare R2 raw bucket
       {
         protocol: 'https',
         hostname: '3e55f729990d58a38e53843527a40437.r2.cloudflarestorage.com',
@@ -39,6 +39,7 @@ const nextConfig = {
     ],
   },
 
+  // Keep your custom extensionAlias (Payload likes it)
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
@@ -47,6 +48,9 @@ const nextConfig = {
     }
     return webpackConfig
   },
+
+  // This is the magic line that fixes the Turbopack error
+  turbopack: {},
 
   reactStrictMode: true,
   redirects,
