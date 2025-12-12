@@ -31,13 +31,13 @@ const config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
-        lg: '2rem',
+        DEFAULT: '.5rem',
+        lg: '1rem',
       },
       screens: {
         sm: '100%',
-        md: '90%',
-        lg: '80%',
+        md: '95%',
+        lg: '90%',
         xl: '1440px',
       },
     },
